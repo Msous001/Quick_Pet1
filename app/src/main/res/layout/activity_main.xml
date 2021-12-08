@@ -86,12 +86,10 @@
             android:id="@+id/password_input"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginBottom="2dp"
             android:autofillHints="no"
             android:background="@drawable/white_border"
             android:ems="10"
-            android:inputType="textPassword"
+            android:inputType="textPassword|textEmailAddress"
             android:labelFor="@id/passw_input"
             android:paddingStart="14dp"
             android:paddingTop="0dp"
@@ -103,20 +101,6 @@
             tools:ignore="SpeakableTextPresentCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
-
-    <TextView
-        android:id="@+id/forgot_link"
-        style="@style/link"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="50dp"
-        android:text="@string/forgot_password"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/register_link"
-        app:layout_constraintTop_toBottomOf="@+id/next_btn"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TouchTargetSizeCheck" />
 
     <Button
         android:id="@+id/next_btn"
@@ -138,25 +122,15 @@
 
     <TextView
         android:id="@+id/register_link"
-        style="@style/link"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="50dp"
-        android:clickable="true"
-        android:contextClickable="false"
         android:text="@string/register"
-        android:textColor="@color/blue"
-        android:textColorLink="#E92CEF"
-        android:textSize="20sp"
-        android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/next_btn"
         app:layout_constraintVertical_bias="0.0"
-        tools:ignore="TouchTargetSizeCheck" />
+        tools:ignore="TouchTargetSizeCheck"
+        style="@style/link" />
 
     <TextView
         android:id="@+id/email_req"
@@ -166,6 +140,7 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="50dp"
         android:text="@string/required"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -181,11 +156,26 @@
         android:layout_marginTop="2dp"
         android:layout_marginEnd="50dp"
         android:text="@string/required"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.991"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passw_input"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/forgot_link"
+        style="@style/link"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="50dp"
+        android:text="@string/forgot_password"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/register_link"
+        app:layout_constraintTop_toBottomOf="@+id/next_btn"
         app:layout_constraintVertical_bias="0.0" />
 
 

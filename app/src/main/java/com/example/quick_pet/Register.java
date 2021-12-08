@@ -27,7 +27,7 @@ public class Register extends AppCompatActivity {
     EditText mEmail, mPassword, mConfirm;
     TextView mReg1, mReg2, mReg3;
     Button reg_btn;
-    TextView mLogin, mForgot_pass;
+    TextView mLogin;
     FirebaseAuth fAuth;
 
     @Override
@@ -41,7 +41,7 @@ public class Register extends AppCompatActivity {
         mConfirm = findViewById(R.id.confirm_passw);
         reg_btn = findViewById(R.id.next_btn);
         mLogin = findViewById(R.id.singIn_link);
-        mForgot_pass = findViewById(R.id.forgot_link);
+
         mReg1 = findViewById(R.id.req1);
         mReg2 = findViewById(R.id.req2);
         mReg3 = findViewById(R.id.req3);
