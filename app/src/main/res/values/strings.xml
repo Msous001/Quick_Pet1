@@ -10,4 +10,7 @@
     <string name="sign_up">Sign Up</string>
     <string name="pass">*********</string>
     <string name="required">Required</string>
+    <string name="exit">Exit</string>
+    <string name="logout">Logout</string>
+    <string name="settings">Settings</string>
 </resources>

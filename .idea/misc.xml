@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/circle_white.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/green_button.xml" value="0.1712962962962963" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/password_toggle.xml" value="0.11587837837837837" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/req.xml" value="0.13402777777777777" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/white_border.xml" value="0.1712962962962963" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_first.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_logout.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_register.xml" value="0.22" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/menu/top_menu.xml" value="0.14666666666666667" />
       </map>
     </option>
   </component>

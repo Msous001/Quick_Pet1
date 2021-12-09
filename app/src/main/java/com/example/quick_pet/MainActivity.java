@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         fAuth = FirebaseAuth.getInstance();
+        
        //
 
         mEmail = findViewById(R.id.email_input);
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             fAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Logged in SuccessFully", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(MainActivity.this, Register.class));
+                    startActivity(new Intent(MainActivity.this, FirstActivity.class));
                 }else{
                     Toast.makeText(MainActivity.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
                 }
