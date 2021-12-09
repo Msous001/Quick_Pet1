@@ -72,6 +72,8 @@
         android:layout_marginStart="50dp"
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
+        android:background="@drawable/white_border"
+        android:textColorHint="@color/zambezi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -79,8 +81,7 @@
         app:layout_constraintTop_toBottomOf="@+id/email_input"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleDrawable="@drawable/password_toggle"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/black">
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/password_input"
@@ -89,16 +90,13 @@
             android:autofillHints="no"
             android:background="@drawable/white_border"
             android:ems="10"
-            android:inputType="textPassword|textEmailAddress"
-            android:labelFor="@id/passw_input"
+            android:hint="@string/password"
+            android:inputType="textPassword"
             android:paddingStart="14dp"
-            android:paddingTop="0dp"
             android:paddingEnd="14dp"
-            android:paddingBottom="0dp"
             android:textColor="@color/black"
             android:textColorHint="@color/zambezi"
-            android:textStyle="italic"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:textStyle="italic" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

@@ -77,10 +77,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/req1"
         app:layout_constraintVertical_bias="0.0"
-        app:passwordToggleEnabled="true"
         app:passwordToggleDrawable="@drawable/password_toggle"
-        app:passwordToggleTint="@color/black">
-
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/password_input"
@@ -90,13 +88,12 @@
             android:background="@drawable/white_border"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword|textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:textColor="@color/black"
             android:textColorHint="@color/zambezi"
-            android:textStyle="italic"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:textStyle="italic" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -115,8 +112,7 @@
         app:layout_constraintTop_toBottomOf="@+id/passw_input"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleDrawable="@drawable/password_toggle"
-        app:passwordToggleEnabled="true"
-        app:passwordToggleTint="@color/black">
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/confirm_passw"
@@ -126,13 +122,12 @@
             android:background="@drawable/white_border"
             android:ems="10"
             android:hint="@string/password"
-            android:inputType="textPassword|textEmailAddress"
+            android:inputType="textPassword"
             android:paddingStart="14dp"
             android:paddingEnd="14dp"
             android:textColor="@color/black"
             android:textColorHint="@color/zambezi"
-            android:textStyle="italic"
-            tools:ignore="SpeakableTextPresentCheck" />
+            android:textStyle="italic" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
