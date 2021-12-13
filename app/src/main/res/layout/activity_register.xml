@@ -93,7 +93,8 @@
             android:paddingEnd="14dp"
             android:textColor="@color/black"
             android:textColorHint="@color/zambezi"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -127,7 +128,8 @@
             android:paddingEnd="14dp"
             android:textColor="@color/black"
             android:textColorHint="@color/zambezi"
-            android:textStyle="italic" />
+            android:textStyle="italic"
+            tools:ignore="SpeakableTextPresentCheck" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button

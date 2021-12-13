@@ -23,7 +23,7 @@ public class Logout extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(Logout.this, MainActivity.class));
+                startActivity(new Intent(Logout.this, Add_pet.class));
                 finish();
             }
         });

@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".Add_pet"
+            android:exported="false" />
+        <activity
             android:name=".FirstActivity"
             android:exported="false" />
         <activity
