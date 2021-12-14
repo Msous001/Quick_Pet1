@@ -1,9 +1,12 @@
 package com.example.quick_pet;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,11 +20,18 @@ import android.widget.Spinner;
 
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Add_pet extends AppCompatActivity {
     EditText name, dateTxt;
     ImageView addImage, calendar;
     Spinner type, gender, colour, intact;
     Button nextbtn;
+
+    CircleImageView circleImageView;
+    public static final int IMAGE_CODE=1;
+    Uri imageUri;
+
     private int mDate, mMonth, mYear;
 
 
@@ -85,7 +95,7 @@ public class Add_pet extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
-        addImage = (ImageView) findViewById(R.id.addImage);
+        //addImage = (ImageView) findViewById(R.id.addImage);
         calendar = (ImageView) findViewById(R.id.calendar);
 
         type = (Spinner) findViewById(R.id.spinnerType);
@@ -94,6 +104,15 @@ public class Add_pet extends AppCompatActivity {
         intact = (Spinner) findViewById(R.id.spinnerIntact);
 
         nextbtn = (Button) findViewById(R.id.next_btn);
+
+        circleImageView = (CircleImageView) findViewById(R.id.circleImageView);
+
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openimageform();
+            }
+        });
 
         AutoCompleteTextView editT = findViewById(R.id.breed_input);
 
@@ -143,5 +162,22 @@ public class Add_pet extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void openimageform() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, IMAGE_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(requestCode==IMAGE_CODE && resultCode==RESULT_OK && data!=null && data.getData()!=null){
+            imageUri = data.getData();
+            circleImageView.setImageURI(imageUri);
+        }
     }
 }

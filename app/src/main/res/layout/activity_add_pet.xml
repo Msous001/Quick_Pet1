@@ -25,6 +25,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/circleImageView"
+            android:layout_width="90dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:layout_margin="4dp"
+            android:background="@drawable/green_button"
+            android:baselineAlignBottom="true"
+            android:clickable="true"
+            android:padding="6dp"
+            android:src="@drawable/pata"
+            tools:ignore="SpeakableTextPresentCheck" />
+<!--
         <ImageView
             android:id="@+id/addImage"
             android:layout_width="90dp"
@@ -42,7 +55,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:srcCompat="@drawable/ic_baseline_camera_alt_24"
-            app:tint="@color/link_water" />
+            app:tint="@color/link_water" /> -->
 
         <TableRow
             android:layout_width="match_parent"
@@ -184,11 +197,12 @@
                 android:background="@color/white"
                 android:completionHint="@string/select_a_breed"
                 android:completionThreshold="1"
+                android:dropDownVerticalOffset="10dp"
                 android:hint="@string/select_a_breed"
                 android:padding="8dp"
                 android:popupBackground="@color/link_water"
                 android:textSize="16sp"
-                android:dropDownVerticalOffset="10dp"/>
+                tools:ignore="TextContrastCheck" />
 
         </TableRow>
 
