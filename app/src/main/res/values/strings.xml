@@ -30,7 +30,8 @@
     </string-array>
     <string-array name="petColour">
         <item></item><item>Black</item><item>Blue</item><item>Brown</item><item>Cream</item>
-        <item>Gold</item><item>Grey</item><item>Red</item><item>White</item><item>Spots</item>
+        <item>Ginger</item><item>Gold</item><item>Grey</item><item>Orange</item><item>Red</item>
+        <item>White</item><item>Spots</item>
     </string-array>
     <string-array name="intact">
         <item></item><item>Intact</item><item>Neutered/Spayed</item>

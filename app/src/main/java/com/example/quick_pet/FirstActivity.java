@@ -10,23 +10,37 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class FirstActivity extends AppCompatActivity {
 
-    Toolbar toolbar = (Toolbar) findViewById(R.id.materialToolbar);
+    //Toolbar toolbar = (Toolbar) findViewById(R.id.materialToolbar);
 
-    @Override
-    public void setSupportActionBar(@Nullable Toolbar toolbar) {
-        super.setSupportActionBar(toolbar);
-    }
+    CircleImageView circleImageView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_first);
+
+        circleImageView = findViewById(R.id.circleImageView);
+        circleImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(FirstActivity.this, Add_pet.class));
+            }
+        });
+    }
+
+    @Override
+    public void setSupportActionBar(@Nullable Toolbar toolbar) {
+        super.setSupportActionBar(toolbar);
     }
 
     @Override

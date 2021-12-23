@@ -18,13 +18,13 @@
             android:name=".FirstActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Logout"
             android:exported="false" />
         <activity
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".Logout"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

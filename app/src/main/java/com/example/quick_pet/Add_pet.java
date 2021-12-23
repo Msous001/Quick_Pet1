@@ -1,14 +1,18 @@
 package com.example.quick_pet;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -16,26 +20,43 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_pet extends AppCompatActivity {
     EditText name, dateTxt;
-    ImageView addImage, calendar;
+    ImageView calendar;
     Spinner type, gender, colour, intact;
     Button nextbtn;
 
     CircleImageView circleImageView;
-    public static final int IMAGE_CODE=1;
+    public static final int IMAGE_CODE = 1;
     Uri imageUri;
+    AutoCompleteTextView editT;
 
     private int mDate, mMonth, mYear;
 
-
-    private static final String[] Dog_breed = new String []{"Affenpinscher", "Afghan Hound",
+    private static final String[] Dog_breed = new String[]{"Affenpinscher", "Afghan Hound",
             "Airedale Terrier", "Akita", "Alaskan Malamute", "Anatolian Shepherd", "Australian Cattle",
             "Australian Shepherd", "Australian Silky", "Australian Terrier", "Azawakh", "Barbet",
             "Basenji", "Basset Bleu De Gascogne", "Basset Fauve De Bretagne", "Basset",
@@ -76,15 +97,14 @@ public class Add_pet extends AppCompatActivity {
             "White Swiss Shepherd", "Xoloitzcuintle", "Yorkshire Terrier"
 
     };
-    private static final String[] Cat_breed = new String []{"Abyssinian", "Balinese", "Bengal",
+    private static final String[] Cat_breed = new String[]{"Abyssinian", "Balinese", "Bengal",
             "Birman", "British Shorthair", "Burmese", "Burmilla", "Chinchilla", "Cornish Rex",
             "Devon Rex", "Moggie", "Exotic Shorthair", "Japanese Bobtail", "Korat", "Maine Coon",
             "Manx", "Norwegian Forest", "Ocicat", "Oriental Shorthair", "Persian", "Ragdoll",
             "Russian Blue", "Scottish Fold", "Siamese", "Siberian Forest Cat", "Singapura", "Snowshoe",
             "Somali", "Sphynx", "Tiffanie", "Tonkinesse", "Turkish Van"
     };
-    private static  final String[] pet_Type = new String[]{"","Dog", "Cat"
-    };
+    private static final String[] pet_Type = new String[]{"", "Dog", "Cat"};
 
 
     @Override
@@ -95,7 +115,6 @@ public class Add_pet extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
-        //addImage = (ImageView) findViewById(R.id.addImage);
         calendar = (ImageView) findViewById(R.id.calendar);
 
         type = (Spinner) findViewById(R.id.spinnerType);
@@ -105,7 +124,7 @@ public class Add_pet extends AppCompatActivity {
 
         nextbtn = (Button) findViewById(R.id.next_btn);
 
-        circleImageView = (CircleImageView) findViewById(R.id.circleImageView);
+        circleImageView = (CircleImageView) findViewById(R.id.circleImageView1);
 
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,7 +133,13 @@ public class Add_pet extends AppCompatActivity {
             }
         });
 
-        AutoCompleteTextView editT = findViewById(R.id.breed_input);
+        nextbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
+        editT = findViewById(R.id.breed_input);
 
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pet_Type);
         type.setAdapter(typeAdapter);
@@ -123,13 +148,13 @@ public class Add_pet extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelected = pet_Type[position];
-                if(position == 0){
+                if (position == 0) {
                 }
-                if(position == 1){
+                if (position == 1) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_list_item_1, Dog_breed);
                     editT.setAdapter(adapter);
                 }
-                if(position == 2){
+                if (position == 2) {
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_list_item_1, Cat_breed);
                     editT.setAdapter(adapter2);
                 }
@@ -154,7 +179,7 @@ public class Add_pet extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
-                        dateTxt.setText(date+"-"+month+"-"+year);
+                        dateTxt.setText(date + "-" + month + "-" + year);
                     }
 
                 }, mYear, mMonth, mDate);
@@ -175,9 +200,15 @@ public class Add_pet extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode==IMAGE_CODE && resultCode==RESULT_OK && data!=null && data.getData()!=null){
-            imageUri = data.getData();
-            circleImageView.setImageURI(imageUri);
+        try {
+            if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+                imageUri = data.getData();
+                circleImageView.setImageURI(imageUri);
+            }
+        } catch (Exception e) {
+            Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
+
         }
+
     }
 }
