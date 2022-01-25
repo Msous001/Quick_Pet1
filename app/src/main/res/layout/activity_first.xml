@@ -33,6 +33,7 @@
         android:layout_height="100dp"
         android:layout_margin="10dp"
         android:background="@drawable/circle_white"
+        android:contentDescription="@string/logo"
         android:foregroundGravity="center"
         android:padding="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -55,6 +56,66 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="0.038"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pet1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:baselineAlignBottom="true"
+        android:clickable="true"
+        android:src="@drawable/circle_pet_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.292"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.272"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pet2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:baselineAlignBottom="true"
+        android:clickable="true"
+        android:src="@drawable/circle_pet_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.272"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pet3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:baselineAlignBottom="true"
+        android:clickable="true"
+        android:src="@drawable/circle_pet_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.292"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.508"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/pet4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:baselineAlignBottom="true"
+        android:clickable="true"
+        android:src="@drawable/circle_pet_add"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.717"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.508"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

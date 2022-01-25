@@ -38,7 +38,7 @@
 
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/circleImageView1"
+                android:id="@+id/circleImageCamera"
                 android:layout_width="130sp"
                 android:layout_height="130sp"
                 android:layout_centerInParent="true"

@@ -37,8 +37,10 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -53,6 +55,8 @@ public class Add_pet extends AppCompatActivity {
     public static final int IMAGE_CODE = 1;
     Uri imageUri;
     AutoCompleteTextView editT;
+
+    List<Uri> uriList;
 
     private int mDate, mMonth, mYear;
 
@@ -124,7 +128,7 @@ public class Add_pet extends AppCompatActivity {
 
         nextbtn = (Button) findViewById(R.id.next_btn);
 
-        circleImageView = (CircleImageView) findViewById(R.id.circleImageView1);
+        circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
 
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,6 +140,7 @@ public class Add_pet extends AppCompatActivity {
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                startActivity(new Intent(Add_pet.this, FirstActivity.class));
             }
         });
 
@@ -179,7 +184,12 @@ public class Add_pet extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
-                        dateTxt.setText(date + "-" + month + "-" + year);
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-YYYY");
+                        cal.set(year, month, date);
+                        String dateString = sdf.format(cal.getTime());
+                        dateTxt.setText(dateString);
+
+                        //dateTxt.setText(date + "-" + month + "-" + year);
                     }
 
                 }, mYear, mMonth, mDate);
@@ -204,6 +214,9 @@ public class Add_pet extends AppCompatActivity {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageUri = data.getData();
                 circleImageView.setImageURI(imageUri);
+                uriList = ((PhotoGallery)this.getApplication()).getUriList();
+                uriList.add(imageUri);
+
             }
         } catch (Exception e) {
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
