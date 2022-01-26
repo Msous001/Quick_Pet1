@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".main_menu"
+            android:exported="false" />
+        <activity
             android:name=".Add_pet"
             android:exported="false" />
         <activity

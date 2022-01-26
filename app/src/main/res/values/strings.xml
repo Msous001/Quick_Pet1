@@ -24,17 +24,39 @@
     <string name="colour">Colour</string>
     <string name="intact">Intact</string>
     <string name="select_a_breed">Select a breed</string>
+    <string name="appointment">Appointment</string>
+    <string name="fleas_ticks"><![CDATA[Fleas  & Ticks]]></string>
+    <string name="photos">Photos</string>
+    <string name="sounds">Sounds</string>
+    <string name="deworming">Deworming</string>
+    <string name="vaccination">Vaccination</string>
+    <string name="grooming">Grooming</string>
+    <string name="medical">Medical</string>
+    <string name="pet_face">pet_face</string>
 
     <string-array name="gender">
-        <item></item><item>Male</item><item>Female</item>
+        <item></item>
+        <item>Male</item>
+        <item>Female</item>
     </string-array>
     <string-array name="petColour">
-        <item></item><item>Black</item><item>Blue</item><item>Brown</item><item>Cream</item>
-        <item>Ginger</item><item>Gold</item><item>Grey</item><item>Orange</item><item>Red</item>
-        <item>White</item><item>Spots</item>
+        <item></item>
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Brown</item>
+        <item>Cream</item>
+        <item>Ginger</item>
+        <item>Gold</item>
+        <item>Grey</item>
+        <item>Orange</item>
+        <item>Red</item>
+        <item>White</item>
+        <item>Spots</item>
     </string-array>
     <string-array name="intact">
-        <item></item><item>Intact</item><item>Neutered/Spayed</item>
+        <item></item>
+        <item>Intact</item>
+        <item>Neutered/Spayed</item>
     </string-array>
 
 

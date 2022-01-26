@@ -11,13 +11,15 @@ public class PhotoGallery extends Application {
     List<Uri> uriList = new ArrayList<>();
 
     public PhotoGallery(){
+
         this.uriList = new ArrayList<>();
     }
     public List<Uri> getUriList() {
+
         return uriList;
     }
-
     public void setUriList(List<Uri> uriList) {
+
         this.uriList = uriList;
     }
 

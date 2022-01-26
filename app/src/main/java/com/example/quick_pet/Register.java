@@ -35,63 +35,59 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //----connect variables to id on xml file
+        //----connect variables to this page
         mEmail = findViewById(R.id.email_input);
         mPassword = findViewById(R.id.password_input);
         mConfirm = findViewById(R.id.confirm_passw);
-        reg_btn = findViewById(R.id.next_btn);
-        mLogin = findViewById(R.id.singIn_link);
 
+        mLogin = findViewById(R.id.singIn_link);
         mReg1 = findViewById(R.id.req1);
         mReg2 = findViewById(R.id.req2);
         mReg3 = findViewById(R.id.req3);
 
+        //---verify if the user is already login
         fAuth = FirebaseAuth.getInstance();
         if(fAuth.getCurrentUser() !=  null){
             startActivity(new Intent(Register.this, MainActivity.class));
             finish();
         }
         // click listener for the next button
+        reg_btn = findViewById(R.id.next_btn);
+        reg_btn.setOnClickListener(v -> {
+            String email = mEmail.getText().toString().trim();
+            String password = mPassword.getText().toString().trim();
+            String confirmPass = mConfirm.getText().toString().trim();
 
-        reg_btn.setOnClickListener(new View.OnClickListener() {
-            @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
-            @Override
-            public void onClick(View v) {
-                String email = mEmail.getText().toString().trim();
-                String password = mPassword.getText().toString().trim();
-                String confirmPass = mConfirm.getText().toString().trim();
-
-                if(TextUtils.isEmpty(email)) {
-                    Toast.makeText(Register.this, "Email is Required", Toast.LENGTH_SHORT).show();
-                    mReg1.setText("This field is required");
-                    //mEmail.setBackground(getResources().getDrawable(R.drawable.req));
-                }
-                if(TextUtils.isEmpty(password)) {
-                    mReg2.setText("This field is required");
-                    //mPassword.setBackground(getResources().getDrawable(R.drawable.req));
-                }
-                if(password.length() < 6){
-                    mReg2.setText("Password must contain 6 characters");
-                    //mPassword.setBackground(getResources().getDrawable(R.drawable.req));
-                }
-                if(TextUtils.isEmpty(confirmPass)) {
-                    mReg3.setText("This field is required");
-                    //mConfirm.setBackground(getResources().getDrawable(R.drawable.req));
-                }
-                if(TextUtils.equals(password, confirmPass)){
-                    mReg3.setText("Password does not match");
-                    //mConfirm.setBackground(getResources().getDrawable(R.drawable.req));
-                }
-                //register the user
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
-                    if (task.isSuccessful()) {
-                       Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
-                       startActivity(new Intent(Register.this, MainActivity.class));
-                    } else {
-                        Toast.makeText(Register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+            if(TextUtils.isEmpty(email)) {
+                Toast.makeText(Register.this, "Email is Required", Toast.LENGTH_SHORT).show();
+                mReg1.setText("This field is required");
+                //mEmail.setBackground(getResources().getDrawable(R.drawable.req));
             }
+            if(TextUtils.isEmpty(password)) {
+                mReg2.setText("This field is required");
+                //mPassword.setBackground(getResources().getDrawable(R.drawable.req));
+            }
+            if(password.length() < 6){
+                mReg2.setText("Password must contain 6 characters");
+                //mPassword.setBackground(getResources().getDrawable(R.drawable.req));
+            }
+            if(TextUtils.isEmpty(confirmPass)) {
+                mReg3.setText("This field is required");
+                //mConfirm.setBackground(getResources().getDrawable(R.drawable.req));
+            }
+            if(TextUtils.equals(password, confirmPass)){
+                mReg3.setText("Password does not match");
+                //mConfirm.setBackground(getResources().getDrawable(R.drawable.req));
+            }
+            //register the user
+            fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                   Toast.makeText(Register.this, "User Created", Toast.LENGTH_SHORT).show();
+                   startActivity(new Intent(Register.this, MainActivity.class));
+                } else {
+                    Toast.makeText(Register.this, "Error ! " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
+                }
+            });
         });
     }
 }

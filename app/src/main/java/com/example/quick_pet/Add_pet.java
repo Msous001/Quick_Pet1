@@ -1,18 +1,17 @@
 package com.example.quick_pet;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-import android.content.ContentResolver;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.text.TextUtils;
+
 import android.view.View;
-import android.webkit.MimeTypeMap;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -24,24 +23,12 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,7 +37,6 @@ public class Add_pet extends AppCompatActivity {
     ImageView calendar;
     Spinner type, gender, colour, intact;
     Button nextbtn;
-
     CircleImageView circleImageView;
     public static final int IMAGE_CODE = 1;
     Uri imageUri;
@@ -119,24 +105,24 @@ public class Add_pet extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
-        calendar = (ImageView) findViewById(R.id.calendar);
+
 
         type = (Spinner) findViewById(R.id.spinnerType);
         gender = (Spinner) findViewById(R.id.spinnerGender);
         colour = (Spinner) findViewById(R.id.spinnerColour);
         intact = (Spinner) findViewById(R.id.spinnerIntact);
 
-        nextbtn = (Button) findViewById(R.id.next_btn);
+
 
         circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
-
         circleImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 openimageform();
             }
         });
-
+        // -- next button code to navigate
+        nextbtn = (Button) findViewById(R.id.next_btn);
         nextbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,10 +131,9 @@ public class Add_pet extends AppCompatActivity {
         });
 
         editT = findViewById(R.id.breed_input);
-
+        // -- to open the correct array of names from two souces depending of the select item
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pet_Type);
         type.setAdapter(typeAdapter);
-
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -170,8 +155,8 @@ public class Add_pet extends AppCompatActivity {
 
             }
         });
-
-
+        //-- date picker from a calendar and set to with the format dd-mmm-yyyy
+        calendar = (ImageView) findViewById(R.id.calendar);
         calendar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -184,43 +169,36 @@ public class Add_pet extends AppCompatActivity {
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int date) {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-YYYY");
+                        SimpleDateFormat sdf = new SimpleDateFormat("DD-MMM-YYYY");
                         cal.set(year, month, date);
                         String dateString = sdf.format(cal.getTime());
                         dateTxt.setText(dateString);
-
-                        //dateTxt.setText(date + "-" + month + "-" + year);
                     }
-
                 }, mYear, mMonth, mDate);
                 datePickerDialog.show();
             }
         });
-
     }
-
+    // to open gallery
     private void openimageform() {
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, IMAGE_CODE);
     }
-
+    // to select photo from gallery
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
         try {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageUri = data.getData();
                 circleImageView.setImageURI(imageUri);
                 uriList = ((PhotoGallery)this.getApplication()).getUriList();
                 uriList.add(imageUri);
-
             }
         } catch (Exception e) {
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
-
         }
 
     }
