@@ -33,14 +33,20 @@
     <string name="grooming">Grooming</string>
     <string name="medical">Medical</string>
     <string name="pet_face">pet_face</string>
+    <string name="appointments">Appointments</string>
+    <string name="arrow">Arrow</string>
+    <string name="new_appointment">New appointment</string>
+    <string name="date">Date</string>
+    <string name="reminder">Reminder</string>
+    <string name="direction">Direction</string>
 
     <string-array name="gender">
-        <item></item>
+        <item> </item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
     <string-array name="petColour">
-        <item></item>
+        <item> </item>
         <item>Black</item>
         <item>Blue</item>
         <item>Brown</item>
@@ -54,9 +60,14 @@
         <item>Spots</item>
     </string-array>
     <string-array name="intact">
-        <item></item>
+        <item> </item>
         <item>Intact</item>
         <item>Neutered/Spayed</item>
+    </string-array>
+    <string-array name="app_type">
+        <item> </item>
+        <item>Veterinarian</item>
+        <item>Grooming</item>
     </string-array>
 
 

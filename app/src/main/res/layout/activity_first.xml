@@ -64,12 +64,16 @@
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="0.272"
+        app:civ_border_color="@color/green_button"
+        app:civ_border_width="20dp"
+        app:civ_circle_background_color="@color/green_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -79,12 +83,16 @@
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="0.272"
+        app:civ_border_color="@color/green_button"
+        app:civ_border_width="20dp"
+        app:civ_circle_background_color="@color/green_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -94,12 +102,16 @@
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.292"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
         app:layout_constraintVertical_bias="0.508"
+        app:civ_border_color="@color/green_button"
+        app:civ_border_width="20dp"
+        app:civ_circle_background_color="@color/green_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -109,12 +121,15 @@
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.508"
+        app:layout_constraintVertical_bias="0.508"  app:civ_border_color="@color/green_button"
+        app:civ_border_width="20dp"
+        app:civ_circle_background_color="@color/green_button"
         tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

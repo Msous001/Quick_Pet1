@@ -13,13 +13,19 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
-            android:name=".main_menu"
+            android:name=".Main_menu_pet1"
+            android:exported="false" />
+        <activity
+            android:name=".AppointmentList_Page_Pet1"
+            android:exported="false" />
+        <activity
+            android:name=".AddNewAppointment"
             android:exported="false" />
         <activity
             android:name=".Add_pet"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name=".MainActivity"
             android:exported="false" />
         <activity
             android:name=".Logout"
@@ -28,7 +34,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".FirstActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

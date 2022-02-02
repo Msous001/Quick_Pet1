@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialiconsoutlined/medical_services/outline_medical_services_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/alarm_add/baseline_alarm_add_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="ffffff" />
-                            <entry key="outputName" value="medical" />
+                            <entry key="color" value="0a0707" />
+                            <entry key="outputName" value="alarm_add_24" />
                             <entry key="sourceFile" value="C:\Users\mcarm\AndroidStudioProjects\Quick_Pet" />
                           </map>
                         </option>

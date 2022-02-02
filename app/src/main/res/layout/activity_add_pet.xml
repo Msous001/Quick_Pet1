@@ -39,13 +39,14 @@
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImageCamera"
-                android:layout_width="130sp"
-                android:layout_height="130sp"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
                 android:layout_centerInParent="true"
+                android:layout_marginTop="50dp"
                 android:contextClickable="true"
-                android:src="@drawable/camera1"
-                app:civ_border_color="@color/zambezi"
-                app:civ_border_width="2dp"
+                android:src="@drawable/camera_add"
+                app:civ_border_color="@color/green_button"
+                app:civ_border_width="20dp"
                 app:civ_circle_background_color="@color/green_button" />
 
 
