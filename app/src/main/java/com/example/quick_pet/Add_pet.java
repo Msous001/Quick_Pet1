@@ -43,6 +43,7 @@ public class Add_pet extends AppCompatActivity {
     public static final int IMAGE_CODE = 1;
     Uri imageUri;
     AutoCompleteTextView editT;
+    PhotoGallery myApplication = (PhotoGallery) this.getApplication();
 
     List<Uri> uriList;
     List<Pet> petList;
@@ -109,6 +110,7 @@ public class Add_pet extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
+        petList = myApplication.getPetList();
 
         type = (Spinner) findViewById(R.id.spinnerType);
         gender = (Spinner) findViewById(R.id.spinnerGender);
@@ -142,9 +144,9 @@ public class Add_pet extends AppCompatActivity {
             if(TextUtils.isEmpty(Sintact)){
                 Sintact = "Not Defined";
             }
-            Pet newpet = new Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri.toString());
+            //Pet newpet = new Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri.toString());
 
-            Log.d(TAG,"onCreate:"+newpet.toString());
+
         });
 
         editT = findViewById(R.id.breed_input);
@@ -205,6 +207,7 @@ public class Add_pet extends AppCompatActivity {
     }
 
     // to select photo from gallery
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -214,12 +217,11 @@ public class Add_pet extends AppCompatActivity {
                 circleImageView.setImageURI(imageUri);
                 uriList = ((PhotoGallery) this.getApplication()).getUriList();
                 uriList.add(imageUri);
-
-
             }
         } catch (Exception e) {
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
         }
 
     }
+
 }

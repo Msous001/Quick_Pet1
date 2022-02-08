@@ -1,8 +1,12 @@
 package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,23 +15,30 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TimePicker;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AddNewAppointment extends AppCompatActivity {
 
     Button btnNext;
+    EditText et_Name, et_date, et_time, et_direction, et_reminder;
+    Spinner type;
+    ImageView calendar_date_app, image_time_picker;
+    CircleImageView circleImageView;
     List<Appointment_class_pet1> appointmentList;
     PhotoGallery myApplication = (PhotoGallery) this.getApplication();
-    EditText et_Name, et_date, et_time, et_direction, et_reminder;
+    List<Uri> uriList;
+    ImageView imageView;
+
+    private int mDate, mMonth, mYear, mHour, mMinute;
     int id;
-    Spinner type;
-    ImageView calendar_date_app;
-    CircleImageView circleImageView;
-    private int mDate, mMonth, mYear;
+
 
 
     @Override
@@ -36,6 +47,7 @@ public class AddNewAppointment extends AppCompatActivity {
         setContentView(R.layout.activity_add_new_appointment);
         appointmentList = PhotoGallery.getAppointmentsList();
 
+        uriList = ((PhotoGallery) this.getApplication()).getUriList();
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
         et_time = (EditText) findViewById(R.id.edittime);
@@ -43,7 +55,8 @@ public class AddNewAppointment extends AppCompatActivity {
         et_reminder = (EditText) findViewById(R.id.editReminder);
         type = (Spinner) findViewById(R.id.spinnerType);
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
-
+        circleImageView.setImageURI(uriList.get(0));
+        imageView = (ImageView) findViewById(R.id.back_arrow);
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
@@ -105,9 +118,39 @@ public class AddNewAppointment extends AppCompatActivity {
                     cal1.set(year, month, date);
                     String dateString = sdf.format(cal1.getTime());
                     et_date.setText(dateString);
+
                 }
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
+
+        image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
+        image_time_picker.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
+                        mHour = selectedHour;
+                        mMinute = selectedMinute;
+                        et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+                    }
+                };
+                int style = AlertDialog.THEME_HOLO_DARK;
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddNewAppointment.this, style, onTimeSetListener, mHour, mMinute, true);
+                timePickerDialog.setTitle("Select Time");
+                timePickerDialog.show();
+
+            }
+        });
+
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(AddNewAppointment.this, AppointmentList_Page_Pet1.class));
+            }
+        });
+
     }
+
 }

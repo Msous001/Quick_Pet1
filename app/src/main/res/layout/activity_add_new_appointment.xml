@@ -34,20 +34,19 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:clickable="true"
-                android:src="@drawable/back_grey"
+                android:src="@drawable/arrow_back_grey"
                 android:contentDescription="@string/arrow"/>
 
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/circleImagepet"
-                android:layout_width="130sp"
-                android:layout_height="130sp"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="80dp"
                 android:contextClickable="true"
-                android:src="@drawable/dogface_circle"
-                app:civ_border_color="@color/zambezi"
-                app:civ_border_width="2dp"
+                app:civ_border_color="@color/green_button"
+                app:civ_border_width="20dp"
                 app:civ_circle_background_color="@color/green_button" />
 
 
@@ -248,11 +247,11 @@
                 tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
 
             <ImageView
-                android:id="@+id/imageView3"
+                android:id="@+id/imageViewTime"
                 android:layout_width="44dp"
                 android:layout_height="38dp"
-                app:srcCompat="@drawable/alarm_add_24"
-                android:contentDescription="@string/calendar"/>
+                app:srcCompat="@drawable/alarm_add_black"
+                android:contentDescription="@string/time"/>
 
         </TableRow>
         <TableRow

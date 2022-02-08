@@ -2,12 +2,22 @@ package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Toast;
+
+
+//import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.io.File;
 
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -22,6 +32,9 @@ public class FirstActivity extends AppCompatActivity {
     CircleImageView circleImagepet4;
     List<Uri> uriList;
     List<Pet> petList;
+    PhotoGallery myApplication = (PhotoGallery) this.getApplication();
+    private static final String TAG = "Pet";
+    Uri imageUri;
 
 
 
@@ -37,12 +50,17 @@ public class FirstActivity extends AppCompatActivity {
         circleImagepet3 = findViewById(R.id.pet3);
         circleImagepet4 = findViewById(R.id.pet4);
 
+        imageUri = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(getResources().getResourcePackageName(R.drawable.pata))
+                .appendPath(getResources().getResourceTypeName(R.drawable.pata))
+                .appendPath(getResources().getResourceEntryName(R.drawable.pata))
+                .build();
 
         uriList = ((PhotoGallery) this.getApplication()).getUriList();
-
-
+        petList = myApplication.getPetList();
 
         if (uriList.isEmpty()) {
+                uriList.add(imageUri);
 
         } else {
             try {
@@ -124,3 +142,12 @@ public class FirstActivity extends AppCompatActivity {
 
 
 }
+//        File file = new File("/app/src/main/res/drawable/cat_face_circle.png");
+//        String abc = String.valueOf(file).replace("file://","");
+//        imageUri = Uri.parse(abc);
+//        imageUri= Uri.fromFile(new File( "res/drawable/cat_face_circle.png"));
+//
+//        uriList.add(imageUri);
+//        Glide.with(this.context).load(presidentList.get(position).getImageUrl()).into(holder.iv_presPicture);
+//        Glide.with(FirstActivity.this).load(p.getImageUrl()).into((circleImagepet1));
+//        circleImagepet1.setImageURI(Uri.parse(p.getImageUrl()));

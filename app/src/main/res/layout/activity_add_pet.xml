@@ -34,7 +34,7 @@
                 android:id="@+id/back_arrow"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:src="@drawable/back_grey" />
+                android:src="@drawable/arrow_back_grey" />
 
 
             <de.hdodenhof.circleimageview.CircleImageView

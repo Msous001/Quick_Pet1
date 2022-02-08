@@ -39,6 +39,7 @@
     <string name="date">Date</string>
     <string name="reminder">Reminder</string>
     <string name="direction">Direction</string>
+    <string name="time">Time</string>
 
     <string-array name="gender">
         <item> </item>

@@ -10,8 +10,8 @@ import java.util.List;
 public class PhotoGallery extends Application {
 
 
-    List<Uri> uriList = new ArrayList<Uri>();
 
+    List<Uri> uriList = new ArrayList<Uri>();
 
     private static List<Appointment_class_pet1> appointmentsList = new ArrayList<Appointment_class_pet1>();
     private static int nextId =1;
@@ -19,7 +19,6 @@ public class PhotoGallery extends Application {
     private static List<Pet> petList = new ArrayList<Pet>();
 
     public PhotoGallery(){
-        //this.uriList = new ArrayList<>();
         fillAppointement();
         fillpet();
            }
