@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".TableLayout"
+            android:exported="false" />
+        <activity
             android:name=".Main_menu_pet1"
             android:exported="false" />
         <activity

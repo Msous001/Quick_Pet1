@@ -76,6 +76,7 @@ public class Main_menu_pet1 extends AppCompatActivity {
         medical.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Main_menu_pet1.this, TableLayout.class));
 
             }
         });

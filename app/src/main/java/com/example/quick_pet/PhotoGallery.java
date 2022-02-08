@@ -9,8 +9,6 @@ import java.util.List;
 
 public class PhotoGallery extends Application {
 
-
-
     List<Uri> uriList = new ArrayList<Uri>();
 
     private static List<Appointment_class_pet1> appointmentsList = new ArrayList<Appointment_class_pet1>();
