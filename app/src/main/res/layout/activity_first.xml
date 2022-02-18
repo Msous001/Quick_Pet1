@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -18,11 +19,9 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        app:popupTheme="@style/myMenu">
 
-        <androidx.appcompat.widget.Toolbar
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
 
     </com.google.android.material.appbar.MaterialToolbar>
 
@@ -44,8 +43,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circleImageView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/paw_circle"
@@ -59,8 +58,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pet1"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
@@ -78,8 +77,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pet2"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
@@ -97,8 +96,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pet3"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
@@ -116,8 +115,8 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pet4"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:baselineAlignBottom="true"
         android:clickable="true"
         android:src="@drawable/circle_pet_add"
@@ -127,7 +126,8 @@
         app:layout_constraintHorizontal_bias="0.717"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/logo"
-        app:layout_constraintVertical_bias="0.508"  app:civ_border_color="@color/green_button"
+        app:layout_constraintVertical_bias="0.508"
+        app:civ_border_color="@color/green_button"
         app:civ_border_width="20dp"
         app:civ_circle_background_color="@color/green_button"
         tools:ignore="SpeakableTextPresentCheck" />

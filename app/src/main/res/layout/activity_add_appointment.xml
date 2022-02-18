@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/link_water"
-    tools:context=".AddNewAppointment">
+    tools:context=".Add_Appointment">
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/back_arrow"
+                android:id="@+id/back_arrow_addAppointment"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:clickable="true"
@@ -85,7 +85,7 @@
                 android:text="@string/type"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <View
                 android:layout_width="2dp"
@@ -122,7 +122,7 @@
                 android:text="@string/name"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
 
             <View
@@ -148,6 +148,7 @@
         </TableRow>
 
 
+
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -167,7 +168,7 @@
                 android:text="@string/date"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <View
                 android:layout_width="2dp"
@@ -221,7 +222,7 @@
                 android:text="@string/date"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <View
                 android:layout_width="2dp"
@@ -274,7 +275,7 @@
                 android:text="@string/direction"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <View
                 android:layout_width="2dp"
@@ -318,7 +319,7 @@
                 android:text="@string/reminder"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textSize="16sp"
+                android:textSize="14sp"
                 android:textStyle="bold" />
             <View
                 android:layout_width="2dp"
@@ -360,6 +361,7 @@
             android:layout_marginTop="20dp"
             android:background="@drawable/green_button"
             android:gravity="center"
+            android:textSize="16dp"
             android:text="@string/next"
             android:textAllCaps="false"
             android:textColor="@color/white"

@@ -3,31 +3,24 @@ package com.example.quick_pet;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
-
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
-
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 import java.util.List;
 
 
@@ -36,17 +29,19 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Add_pet extends AppCompatActivity {
     private static final String TAG = "Pet";
     EditText name, dateTxt;
-    ImageView calendar;
+    ImageView calendar, back_arrow;
     Spinner type, gender, colour, intact;
     Button nextbtn;
     CircleImageView circleImageView;
     public static final int IMAGE_CODE = 1;
-    Uri imageUri;
+    Uri imageUri, imageUri2;
     AutoCompleteTextView editT;
-    PhotoGallery myApplication = (PhotoGallery) this.getApplication();
+    C__PhotoGallery myApplication = (C__PhotoGallery) this.getApplication();
 
     List<Uri> uriList;
-    List<Pet> petList;
+    List<C__Pet> petList;
+
+    Boolean press = false;
 
 
     private int mDate, mMonth, mYear;
@@ -110,6 +105,9 @@ public class Add_pet extends AppCompatActivity {
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
+        back_arrow = (ImageView)findViewById(R.id.back_arrow_addPet);
+        back_arrow.setOnClickListener(view -> finish());
+
         petList = myApplication.getPetList();
 
         type = (Spinner) findViewById(R.id.spinnerType);
@@ -117,9 +115,17 @@ public class Add_pet extends AppCompatActivity {
         colour = (Spinner) findViewById(R.id.spinnerColour);
         intact = (Spinner) findViewById(R.id.spinnerIntact);
 
+        imageUri2 = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(getResources().getResourcePackageName(R.drawable.pata))
+                .appendPath(getResources().getResourceTypeName(R.drawable.pata))
+                .appendPath(getResources().getResourceEntryName(R.drawable.pata))
+                .build();
 
         circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
-        circleImageView.setOnClickListener(v -> openimageform());
+        circleImageView.setOnClickListener(view -> {
+            press = true;
+            openimageform();
+        });
         // -- next button code to navigate
         nextbtn = (Button) findViewById(R.id.next_btn);
         nextbtn.setOnClickListener(v -> {
@@ -144,7 +150,12 @@ public class Add_pet extends AppCompatActivity {
             if(TextUtils.isEmpty(Sintact)){
                 Sintact = "Not Defined";
             }
-            //Pet newpet = new Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri.toString());
+            if(press == false){
+                uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+                uriList.add(imageUri2);
+            }
+
+            C__Pet newpet = new C__Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri2.toString());
 
 
         });
@@ -174,27 +185,20 @@ public class Add_pet extends AppCompatActivity {
         });
         //-- date picker from a calendar and set to with the format dd-mmm-yyyy
         calendar = (ImageView) findViewById(R.id.calendar);
-        calendar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cal = Calendar.getInstance();
-                mDate = cal.get(Calendar.DATE);
-                mMonth = cal.get(Calendar.MONTH);
-                mYear = cal.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_pet.this,
-                        android.R.style.Theme_DeviceDefault_Dialog, new DatePickerDialog.OnDateSetListener() {
-                    @SuppressLint("SetTextI18n")
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int month, int date) {
+        calendar.setOnClickListener(v -> {
+            final Calendar cal = Calendar.getInstance();
+            mDate = cal.get(Calendar.DATE);
+            mMonth = cal.get(Calendar.MONTH);
+            mYear = cal.get(Calendar.YEAR);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(Add_pet.this,
+                    android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
                         SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
                         cal.set(year, month, date);
                         String dateString = sdf.format(cal.getTime());
                         dateTxt.setText(dateString);
-                    }
-                }, mYear, mMonth, mDate);
-                datePickerDialog.updateDate(mYear,mMonth, mDate);
-                datePickerDialog.show();
-            }
+                    }, mYear, mMonth, mDate);
+            datePickerDialog.updateDate(mYear,mMonth, mDate);
+            datePickerDialog.show();
         });
     }
 
@@ -215,7 +219,7 @@ public class Add_pet extends AppCompatActivity {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageUri = data.getData();
                 circleImageView.setImageURI(imageUri);
-                uriList = ((PhotoGallery) this.getApplication()).getUriList();
+                uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
                 uriList.add(imageUri);
             }
         } catch (Exception e) {

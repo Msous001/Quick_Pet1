@@ -15,13 +15,14 @@ import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
 
-   List<Appointment_class_pet1> appointmentList;
-   Context context;
+    private List<C__Appointment> appointmentList;
+    Context context;
 
-   public RecyclerViewAdapter(List<Appointment_class_pet1> appointmentList, Context context){
+   public RecyclerViewAdapter(List<C__Appointment> appointmentList, Context context) {
        this.appointmentList = appointmentList;
        this.context = context;
    }
+
 
     @NonNull
     @Override
@@ -30,6 +31,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        MyViewHolder holder = new MyViewHolder(view);
        return holder;
     }
+
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -40,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.parentLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(context, AddNewAppointment.class);
+                Intent intent = new Intent(context, Add_Appointment.class);
                 intent.putExtra("id",appointmentList.get(position).getId());
                 context.startActivity(intent);
             }
@@ -49,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount(){return appointmentList.size();}
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
        TextView tv_date;
@@ -65,5 +68,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             tv_type = itemView.findViewById(R.id.tv_type);
             parentLayout = itemView.findViewById(R.id.oneLineAppointmentLayout);
         }
+    }
+    public List<C__Appointment> getAppointmentList() {
+        return appointmentList;
+    }
+
+    public void setAppointmentList(List<C__Appointment> appointmentList) {
+        this.appointmentList = appointmentList;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 }

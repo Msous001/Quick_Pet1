@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class Appointment_class_pet1 {
+public class C__Appointment {
     private int id;
     private String type;
     private String Name;
@@ -9,7 +9,7 @@ public class Appointment_class_pet1 {
     private String direction;
     private String reminder;
 
-    public Appointment_class_pet1(int id, String type, String name, String date, String time, String direction, String reminder) {
+    public C__Appointment(int id, String type, String name, String date, String time, String direction, String reminder) {
         this.id = id;
         this.type = type;
         this.Name = name;

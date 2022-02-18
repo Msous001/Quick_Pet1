@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class Pet {
+public class C__Pet {
     private String name;
     private String type;
     private String gender;
@@ -10,7 +10,7 @@ public class Pet {
     private String intact;
     private String imageUrl;
 
-    public Pet(String name, String type, String gender, String breed, String bod, String colour, String intact, String imageUrl) {
+    public C__Pet(String name, String type, String gender, String breed, String bod, String colour, String intact, String imageUrl) {
         this.name = name;
         this.type = type;
         this.gender = gender;

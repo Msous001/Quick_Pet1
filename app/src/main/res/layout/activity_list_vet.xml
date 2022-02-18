@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white_lila"
-    tools:context=".TableLayout">
+    tools:context=".List__Vet">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/materialToolbar"
@@ -36,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="32dp"
-            android:text="Medical"
+            android:text="@string/veterinary"
             android:textColor="@color/white_lila"
             android:textSize="24sp"
             android:textStyle="italic" />
@@ -56,40 +57,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout_id"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+    <ListView
+        android:id="@+id/listView_Vet"
+        android:layout_width="0dp"
+        android:layout_height="400dp"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="24dp"
-        android:background="@drawable/brown_border"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/circle_Image_medical"
-        app:tabGravity="fill"
-        app:tabIndicatorColor="@color/white_lila"
-        app:tabMode="fixed"
-        tools:ignore="SpeakableTextPresentCheck">
-
-    </com.google.android.material.tabs.TabLayout>
-
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/viewpager_id"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="280dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:background="@color/zambezi"
+        android:dividerHeight ="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tabLayout_id"
-        app:layout_constraintVertical_bias="0.805"
-        tools:ignore="SpeakableTextPresentCheck">
+        app:layout_constraintTop_toBottomOf="@+id/circle_Image_medical"
+        app:layout_constraintVertical_bias="0.0">
 
-    </androidx.viewpager.widget.ViewPager>
+    </ListView>
+
+    <Button
+        android:id="@+id/btn_list_vet"
+        android:layout_width="324dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/green_button"
+        android:drawableEnd="@drawable/ic_add24"
+        android:paddingStart="60dp"
+        android:paddingEnd="70dp"
+        android:text="@string/vet_visit"
+        android:textAllCaps="false"
+        android:textColor="@color/white_lila"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:iconPadding="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listView_Vet"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

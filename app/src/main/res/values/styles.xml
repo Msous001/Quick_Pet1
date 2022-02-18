@@ -55,4 +55,17 @@
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
     </style>
+    <!--material.appbar.MaterialToolbar-->
+    <style name="myMenu" parent="Theme.Quick_Pet">
+        <item name="android:background">@drawable/pop_menu</item>
+        <item name="android:textColor">@color/link_water</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:minWidth">140dp</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingLeft">2dp</item>
+        <item name="android:paddingTop">2dp</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
+
 </resources>

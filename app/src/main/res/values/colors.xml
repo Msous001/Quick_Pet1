@@ -5,10 +5,12 @@
     <color name="link_water">#D0D5CE</color>
     <color name="zambezi">#5C5959</color>
     <color name="blue">#2C0BF7</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
     <color name ="link">#E92CEF</color>
-    <color name ="red">#FFD50000</color>
+    <color name ="red">#D50000</color>
+    <color name="lightgrey">#ACABAB</color>
+    <color name="grey">#2E2D2D</color>
 
     <color name="colorPrimary">#5770f3</color>
     <color name="colorPrimaryDark">#5770f3</color>
