@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/link_water"
-    tools:context=".Add_Vet_Visit">
+    tools:context=".Add_Vet">
 
     <LinearLayout
         android:id="@+id/LinearLayoutVet"

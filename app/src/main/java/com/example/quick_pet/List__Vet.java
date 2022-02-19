@@ -48,11 +48,11 @@ public class List__Vet extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));
-        btn_add.setOnClickListener(view -> startActivity(new Intent(List__Vet.this, Add_Vet_Visit.class)));
+        btn_add.setOnClickListener(view -> startActivity(new Intent(List__Vet.this, Add_Vet.class)));
     }
 
     private void editVet(int position) {
-        Intent i = new Intent(getApplicationContext(), Add_Vet_Visit.class);
+        Intent i = new Intent(getApplicationContext(), Add_Vet.class);
         C__Vet v = myVets.getMyVetsList().get(position);
         i.putExtra("name", v.getName());
         i.putExtra("edit", position);

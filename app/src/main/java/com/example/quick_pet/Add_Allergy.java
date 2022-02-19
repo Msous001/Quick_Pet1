@@ -17,12 +17,10 @@ import java.util.Calendar;
 
 public class Add_Allergy extends AppCompatActivity {
 
-
     Button btnNext;
     ImageView back_arrow, calendar_app_newVet;
     EditText name, dates, symptom, medication;
     int positionToEdit = -1;
-
     private int mDate, mMonth, mYear;
 
     @Override
@@ -62,18 +60,10 @@ public class Add_Allergy extends AppCompatActivity {
             String A_medication = incomingIntent.getString("medication");
             positionToEdit = incomingIntent.getInt("edit");
 
-            if (TextUtils.isEmpty(A_name)) {
-                A_name = "Not Defined";
-            }
-            if (TextUtils.isEmpty(A_date)) {
-                A_date = "Not Defined";
-            }
-            if (TextUtils.isEmpty(A_symptom)) {
-                A_symptom = "Not Defined";
-            }
-            if (TextUtils.isEmpty(A_medication)) {
-                A_medication = "Not Defined";
-            }
+            if (TextUtils.isEmpty(A_name)) {A_name = "Not Defined";}
+            if (TextUtils.isEmpty(A_date)) {A_date = "Not Defined";}
+            if (TextUtils.isEmpty(A_symptom)) {A_symptom = "Not Defined";}
+            if (TextUtils.isEmpty(A_medication)) {A_medication = "Not Defined";}
             name.setText(A_name);
             dates.setText(A_date);
             symptom.setText(A_symptom);
@@ -86,18 +76,10 @@ public class Add_Allergy extends AppCompatActivity {
             String newSymptom = symptom.getText().toString();
             String newMedication = medication.getText().toString();
 
-            if (TextUtils.isEmpty(newName)) {
-                newName = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newDates)) {
-                newDates = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newSymptom)) {
-                newSymptom = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newMedication)) {
-                newMedication = "Not Defined";
-            }
+            if (TextUtils.isEmpty(newName)) {newName = "Not Defined";}
+            if (TextUtils.isEmpty(newDates)) {newDates = "Not Defined";}
+            if (TextUtils.isEmpty(newSymptom)) {newSymptom = "Not Defined";}
+            if (TextUtils.isEmpty(newMedication)) {newMedication = "Not Defined";}
 
             Intent i = new Intent(view.getContext(), List__Allergy.class);
             i.putExtra("edit", positionToEdit);
@@ -105,7 +87,6 @@ public class Add_Allergy extends AppCompatActivity {
             i.putExtra("date", newDates);
             i.putExtra("symptom", newSymptom);
             i.putExtra("medication", newMedication);
-
             startActivity(i);
         });
 

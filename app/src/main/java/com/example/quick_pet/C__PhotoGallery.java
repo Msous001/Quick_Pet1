@@ -13,6 +13,8 @@ public class C__PhotoGallery extends Application {
     private C__Vet_MyVets myVets = new C__Vet_MyVets();
     private C__Allergy_MyAllergies myAllergies = new C__Allergy_MyAllergies();
     private C__Health_MyHealth myHealth = new C__Health_MyHealth();
+    private C__Grooming_MyGrooming myGrooming = new C__Grooming_MyGrooming();
+    private C__Vaccine_MyVaccine myVaccine = new C__Vaccine_MyVaccine();
 
     private static List<C__Appointment> appointmentsList = new ArrayList<C__Appointment>();
     private static int nextId =1;
@@ -72,4 +74,10 @@ public class C__PhotoGallery extends Application {
 
     public C__Health_MyHealth getMyHealth() {return myHealth;}
     public void setMyHealth(C__Health_MyHealth myHealth) {this.myHealth = myHealth;}
+
+    public C__Grooming_MyGrooming getMyGrooming() {return myGrooming;}
+    public void setMyGrooming(C__Grooming_MyGrooming myGrooming) {this.myGrooming = myGrooming;}
+
+    public C__Vaccine_MyVaccine getMyVaccine() {return myVaccine;}
+    public void setMyVaccine(C__Vaccine_MyVaccine myVaccine) {this.myVaccine = myVaccine;}
 }

@@ -75,16 +75,13 @@ public class Main_menu extends AppCompatActivity {
         medical.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Vet.class)));
 
         grooming = (Button) findViewById(R.id.grooming);
-        grooming.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        grooming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Grooming.class)));
 
-            }
-        });
         vaccination = (Button) findViewById(R.id.vaccination);
         vaccination.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                startActivity(new Intent(Main_menu.this, List__Vaccine.class));
 
             }
         });

@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".List__Vaccine"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Vaccine"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Grooming"
+            android:exported="false" />
+        <activity
             android:name=".List__Grooming"
             android:exported="false" />
         <activity
@@ -22,7 +31,7 @@
             android:name=".List__Allergy"
             android:exported="false" />
         <activity
-            android:name=".Add_Vet_Visit"
+            android:name=".Add_Vet"
             android:exported="false" />
         <activity
             android:name=".Add_Allergy"
