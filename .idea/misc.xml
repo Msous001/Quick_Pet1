@@ -55,6 +55,8 @@
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_first.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_allergy.xml" value="0.14298245614035088" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_appointment.xml" value="0.22" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_deworming.xml" value="0.13903508771929823" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_fleas.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_grooming.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_health.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_list_vaccine.xml" value="0.1" />
@@ -70,6 +72,8 @@
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_allergies.xml" value="0.5" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_allergies_visit.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_appointment.xml" value="0.3406478578892372" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_deworming.xml" value="0.13903508771929823" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_fleas.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_grooming.xml" value="0.5" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_health.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_health_visit.xml" value="0.4466666666666667" />

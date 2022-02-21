@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -29,7 +28,7 @@ public class Add_HealthCondition extends AppCompatActivity {
         medication = (EditText) findViewById(R.id.et_addHealth_medication);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addHealth);
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_HealthCondition.this, List__Health.class)));
 
         btnNext = (Button) findViewById(R.id.next_btn_addHealth);
 

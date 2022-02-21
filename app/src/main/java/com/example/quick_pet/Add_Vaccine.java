@@ -33,12 +33,8 @@ public class Add_Vaccine extends AppCompatActivity {
         vetName = (EditText) findViewById(R.id.et_addvaccine_vetName);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addVaccine);
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Vaccine.this, List__Vaccine.class)));
 
-            }
-        });
         calendar_app_newVaccine = (ImageView) findViewById(R.id.calendar_date_addvaccine);
         calendar_app_newVaccine.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();

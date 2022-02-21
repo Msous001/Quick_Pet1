@@ -8,12 +8,9 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TimePicker;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
@@ -37,51 +34,37 @@ public class Add_Grooming extends AppCompatActivity {
         et_direction = ((EditText) findViewById(R.id.et_grooming_direction));
 
         back_arrow = ((ImageView) findViewById(R.id.back_arrow_grooming));
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Grooming.this, List__Grooming.class)));
 
         calendar_date_app = ((ImageView)findViewById(R.id.calendar_date_grooming));
-        calendar_date_app.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final Calendar cal1 = Calendar.getInstance();
-                mDate = cal1.get(Calendar.DATE);
-                mMonth = cal1.get(Calendar.MONTH);
-                mYear = cal1.get(Calendar.YEAR);
-                // @SuppressLint("SetTextI18n")
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Grooming.this,
-                        android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd MMM");
-                    cal1.set(year, month, date);
-                    String dateString = sdf.format(cal1.getTime());
-                    et_date.setText(dateString);
+        calendar_date_app.setOnClickListener(v -> {
+            final Calendar cal1 = Calendar.getInstance();
+            mDate = cal1.get(Calendar.DATE);
+            mMonth = cal1.get(Calendar.MONTH);
+            mYear = cal1.get(Calendar.YEAR);
+            // @SuppressLint("SetTextI18n")
+            DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Grooming.this,
+                    android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMM");
+                cal1.set(year, month, date);
+                String dateString = sdf.format(cal1.getTime());
+                et_date.setText(dateString);
 
-                }, mYear, mMonth, mDate);
-                datePickerDialog.show();
-            }
+            }, mYear, mMonth, mDate);
+            datePickerDialog.show();
         });
 
         image_time_picker = ((ImageView) findViewById(R.id.calendar_time_grooming));
-        image_time_picker.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                        mHour = selectedHour;
-                        mMinute = selectedMinute;
-                        et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-                    }
-                };
-                int style = AlertDialog.THEME_HOLO_DARK;
-                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
-                timePickerDialog.setTitle("Select Time");
-                timePickerDialog.show();
-            }
+        image_time_picker.setOnClickListener(view -> {
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+                mHour = selectedHour;
+                mMinute = selectedMinute;
+                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+            };
+            int style = AlertDialog.THEME_HOLO_DARK;
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
+            timePickerDialog.setTitle("Select Time");
+            timePickerDialog.show();
         });
 
         Bundle incomingIntent = getIntent().getExtras();
@@ -111,34 +94,31 @@ public class Add_Grooming extends AppCompatActivity {
 
         }
         btnNext = ((Button) findViewById(R.id.next_btn_grooming));
-        btnNext.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                String newPlace = et_place.getText().toString();
-                String newDates = et_date.getText().toString();
-                String newTime = et_time.getText().toString();
-                String newDirection = et_direction.getText().toString();
+        btnNext.setOnClickListener(view -> {
+            String newPlace = et_place.getText().toString();
+            String newDates = et_date.getText().toString();
+            String newTime = et_time.getText().toString();
+            String newDirection = et_direction.getText().toString();
 
-                if (TextUtils.isEmpty(newPlace)) {
-                    newPlace = "Not Defined";
-                }
-                if (TextUtils.isEmpty(newDates)) {
-                    newDates = "Not Defined";
-                }
-                if (TextUtils.isEmpty(newTime)) {
-                    newTime = "Not Defined";
-                }
-                if (TextUtils.isEmpty(newDirection)) {
-                    newDirection = "Not Defined";
-                }
-                Intent i = new Intent(view.getContext(), List__Grooming.class);
-                i.putExtra("edit", positionToEdit);
-                i.putExtra("place", newPlace);
-                i.putExtra("date", newDates);
-                i.putExtra("time", newTime);
-                i.putExtra("direction", newDirection);
-                startActivity(i);
+            if (TextUtils.isEmpty(newPlace)) {
+                newPlace = "Not Defined";
             }
+            if (TextUtils.isEmpty(newDates)) {
+                newDates = "Not Defined";
+            }
+            if (TextUtils.isEmpty(newTime)) {
+                newTime = "Not Defined";
+            }
+            if (TextUtils.isEmpty(newDirection)) {
+                newDirection = "Not Defined";
+            }
+            Intent i = new Intent(view.getContext(), List__Grooming.class);
+            i.putExtra("edit", positionToEdit);
+            i.putExtra("place", newPlace);
+            i.putExtra("date", newDates);
+            i.putExtra("time", newTime);
+            i.putExtra("direction", newDirection);
+            startActivity(i);
         });
     }
 }

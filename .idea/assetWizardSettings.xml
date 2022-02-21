@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/arrow_forward_ios/baseline_arrow_forward_ios_24.xml" />
+                                      <entry key="url" value="file:/$USER_HOME$/AppData/Local/Android/Sdk/icons/material/materialicons/delete_forever/baseline_delete_forever_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -34,7 +34,7 @@
                         <option name="values">
                           <map>
                             <entry key="color" value="e50000" />
-                            <entry key="outputName" value="forward" />
+                            <entry key="outputName" value="delete" />
                             <entry key="sourceFile" value="C:\Users\mcarm\AndroidStudioProjects\Quick_Pet" />
                           </map>
                         </option>

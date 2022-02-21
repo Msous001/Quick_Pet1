@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -45,25 +43,9 @@ public class List__Vaccine extends AppCompatActivity {
             myVaccine.getMyVaccineList().add(Va);
             adapter.notifyDataSetChanged();
         }
-        lv_vaccine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                editVaccine(position);
-            }
-        });
-        btn_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                startActivity(new Intent(List__Vaccine.this, Add_Vaccine.class));
-            }
-        });
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(List__Vaccine.this, Main_menu.class));
-            }
-        });
+        lv_vaccine.setOnItemClickListener((adapterView, view, position, l) -> editVaccine(position));
+        btn_ok.setOnClickListener(view -> startActivity(new Intent(List__Vaccine.this, Add_Vaccine.class)));
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Vaccine.this, Main_menu.class)));
     }
 
     private void editVaccine(int position) {

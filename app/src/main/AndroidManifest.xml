@@ -13,6 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".List__Deworming"
+            android:exported="false" />
+        <activity
+            android:name=".List__Fleas"
+            android:exported="false" />
+        <activity
             android:name=".List__Vaccine"
             android:exported="false" />
         <activity

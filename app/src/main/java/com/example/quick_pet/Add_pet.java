@@ -106,7 +106,7 @@ public class Add_pet extends AppCompatActivity {
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
         back_arrow = (ImageView)findViewById(R.id.back_arrow_addPet);
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, FirstActivity.class)));
 
         petList = myApplication.getPetList();
 
@@ -137,26 +137,15 @@ public class Add_pet extends AppCompatActivity {
             if(TextUtils.isEmpty(name.getText().toString())){
                 name.setText("Max");
             }
-            if(TextUtils.isEmpty(Stype)){
-                Stype = "Not Defined";
-            }
-            if(TextUtils.isEmpty(Sgender)){
-                Sgender = "Not Defined";
-            }
-            if(TextUtils.isEmpty(Scolour)){
-                Scolour = "Not Defined";
-
-            }
-            if(TextUtils.isEmpty(Sintact)){
-                Sintact = "Not Defined";
-            }
+            if(TextUtils.isEmpty(Stype)){Stype = "Not Defined";}
+            if(TextUtils.isEmpty(Sgender)){Sgender = "Not Defined";}
+            if(TextUtils.isEmpty(Scolour)){Scolour = "Not Defined";}
+            if(TextUtils.isEmpty(Sintact)){Sintact = "Not Defined";}
             if(press == false){
                 uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
                 uriList.add(imageUri2);
             }
-
             C__Pet newpet = new C__Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri2.toString());
-
 
         });
 
@@ -225,7 +214,5 @@ public class Add_pet extends AppCompatActivity {
         } catch (Exception e) {
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
         }
-
     }
-
 }

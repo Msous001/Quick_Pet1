@@ -24,12 +24,7 @@ public class List__Grooming extends AppCompatActivity {
         setContentView(R.layout.activity_list_grooming);
 
         back_arrow = ((ImageView) findViewById(R.id.back_arrowGr));
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Grooming.this, Main_menu.class)));
         btn_add = ((Button) findViewById(R.id.btn_list_grooming));
         lv_listGrooming = ((ListView) findViewById(R.id.listView_Grooming));
 
@@ -53,12 +48,7 @@ public class List__Grooming extends AppCompatActivity {
             adapter.notifyDataSetChanged();
             
         }
-        lv_listGrooming.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                editGrooming(position);
-            }
-        });
+        lv_listGrooming.setOnItemClickListener((adapterView, view, position, l) -> editGrooming(position));
         btn_add.setOnClickListener(view -> startActivity(new Intent(List__Grooming.this, Add_Grooming.class)));
     }
 

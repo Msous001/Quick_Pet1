@@ -25,5 +25,13 @@ public class C__Health {
     public String getMedicationName() {return medicationName;}
     public void setMedicationName(String medicationName) {this.medicationName = medicationName;}
 
-
+    @Override
+    public String toString() {
+        return "C__Health{" +
+                "Name='" + Name + '\'' +
+                ", effects='" + effects + '\'' +
+                ", symptomsName='" + symptomsName + '\'' +
+                ", medicationName='" + medicationName + '\'' +
+                '}';
+    }
 }

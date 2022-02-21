@@ -56,7 +56,6 @@ public class Main_menu extends AppCompatActivity {
                     return true;
             }
             return false;
-
         });
 
 
@@ -78,27 +77,14 @@ public class Main_menu extends AppCompatActivity {
         grooming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Grooming.class)));
 
         vaccination = (Button) findViewById(R.id.vaccination);
-        vaccination.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Main_menu.this, List__Vaccine.class));
+        vaccination.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Vaccine.class)));
 
-            }
-        });
         fleas = (Button) findViewById(R.id.fleas);
-        fleas.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        fleas.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Fleas.class)));
 
-            }
-        });
         deworming = (Button) findViewById(R.id.deworming);
-        deworming.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        deworming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Deworming.class)));
 
-            }
-        });
         surgery = (Button) findViewById(R.id.surgeryMenu);
         surgery.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -114,20 +100,10 @@ public class Main_menu extends AppCompatActivity {
             }
         });
         allergy = (Button) findViewById(R.id.allergyMenu);
-        allergy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Main_menu.this, List__Allergy.class));
+        allergy.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Allergy.class)));
 
-            }
-        });
         health = (Button) findViewById(R.id.Health_Menu);
-        health.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(Main_menu.this, List__Health.class));
-            }
-        });
+        health.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Health.class)));
 
 
 

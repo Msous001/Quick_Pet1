@@ -15,6 +15,8 @@ public class C__PhotoGallery extends Application {
     private C__Health_MyHealth myHealth = new C__Health_MyHealth();
     private C__Grooming_MyGrooming myGrooming = new C__Grooming_MyGrooming();
     private C__Vaccine_MyVaccine myVaccine = new C__Vaccine_MyVaccine();
+    private C__Fleas_MyFleas myFleas = new C__Fleas_MyFleas();
+    private C__Deworming_MyDeworming myDeworming = new C__Deworming_MyDeworming();
 
     private static List<C__Appointment> appointmentsList = new ArrayList<C__Appointment>();
     private static int nextId =1;
@@ -23,7 +25,6 @@ public class C__PhotoGallery extends Application {
         fillAppointement();
         fillpet();
     }
-
     private static List<C__Pet> petList = new ArrayList<C__Pet>();
     private void fillpet() {
         C__Pet p0 = new C__Pet("Max","Dog","Male","Pomeranian",
@@ -80,4 +81,10 @@ public class C__PhotoGallery extends Application {
 
     public C__Vaccine_MyVaccine getMyVaccine() {return myVaccine;}
     public void setMyVaccine(C__Vaccine_MyVaccine myVaccine) {this.myVaccine = myVaccine;}
+
+    public C__Fleas_MyFleas getMyFleas() {return myFleas;}
+    public void setMyFleas(C__Fleas_MyFleas myFleas) {this.myFleas = myFleas;}
+
+    public C__Deworming_MyDeworming getMyDeworming() {return myDeworming;}
+    public void setMyDeworming(C__Deworming_MyDeworming myDeworming) {this.myDeworming = myDeworming;}
 }

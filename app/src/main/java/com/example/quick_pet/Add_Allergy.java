@@ -6,9 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -34,7 +32,7 @@ public class Add_Allergy extends AppCompatActivity {
         medication = (EditText) findViewById(R.id.et_allergy_medication);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_allergy);
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Allergy.this, List__Allergy.class)));
 
         calendar_app_newVet = (ImageView) findViewById(R.id.calendar_date_allergy);
         calendar_app_newVet.setOnClickListener(view -> {

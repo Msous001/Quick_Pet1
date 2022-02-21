@@ -8,14 +8,12 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -55,7 +53,7 @@ public class Add_Appointment extends AppCompatActivity {
         circleImageView.setImageURI(uriList.get(0));
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Appointment.this, List__Appointment.class)));
 
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
@@ -67,7 +65,6 @@ public class Add_Appointment extends AppCompatActivity {
                     appointment = ap;
                 }
             }
-
             String Stype = appointment.getType().toString();
             ArrayAdapter myAdap = (ArrayAdapter) type.getAdapter();
             int spinnerPosition = myAdap.getPosition(Stype);
@@ -96,7 +93,7 @@ public class Add_Appointment extends AppCompatActivity {
                 }
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
             } catch (Exception e) {
-
+                Toast.makeText(Add_Appointment.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
         calendar_date_app = (ImageView) findViewById(R.id.calendar_app_date);
@@ -108,7 +105,7 @@ public class Add_Appointment extends AppCompatActivity {
             // @SuppressLint("SetTextI18n")
             DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Appointment.this,
                     android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM" + "\n YYYY");
+                        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM" + "\n yyyy");
                         cal1.set(year, month, date);
                         String dateString = sdf.format(cal1.getTime());
                         et_date.setText(dateString);
@@ -119,13 +116,10 @@ public class Add_Appointment extends AppCompatActivity {
 
         image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
         image_time_picker.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-                @Override
-                public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                    mHour = selectedHour;
-                    mMinute = selectedMinute;
-                    et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-                }
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+                mHour = selectedHour;
+                mMinute = selectedMinute;
+                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
             };
             int style = AlertDialog.THEME_HOLO_DARK;
             TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, style, onTimeSetListener, mHour, mMinute, true);

@@ -55,7 +55,7 @@ public class Add_Vet extends AppCompatActivity {
                 datePickerDialog.show();
             }
         });
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Vet.this, List__Vet.class)));
 
         Bundle incomingIntent = getIntent().getExtras();
         if (incomingIntent != null) {

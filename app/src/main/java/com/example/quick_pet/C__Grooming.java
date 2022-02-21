@@ -16,7 +16,6 @@ public class C__Grooming {
     public String getPlace() {
         return place;
     }
-
     public void setPlace(String place) {
         this.place = place;
     }
@@ -24,7 +23,6 @@ public class C__Grooming {
     public String getDate() {
         return date;
     }
-
     public void setDate(String date) {
         this.date = date;
     }
@@ -32,7 +30,6 @@ public class C__Grooming {
     public String getTime() {
         return time;
     }
-
     public void setTime(String time) {
         this.time = time;
     }
@@ -40,7 +37,6 @@ public class C__Grooming {
     public String getDirection() {
         return direction;
     }
-
     public void setDirection(String direction) {
         this.direction = direction;
     }
