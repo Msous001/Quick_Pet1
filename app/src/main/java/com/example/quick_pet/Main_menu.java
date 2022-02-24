@@ -47,6 +47,9 @@ public class Main_menu extends AppCompatActivity {
                 case R.id.photos:
                     Intent a = new Intent(Main_menu.this, List__Photos.class);
                     startActivity(a);
+                case R.id.sounds:
+                    Intent s = new Intent(Main_menu.this, List__Sounds.class);
+                    startActivity(s);
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(Main_menu.this, "bye", Toast.LENGTH_SHORT).show();

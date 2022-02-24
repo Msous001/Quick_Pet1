@@ -137,7 +137,8 @@ public class Add_pet extends AppCompatActivity {
             if(TextUtils.isEmpty(name.getText().toString())){
                 name.setText("Max");
             }
-            if(TextUtils.isEmpty(Stype)){Stype = "Not Defined";}
+            if(TextUtils.isEmpty(Stype)){
+                Toast.makeText(Add_pet.this, "Please Select ", Toast.LENGTH_SHORT).show();;}
             if(TextUtils.isEmpty(Sgender)){Sgender = "Not Defined";}
             if(TextUtils.isEmpty(Scolour)){Scolour = "Not Defined";}
             if(TextUtils.isEmpty(Sintact)){Sintact = "Not Defined";}
@@ -158,11 +159,11 @@ public class Add_pet extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelected = pet_Type[position];
                 if(position == 1) {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_list_item_1, Dog_breed);
+                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
                     editT.setAdapter(adapter);
                 }
                 if (position == 2) {
-                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_list_item_1, Cat_breed);
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
                     editT.setAdapter(adapter2);
                 }
             }
@@ -216,3 +217,4 @@ public class Add_pet extends AppCompatActivity {
         }
     }
 }
+//simple_list_item_1

@@ -20,6 +20,7 @@ public class C__GlobalVariable extends Application {
     private C__Surgery_MySurgeries mySurgeries = new C__Surgery_MySurgeries();
     private C__Medication_MyMedication myMedication = new C__Medication_MyMedication();
     private C__Photos_MyPhotos myPhotos = new C__Photos_MyPhotos();
+    private C__Sounds_MySounds mySounds = new C__Sounds_MySounds();
 
     private static List<C__Appointment> appointmentsList = new ArrayList<C__Appointment>();
     private static int nextId =1;
@@ -99,4 +100,7 @@ public class C__GlobalVariable extends Application {
 
     public C__Photos_MyPhotos getMyPhotos() {return myPhotos;}
     public void setMyPhotos(C__Photos_MyPhotos myPhotos) {this.myPhotos = myPhotos;}
+
+    public C__Sounds_MySounds getMySounds() {return mySounds;}
+    public void setMySounds(C__Sounds_MySounds mySounds) {this.mySounds = mySounds;}
 }
