@@ -30,7 +30,7 @@ public class Add_Appointment extends AppCompatActivity {
     ImageView calendar_date_app, image_time_picker, back_arrow;
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
-    C__PhotoGallery myApplication = (C__PhotoGallery) this.getApplication();
+    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
     List<Uri> uriList;
 
     private int mDate, mMonth, mYear, mHour, mMinute;
@@ -40,9 +40,9 @@ public class Add_Appointment extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
-        appointmentList = C__PhotoGallery.getAppointmentsList();
+        appointmentList = C__GlobalVariable.getAppointmentsList();
 
-        uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
         et_time = (EditText) findViewById(R.id.edittime);

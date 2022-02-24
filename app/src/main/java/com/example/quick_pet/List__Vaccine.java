@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.Collections;
+
 public class List__Vaccine extends AppCompatActivity {
 
     ImageView back_arrow;
@@ -25,7 +27,7 @@ public class List__Vaccine extends AppCompatActivity {
         lv_vaccine = (ListView) findViewById(R.id.listView_Vaccine);
         btn_ok = (Button) findViewById(R.id.btn_list_vaccine);
 
-        myVaccine = ((C__PhotoGallery) this.getApplication()).getMyVaccine();
+        myVaccine = ((C__GlobalVariable) this.getApplication()).getMyVaccine();
         adapter = new C__VaccineAdapter(List__Vaccine.this, myVaccine);
         lv_vaccine.setAdapter(adapter);
 
@@ -41,6 +43,7 @@ public class List__Vaccine extends AppCompatActivity {
                 myVaccine.getMyVaccineList().remove(positionEdited);
             }
             myVaccine.getMyVaccineList().add(Va);
+            Collections.sort(myVaccine.getMyVaccineList());
             adapter.notifyDataSetChanged();
         }
         lv_vaccine.setOnItemClickListener((adapterView, view, position, l) -> editVaccine(position));

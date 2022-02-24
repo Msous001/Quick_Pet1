@@ -22,7 +22,7 @@ public class List__Appointment extends AppCompatActivity {
     List<C__Appointment> appointmentList;
     CircleImageView circleImageView;
     ImageView back_arrow;
-    C__PhotoGallery myApplication = (C__PhotoGallery) this.getApplication();
+    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
     List<Uri> uriList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -52,7 +52,7 @@ public class List__Appointment extends AppCompatActivity {
         btn_addAppointment = (Button) findViewById(R.id.btn_addAppointment);
         btn_addAppointment.setOnClickListener(view -> startActivity(new Intent(List__Appointment.this, Add_Appointment.class)));
 
-        uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
 
         circleImageView = (CircleImageView) findViewById(R.id.circle_Image_pet_app_list);
         circleImageView.setImageURI(uriList.get(0));

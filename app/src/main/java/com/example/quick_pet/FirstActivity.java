@@ -3,7 +3,6 @@ package com.example.quick_pet;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,12 +23,9 @@ public class FirstActivity extends AppCompatActivity {
     CircleImageView circleImageView ,circleImagepet1 ,circleImagepet2, circleImagepet3 ,circleImagepet4;
     List<Uri> uriList;
     List<C__Pet> petList;
-    C__PhotoGallery myApplication = (C__PhotoGallery) this.getApplication();
+    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
     private static final String TAG = "Pet";
     Uri imageUri;
-
-
-
 
 
     @Override
@@ -44,7 +40,7 @@ public class FirstActivity extends AppCompatActivity {
         circleImagepet4 = findViewById(R.id.pet4);
 
 
-        uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
         petList = myApplication.getPetList();
 
         if (uriList.isEmpty()) {

@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import java.util.Collections;
 
 public class List__Grooming extends AppCompatActivity {
 
@@ -28,7 +28,7 @@ public class List__Grooming extends AppCompatActivity {
         btn_add = ((Button) findViewById(R.id.btn_list_grooming));
         lv_listGrooming = ((ListView) findViewById(R.id.listView_Grooming));
 
-        myGrooming= ((C__PhotoGallery) this.getApplication()).getMyGrooming();
+        myGrooming= ((C__GlobalVariable) this.getApplication()).getMyGrooming();
         adapter = new C__GroomingAdapter(List__Grooming.this, myGrooming);
         lv_listGrooming.setAdapter(adapter);
 
@@ -45,6 +45,7 @@ public class List__Grooming extends AppCompatActivity {
                 myGrooming.getMyGroomingList().remove(positionEdited);
             }
             myGrooming.getMyGroomingList().add(g);
+            Collections.sort(myGrooming.myGroomingList);
             adapter.notifyDataSetChanged();
             
         }

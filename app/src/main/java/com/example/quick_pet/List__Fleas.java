@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -14,6 +12,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class List__Fleas extends AppCompatActivity {
 
@@ -50,7 +49,7 @@ public class List__Fleas extends AppCompatActivity {
         lv_fleas = (ListView) findViewById(R.id.listView_Fleas);
         btnadd = (Button) findViewById(R.id.btn_add_Fleas);
 
-        myFleas = ((C__PhotoGallery) this.getApplication()).getMyFleas();
+        myFleas = ((C__GlobalVariable) this.getApplication()).getMyFleas();
         adapter = new C__FleasAdapter(List__Fleas.this, myFleas);
         lv_fleas.setAdapter(adapter);
 
@@ -62,6 +61,7 @@ public class List__Fleas extends AppCompatActivity {
             else {
                 C__Fleas f = new C__Fleas(f_date);
                 myFleas.getMyFleasList().add(f);
+                Collections.sort(myFleas.getMyFleasList());
                 adapter.notifyDataSetChanged();
                 dates.setText("");
             }

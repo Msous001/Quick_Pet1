@@ -36,7 +36,7 @@ public class Add_pet extends AppCompatActivity {
     public static final int IMAGE_CODE = 1;
     Uri imageUri, imageUri2;
     AutoCompleteTextView editT;
-    C__PhotoGallery myApplication = (C__PhotoGallery) this.getApplication();
+    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
 
     List<Uri> uriList;
     List<C__Pet> petList;
@@ -142,7 +142,7 @@ public class Add_pet extends AppCompatActivity {
             if(TextUtils.isEmpty(Scolour)){Scolour = "Not Defined";}
             if(TextUtils.isEmpty(Sintact)){Sintact = "Not Defined";}
             if(press == false){
-                uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+                uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
                 uriList.add(imageUri2);
             }
             C__Pet newpet = new C__Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri2.toString());
@@ -208,7 +208,7 @@ public class Add_pet extends AppCompatActivity {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageUri = data.getData();
                 circleImageView.setImageURI(imageUri);
-                uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+                uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
                 uriList.add(imageUri);
             }
         } catch (Exception e) {

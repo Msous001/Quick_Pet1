@@ -4,11 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import java.util.Collections;
 
 public class List__Allergy extends AppCompatActivity {
 
@@ -27,7 +27,7 @@ public class List__Allergy extends AppCompatActivity {
         lv_allergy = (ListView) findViewById(R.id.listView_Allergy);
         btn_ok = (Button) findViewById(R.id.btn_list_allergy);
 
-        myAllergies = ((C__PhotoGallery) this.getApplication()).getMyAllergies();
+        myAllergies = ((C__GlobalVariable) this.getApplication()).getMyAllergies();
         adapter = new C__AllergyAdapter(List__Allergy.this, myAllergies);
         lv_allergy.setAdapter(adapter);
 
@@ -44,6 +44,7 @@ public class List__Allergy extends AppCompatActivity {
                 myAllergies.getMyAllergyList().remove(positionEdited);
             }
             myAllergies.getMyAllergyList().add(a);
+            Collections.sort(myAllergies.getMyAllergyList());
             adapter.notifyDataSetChanged();
         }
 

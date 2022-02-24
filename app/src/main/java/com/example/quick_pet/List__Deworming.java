@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Collections;
 
 public class List__Deworming extends AppCompatActivity {
 
@@ -48,7 +49,7 @@ public class List__Deworming extends AppCompatActivity {
         lv_deworm = (ListView) findViewById(R.id.listView_Deworming);
         btnadd = (Button) findViewById(R.id.btn_add_Deworming);
 
-        myDeworming = ((C__PhotoGallery) this.getApplication()).getMyDeworming();
+        myDeworming = ((C__GlobalVariable) this.getApplication()).getMyDeworming();
         adapter = new C__DewormingAdapter(List__Deworming.this, myDeworming);
         lv_deworm.setAdapter(adapter);
 
@@ -60,6 +61,7 @@ public class List__Deworming extends AppCompatActivity {
             else{
                 C__Deworming d = new C__Deworming(f_date);
                 myDeworming.getMyDewormingList().add(d);
+                Collections.sort(myDeworming.getMyDewormingList());
                 adapter.notifyDataSetChanged();
                 dates.setText("");
             }

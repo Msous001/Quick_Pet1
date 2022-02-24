@@ -50,6 +50,16 @@
     <string name="veterinarian_tool">Veterinarian tool</string>
     <string name="adding_vet_visit">Adding Vet visit</string>
     <string name="vet_name">Vet name</string>
+    <string name="adding_allergy">Adding Allergy</string>
+    <string name="mm_yyyy">mm_yyyy</string>
+    <string name="symptoms">Symptoms</string>
+    <string name="medication">Medication</string>
+    <string name="medic1">Medicine 1</string>
+    <string name="medic2">Medicine 2</string>
+    <string name="allergy_name">Allergy name</string>
+    <string name="allergy">Allergy</string>
+    <string name="health_condition">Health Condition</string>
+    <string name="veterinary">Veterinary</string>
 
     <string-array name="gender">
         <item> </item>
@@ -80,14 +90,6 @@
         <item>Veterinarian</item>
         <item>Grooming</item>
     </string-array>
-    <string name="adding_allergy">Adding Allergy</string>
-    <string name="mm_yyyy">mm_yyyy</string>
-    <string name="symptoms">Symptoms</string>
-    <string name="medication">Medication</string>
-    <string name="allergy_name">Allergy name</string>
-    <string name="allergy">Allergy</string>
-    <string name="health_condition">Health Condition</string>
-    <string name="veterinary">Veterinary</string>
 
 
 </resources>

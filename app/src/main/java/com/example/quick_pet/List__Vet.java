@@ -8,6 +8,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import java.util.Collections;
+
 public class List__Vet extends AppCompatActivity {
 
     ImageView back_arrow;
@@ -28,7 +30,7 @@ public class List__Vet extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_list_vet);
         lv_listVet = (ListView) findViewById(R.id.listView_Vet);
 
-        myVets = ((C__PhotoGallery) this.getApplication()).getMyVets();
+        myVets = ((C__GlobalVariable) this.getApplication()).getMyVets();
         adapter = new C__VetAdapter(List__Vet.this, myVets);
         lv_listVet.setAdapter(adapter);
 
@@ -45,6 +47,7 @@ public class List__Vet extends AppCompatActivity {
                 myVets.getMyVetsList().remove(positionEdited);
             }
             myVets.getMyVetsList().add(c);
+            Collections.sort(myVets.getMyVetsList());
             adapter.notifyDataSetChanged();
         }
         lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));

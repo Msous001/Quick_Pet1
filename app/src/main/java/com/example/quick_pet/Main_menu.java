@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -45,6 +44,9 @@ public class Main_menu extends AppCompatActivity {
                 case R.id.settings:
                     Toast.makeText(Main_menu.this, "test", Toast.LENGTH_SHORT).show();
                     return true;
+                case R.id.photos:
+                    Intent a = new Intent(Main_menu.this, List__Photos.class);
+                    startActivity(a);
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
                     Toast.makeText(Main_menu.this, "bye", Toast.LENGTH_SHORT).show();
@@ -59,7 +61,7 @@ public class Main_menu extends AppCompatActivity {
         });
 
 
-        uriList = ((C__PhotoGallery) this.getApplication()).getUriList();
+        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
 
         if (uriList.isEmpty()) {
 
@@ -86,26 +88,16 @@ public class Main_menu extends AppCompatActivity {
         deworming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Deworming.class)));
 
         surgery = (Button) findViewById(R.id.surgeryMenu);
-        surgery.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        surgery.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Surgery.class)));
 
-            }
-        });
         medication = (Button) findViewById(R.id.medication_Menu);
-        medication.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+        medication.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Medication.class)));
 
-            }
-        });
         allergy = (Button) findViewById(R.id.allergyMenu);
         allergy.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Allergy.class)));
 
         health = (Button) findViewById(R.id.Health_Menu);
         health.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Health.class)));
-
-
 
     }
 

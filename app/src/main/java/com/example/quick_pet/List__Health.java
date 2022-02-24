@@ -28,7 +28,7 @@ public class List__Health extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_list_health);
         lv_listHealth = (ListView) findViewById(R.id.listView_Health);
 
-        myHealth = ((C__PhotoGallery) this.getApplication()).getMyHealth();
+        myHealth = ((C__GlobalVariable) this.getApplication()).getMyHealth();
         adapter = new C__HealthAdapter(List__Health.this, myHealth);
         lv_listHealth.setAdapter(adapter);
 

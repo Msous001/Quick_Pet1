@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Vaccine {
+public class C__Vaccine implements Comparable<C__Vaccine> {
     private String Vac_name;
     private String Vac_date;
     private String Vac_vetName;
@@ -29,5 +29,10 @@ public class C__Vaccine {
                 ", Vac_date='" + Vac_date + '\'' +
                 ", Vac_vetName='" + Vac_vetName + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(C__Vaccine c) {
+        return this.Vac_date.compareTo(c.Vac_date);
     }
 }

@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Deworming {
+public class C__Deworming implements Comparable<C__Deworming>{
     private String dates;
 
     public C__Deworming(String dates) {this.dates = dates;}
@@ -12,5 +12,10 @@ public class C__Deworming {
         return "C__Deworming{" +
                 "dates='" + dates + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(C__Deworming c) {
+        return this.dates.compareTo(c.dates);
     }
 }

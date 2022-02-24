@@ -81,13 +81,13 @@ public class Add_Vet extends AppCompatActivity {
             name.setText(E_name);
             dates.setText(E_date);
             direction.setText(E_direction);
-            weight.setText(Integer.toString(E_weight));
+            weight.setText((Integer.toString(E_weight)));
         }
         btnNext.setOnClickListener(view -> {
             String newName = name.getText().toString();
             String newDates = dates.getText().toString();
             String newDirection = direction.getText().toString();
-            int newWeight = Integer.parseInt(weight.getText().toString());
+            String newWeight = weight.getText().toString();
 
             if (TextUtils.isEmpty(newName)) {
                 newName = "Not Defined";
@@ -100,7 +100,7 @@ public class Add_Vet extends AppCompatActivity {
 
             }
             if (TextUtils.isEmpty(String.valueOf(newWeight))) {
-                newWeight = 0;
+                newWeight = "Not Defined";
             }
 
             Intent i = new Intent(view.getContext(), List__Vet.class);

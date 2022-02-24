@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Grooming {
+public class C__Grooming implements Comparable<C__Grooming>{
     private String place;
     private String date;
     private String time;
@@ -37,6 +37,7 @@ public class C__Grooming {
     public String getDirection() {
         return direction;
     }
+
     public void setDirection(String direction) {
         this.direction = direction;
     }
@@ -49,5 +50,10 @@ public class C__Grooming {
                 ", time='" + time + '\'' +
                 ", direction='" + direction + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(C__Grooming c) {
+        return this.date.compareTo(c.date);
     }
 }
