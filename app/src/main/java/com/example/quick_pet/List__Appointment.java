@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -27,6 +28,7 @@ public class List__Appointment extends AppCompatActivity {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
+    private static String pic;
 
 
     @Override
@@ -40,21 +42,32 @@ public class List__Appointment extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
 
-        back_arrow = (ImageView)findViewById(R.id.back_arrow_appointment_list);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Appointment.this, Main_menu.class)));
 
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
         mAdapter = new RecyclerViewAdapter(appointmentList, List__Appointment.this);
         recyclerView.setAdapter(mAdapter);
-
-        btn_addAppointment = (Button) findViewById(R.id.btn_addAppointment);
-        btn_addAppointment.setOnClickListener(view -> startActivity(new Intent(List__Appointment.this, Add_Appointment.class)));
-
-        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
+        Bundle incomingMessages = getIntent().getExtras();
+        if(incomingMessages != null){
+            pic = incomingMessages.getString("picture");
+        }
 
         circleImageView = (CircleImageView) findViewById(R.id.circle_Image_pet_app_list);
-        circleImageView.setImageURI(uriList.get(0));
+        circleImageView.setImageURI(Uri.parse(pic));
+
+        btn_addAppointment = (Button) findViewById(R.id.btn_addAppointment);
+        btn_addAppointment.setOnClickListener(view -> {
+            Intent i = new Intent(getApplicationContext(), Add_Appointment.class);
+            i.putExtra("picture", pic);
+            startActivity(i);
+        });
+        back_arrow = (ImageView)findViewById(R.id.back_arrow_appointment_list);
+        back_arrow.setOnClickListener(view -> {
+            Intent a = new Intent(List__Appointment.this, Main_menu.class);
+            a.putExtra("picture", pic);
+            startActivity(a);
+        });
+
     }
 }

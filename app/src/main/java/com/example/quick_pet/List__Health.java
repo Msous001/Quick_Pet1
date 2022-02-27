@@ -23,7 +23,10 @@ public class List__Health extends AppCompatActivity {
         setContentView(R.layout.activity_list_health);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowTH);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Health.this, Main_menu.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Health.this, Main_menu.class));
+            finish();
+        });
 
         btn_add = (Button) findViewById(R.id.btn_list_health);
         lv_listHealth = (ListView) findViewById(R.id.listView_Health);

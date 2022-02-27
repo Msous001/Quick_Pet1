@@ -6,11 +6,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.Toast;
 
 public class List__Photos extends AppCompatActivity {
@@ -20,6 +18,7 @@ public class List__Photos extends AppCompatActivity {
     GridView myGrid;
     C__Photos_MyPhotos myPhotos;
     C__PhotosAdapter adapter;
+    ImageView backArrow;
     public static final int IMAGE_CODE = 1;
 
     @Override
@@ -27,20 +26,18 @@ public class List__Photos extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_photos);
         btn_add = (Button) findViewById(R.id.btn_list_Photos);
+        backArrow = (ImageView) findViewById(R.id.back_arrowPhotos);
 
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                openimageform();
-            }
+        backArrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Photos.this, List__Pet.class));
+            finish();
         });
+
+        btn_add.setOnClickListener(view -> openimageform());
         myGrid = findViewById(R.id.gridView);
         myPhotos = ((C__GlobalVariable) this.getApplication()).getMyPhotos();
         adapter = new C__PhotosAdapter(List__Photos.this, myPhotos);
         myGrid.setAdapter(adapter);
-
-
     }
 
     private void openimageform() {

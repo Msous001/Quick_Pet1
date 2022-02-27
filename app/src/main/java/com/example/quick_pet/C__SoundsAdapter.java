@@ -37,7 +37,7 @@ public class C__SoundsAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
         C__Sounds c = this.getItem(position);
-        ViewHolder holder = null;
+        ViewHolder holder;
         if(view == null){
             view = LayoutInflater.from(myActivity).inflate(R.layout.one_line_sounds, viewGroup,false);
             holder = new ViewHolder();

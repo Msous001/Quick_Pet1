@@ -47,8 +47,14 @@ public class List__Vaccine extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         lv_vaccine.setOnItemClickListener((adapterView, view, position, l) -> editVaccine(position));
-        btn_ok.setOnClickListener(view -> startActivity(new Intent(List__Vaccine.this, Add_Vaccine.class)));
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Vaccine.this, Main_menu.class)));
+        btn_ok.setOnClickListener(view -> {
+            startActivity(new Intent(List__Vaccine.this, Add_Vaccine.class));
+            finish();
+        });
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Vaccine.this, Main_menu.class));
+            finish();
+        });
     }
 
     private void editVaccine(int position) {

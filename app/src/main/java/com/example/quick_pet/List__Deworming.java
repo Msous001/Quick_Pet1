@@ -2,6 +2,7 @@ package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -53,6 +54,10 @@ public class List__Deworming extends AppCompatActivity {
         adapter = new C__DewormingAdapter(List__Deworming.this, myDeworming);
         lv_deworm.setAdapter(adapter);
 
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Deworming.this, Main_menu.class));
+            finish();
+        });
         btnadd.setOnClickListener(view -> {
             String f_date = dates.getText().toString();
             if(TextUtils.isEmpty(f_date)){

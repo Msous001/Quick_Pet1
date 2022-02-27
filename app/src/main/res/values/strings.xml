@@ -60,6 +60,7 @@
     <string name="allergy">Allergy</string>
     <string name="health_condition">Health Condition</string>
     <string name="veterinary">Veterinary</string>
+    <string name="this_field_is_required">This field is required</string>
 
     <string-array name="gender">
         <item> </item>

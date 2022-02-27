@@ -37,9 +37,7 @@ public class C__HealthAdapter extends BaseAdapter {
         View oneHealthLine;
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         oneHealthLine = inflater.inflate(R.layout.one_line_health, viewGroup, false);
-
         TextView tv_name = oneHealthLine.findViewById(R.id.tv_health_name);
-
         C__Health h = this.getItem(position);
         tv_name.setText(h.getName());
 

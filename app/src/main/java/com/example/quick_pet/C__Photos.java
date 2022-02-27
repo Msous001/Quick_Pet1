@@ -11,7 +11,6 @@ public class C__Photos {
     public String getPicPicture() {
         return picPicture;
     }
-
     public void setPicPicture(String picPicture) {
         this.picPicture = picPicture;
     }

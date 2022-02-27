@@ -9,7 +9,7 @@ import java.util.List;
 
 public class C__GlobalVariable extends Application {
 
-    List<Uri> uriList = new ArrayList<Uri>();
+   // List<Uri> uriList = new ArrayList<Uri>();
     private C__Vet_MyVets myVets = new C__Vet_MyVets();
     private C__Allergy_MyAllergies myAllergies = new C__Allergy_MyAllergies();
     private C__Health_MyHealth myHealth = new C__Health_MyHealth();
@@ -21,20 +21,13 @@ public class C__GlobalVariable extends Application {
     private C__Medication_MyMedication myMedication = new C__Medication_MyMedication();
     private C__Photos_MyPhotos myPhotos = new C__Photos_MyPhotos();
     private C__Sounds_MySounds mySounds = new C__Sounds_MySounds();
+    private C__Pet_MyPets myPets = new C__Pet_MyPets();
 
     private static List<C__Appointment> appointmentsList = new ArrayList<C__Appointment>();
     private static int nextId =1;
 
     public C__GlobalVariable(){
         fillAppointement();
-        fillpet();
-    }
-
-    private static List<C__Pet> petList = new ArrayList<C__Pet>();
-    private void fillpet() {
-        C__Pet p0 = new C__Pet("Max","Dog","Male","Pomeranian",
-                "15/06/2020","Gold","Intact",String.valueOf(R.drawable.cat_face_circle));
-        petList.addAll(Arrays.asList(new C__Pet[]{p0}));
     }
 
     private void fillAppointement(){
@@ -56,21 +49,6 @@ public class C__GlobalVariable extends Application {
     public static void setAppointmentsList(List<C__Appointment> appointmentsList) {
         C__GlobalVariable.appointmentsList = appointmentsList;
     }
-
-    public List<Uri> getUriList() {
-        return uriList;
-    }
-    public void setUriList(List<Uri> uriList) {
-        this.uriList = uriList;
-    }
-
-    public static List<C__Pet> getPetList() {
-        return petList;
-    }
-    public static void setPetList(List<C__Pet> petList) {
-        C__GlobalVariable.petList = petList;
-    }
-
     public C__Vet_MyVets getMyVets() {return myVets;}
     public void setMyVets(C__Vet_MyVets myVets) {this.myVets = myVets;}
 
@@ -103,4 +81,7 @@ public class C__GlobalVariable extends Application {
 
     public C__Sounds_MySounds getMySounds() {return mySounds;}
     public void setMySounds(C__Sounds_MySounds mySounds) {this.mySounds = mySounds;}
+
+    public C__Pet_MyPets getMyPets() {return myPets;}
+    public void setMyPets(C__Pet_MyPets myPets) { this.myPets = myPets;}
 }

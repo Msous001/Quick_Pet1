@@ -25,7 +25,10 @@ public class List__Vet extends AppCompatActivity {
         setContentView(R.layout.activity_list_vet);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowTL);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Vet.this, Main_menu.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Vet.this, Main_menu.class));
+            finish();
+        });
 
         btn_add = (Button) findViewById(R.id.btn_list_vet);
         lv_listVet = (ListView) findViewById(R.id.listView_Vet);
@@ -51,7 +54,10 @@ public class List__Vet extends AppCompatActivity {
             adapter.notifyDataSetChanged();
         }
         lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));
-        btn_add.setOnClickListener(view -> startActivity(new Intent(List__Vet.this, Add_Vet.class)));
+        btn_add.setOnClickListener(view -> {
+            startActivity(new Intent(List__Vet.this, Add_Vet.class));
+            finish();
+        });
     }
 
     private void editVet(int position) {

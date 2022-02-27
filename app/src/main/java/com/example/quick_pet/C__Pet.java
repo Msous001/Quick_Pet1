@@ -1,5 +1,7 @@
 package com.example.quick_pet;
 
+import android.net.Uri;
+
 public class C__Pet {
     private String name;
     private String type;

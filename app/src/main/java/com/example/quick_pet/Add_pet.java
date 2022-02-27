@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 
 import android.widget.AdapterView;
@@ -18,7 +19,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -27,24 +35,22 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_pet extends AppCompatActivity {
-    private static final String TAG = "Pet";
+
+
     EditText name, dateTxt;
     ImageView calendar, back_arrow;
     Spinner type, gender, colour, intact;
     Button nextbtn;
     CircleImageView circleImageView;
     public static final int IMAGE_CODE = 1;
-    Uri imageUri, imageUri2;
+    Uri imageUri, imageUriDog, imageUriCat, imageUriSelected;
     AutoCompleteTextView editT;
-    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
-
-    List<Uri> uriList;
-    List<C__Pet> petList;
-
-    Boolean press = false;
-
-
+    private static Boolean press = true;
     private int mDate, mMonth, mYear;
+    C__Pet_MyPets myPets;
+    TextView selection;
+
+
 
     private static final String[] Dog_breed = new String[]{"Affenpinscher", "Afghan Hound",
             "Airedale Terrier", "Akita", "Alaskan Malamute", "Anatolian Shepherd", "Australian Cattle",
@@ -102,54 +108,35 @@ public class Add_pet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
+
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
 
-        back_arrow = (ImageView)findViewById(R.id.back_arrow_addPet);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, FirstActivity.class)));
-
-        petList = myApplication.getPetList();
+        back_arrow = (ImageView) findViewById(R.id.back_arrow_addPet);
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, List__Pet.class)));
 
         type = (Spinner) findViewById(R.id.spinnerType);
         gender = (Spinner) findViewById(R.id.spinnerGender);
         colour = (Spinner) findViewById(R.id.spinnerColour);
         intact = (Spinner) findViewById(R.id.spinnerIntact);
+        selection = (TextView)findViewById(R.id.adapter);
 
-        imageUri2 = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
-                .authority(getResources().getResourcePackageName(R.drawable.pata))
-                .appendPath(getResources().getResourceTypeName(R.drawable.pata))
-                .appendPath(getResources().getResourceEntryName(R.drawable.pata))
+        imageUriDog = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(getResources().getResourcePackageName(R.drawable.dog_1))
+                .appendPath(getResources().getResourceTypeName(R.drawable.dog_1))
+                .appendPath(getResources().getResourceEntryName(R.drawable.dog_1))
+                .build();
+        imageUriCat = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
+                .authority(getResources().getResourcePackageName(R.drawable.cat1))
+                .appendPath(getResources().getResourceTypeName(R.drawable.cat1))
+                .appendPath(getResources().getResourceEntryName(R.drawable.cat1))
                 .build();
 
         circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
         circleImageView.setOnClickListener(view -> {
-            press = true;
+            press = false;
             openimageform();
         });
-        // -- next button code to navigate
-        nextbtn = (Button) findViewById(R.id.next_btn);
-        nextbtn.setOnClickListener(v -> {
-            startActivity(new Intent(Add_pet.this, FirstActivity.class));
-            String Stype = type.getSelectedItem().toString();
-            String Sgender = gender.getSelectedItem().toString();
-            String Scolour = colour.getSelectedItem().toString();
-            String Sintact = intact.getSelectedItem().toString();
-            if(TextUtils.isEmpty(name.getText().toString())){
-                name.setText("Max");
-            }
-            if(TextUtils.isEmpty(Stype)){
-                Toast.makeText(Add_pet.this, "Please Select ", Toast.LENGTH_SHORT).show();;}
-            if(TextUtils.isEmpty(Sgender)){Sgender = "Not Defined";}
-            if(TextUtils.isEmpty(Scolour)){Scolour = "Not Defined";}
-            if(TextUtils.isEmpty(Sintact)){Sintact = "Not Defined";}
-            if(press == false){
-                uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
-                uriList.add(imageUri2);
-            }
-            C__Pet newpet = new C__Pet(name.getText().toString(), Stype, Sgender, editT.toString(), dateTxt.toString(), Scolour, Sintact, imageUri2.toString());
-
-        });
-
         editT = findViewById(R.id.breed_input);
         // -- to open the correct array of names from two sources depending of the select item
         ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pet_Type);
@@ -158,13 +145,17 @@ public class Add_pet extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelected = pet_Type[position];
-                if(position == 1) {
+                if (position == 1) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
                     editT.setAdapter(adapter);
+                    editT.getText();
+                    //selection = (String) editT.getAdapter().getItem(position);
                 }
                 if (position == 2) {
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
                     editT.setAdapter(adapter2);
+                    editT.getText();
+
                 }
             }
 
@@ -173,21 +164,79 @@ public class Add_pet extends AppCompatActivity {
 
             }
         });
+        // -- next button code to navigate
+        myPets = ((C__GlobalVariable) this.getApplication()).getMyPets();
+
+        nextbtn = (Button) findViewById(R.id.next_btn);
+        nextbtn.setOnClickListener(v -> {
+
+            String Sname = name.getText().toString();
+            if (TextUtils.isEmpty(Sname)) {
+                Sname = "My pet";
+            }
+            String Stype = type.getSelectedItem().toString();
+            if (TextUtils.isEmpty(Stype)) {
+                Stype = "Dog";
+            }
+            String Sgender = gender.getSelectedItem().toString();
+            String Sbreed = editT.getText().toString();
+            String Sbod = dateTxt.getText().toString();
+            String Scolour = colour.getSelectedItem().toString();
+            String Sintact = intact.getSelectedItem().toString();
+
+            if (TextUtils.isEmpty(Sgender)) {
+                Sgender = "Not Defined";
+            }
+            if (TextUtils.isEmpty(Sbod)) {
+                Sbod = "Not Defined";
+            }
+            if (TextUtils.isEmpty(Scolour)) {
+                Scolour = "Not Defined";
+            }
+            if (TextUtils.isEmpty(Sintact)) {
+                Sintact = "Not Defined";
+            }
+            if (imageUriSelected == null) {
+                if (press) {
+                    if (Stype.equals("Dog")) {
+                        imageUriSelected = imageUriDog;
+                    } else if (Stype.equals("Cat")) {
+                        imageUriSelected = imageUriCat;
+                    }
+                } else {
+                    imageUriSelected = imageUri;
+                }
+            }
+
+            C__Pet newpet = new C__Pet(Sname, Stype, Sgender, Sbreed, Sbod, Scolour, Sintact, imageUriSelected.toString());
+            myPets.getMyPetList().add(newpet);
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+            DatabaseReference pet_Reference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet");
+            pet_Reference.push().setValue(newpet);
+            Intent i = new Intent(v.getContext(), List__Pet.class);
+            i.putExtra("p_image", imageUriSelected);
+            startActivity(i);
+
+        });
+
+
         //-- date picker from a calendar and set to with the format dd-mmm-yyyy
         calendar = (ImageView) findViewById(R.id.calendar);
-        calendar.setOnClickListener(v -> {
+        dateTxt.setOnClickListener(v -> {
             final Calendar cal = Calendar.getInstance();
             mDate = cal.get(Calendar.DATE);
             mMonth = cal.get(Calendar.MONTH);
             mYear = cal.get(Calendar.YEAR);
             DatePickerDialog datePickerDialog = new DatePickerDialog(Add_pet.this,
                     android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
-                        cal.set(year, month, date);
-                        String dateString = sdf.format(cal.getTime());
-                        dateTxt.setText(dateString);
-                    }, mYear, mMonth, mDate);
-            datePickerDialog.updateDate(mYear,mMonth, mDate);
+                SimpleDateFormat sdf = new SimpleDateFormat("dd-MMM-yyyy");
+                cal.set(year, month, date);
+                String dateString = sdf.format(cal.getTime());
+                dateTxt.setText(dateString);
+            }, mYear, mMonth, mDate);
+            datePickerDialog.updateDate(mYear, mMonth, mDate);
             datePickerDialog.show();
         });
     }
@@ -209,12 +258,9 @@ public class Add_pet extends AppCompatActivity {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 imageUri = data.getData();
                 circleImageView.setImageURI(imageUri);
-                uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
-                uriList.add(imageUri);
             }
         } catch (Exception e) {
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
         }
     }
 }
-//simple_list_item_1

@@ -23,7 +23,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        this.context = context;
    }
 
-
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -31,7 +30,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
        MyViewHolder holder = new MyViewHolder(view);
        return holder;
     }
-
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
@@ -52,7 +50,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public int getItemCount(){return appointmentList.size();}
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder{
        TextView tv_date;
        TextView tv_time;
@@ -72,7 +69,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public List<C__Appointment> getAppointmentList() {
         return appointmentList;
     }
-
     public void setAppointmentList(List<C__Appointment> appointmentList) {
         this.appointmentList = appointmentList;
     }
@@ -80,7 +76,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public Context getContext() {
         return context;
     }
-
     public void setContext(Context context) {
         this.context = context;
     }

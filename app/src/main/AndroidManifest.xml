@@ -80,7 +80,7 @@
             android:name=".Add_pet"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".List__Pet"
             android:exported="false" />
         <activity
             android:name=".Logout"
@@ -89,7 +89,7 @@
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".FirstActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

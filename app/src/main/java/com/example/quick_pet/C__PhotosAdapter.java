@@ -1,6 +1,5 @@
 package com.example.quick_pet;
 
-import static android.net.Uri.*;
 
 import android.app.Activity;
 import android.content.Context;
@@ -49,8 +48,3 @@ public class C__PhotosAdapter extends BaseAdapter {
         return onePhotoLine;
     }
 }
-//        try{
-//                iv.setImageURI(Uri.parse(p.getPicPicture()));
-//                }catch (NumberFormatException e){
-//                e.printStackTrace();
-//                }

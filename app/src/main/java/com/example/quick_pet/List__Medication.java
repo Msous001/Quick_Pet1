@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -48,13 +46,15 @@ public class List__Medication extends AppCompatActivity {
             Collections.sort(myMedication.getMyMedicationList());
             adapter.notifyDataSetChanged();
         }
-        lv_medication.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                editMedication(position);
-            }
+        lv_medication.setOnItemClickListener((adapterView, view, position, l) -> editMedication(position));
+        btn_ok.setOnClickListener(view -> {
+            startActivity(new Intent(List__Medication.this, Add_Medication.class));
+            finish();
         });
-        btn_ok.setOnClickListener(view -> startActivity(new Intent(List__Medication.this, Add_Medication.class)));
+        back_Arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Medication.this, Main_menu.class));
+            finish();
+        });
     }
 
     private void editMedication(int position) {

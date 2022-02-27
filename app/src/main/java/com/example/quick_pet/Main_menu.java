@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -19,9 +20,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class Main_menu extends AppCompatActivity {
 
     Toolbar toolbar;
-    Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication, allergy, health ;
-    List<Uri> uriList;
+    Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication,
+            allergy, health ;
     CircleImageView circleImagepet1;
+    private static String pic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +40,7 @@ public class Main_menu extends AppCompatActivity {
 
             switch (item.getItemId()) {
                 case R.id.homeT:
-                    Intent i = new Intent(Main_menu.this, FirstActivity.class);
+                    Intent i = new Intent(Main_menu.this, List__Pet.class);
                     startActivity(i);
                     return true;
                 case R.id.settings:
@@ -52,55 +54,88 @@ public class Main_menu extends AppCompatActivity {
                     startActivity(s);
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(Main_menu.this, "bye", Toast.LENGTH_SHORT).show();
-                    finish();
+                    Intent intent = new Intent(Main_menu.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finish(); // to close activity
                     return true;
                 case R.id.exit:
                     Toast.makeText(Main_menu.this, "Exit", Toast.LENGTH_SHORT).show();
                     System.exit(0);
+                    finish();
                     return true;
             }
             return false;
         });
-
-
-        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
-
-        if (uriList.isEmpty()) {
-
-        } else {
-            circleImagepet1.setImageURI(uriList.get(0));
+        Bundle incomingMessages = getIntent().getExtras();
+        if (incomingMessages != null){
+            pic = incomingMessages.getString("picture");
+            circleImagepet1.setImageURI(Uri.parse(pic));
         }
 
         appointment = (Button) findViewById(R.id.appointment);
-        appointment.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Appointment.class)));
-
+        appointment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), List__Appointment.class);
+                i.putExtra("picture", pic);
+                startActivity(i);
+            }
+        });
         medical = (Button) findViewById(R.id.medical);
-        medical.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Vet.class)));
+        medical.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Vet.class));
+            finish();
+        });
 
         grooming = (Button) findViewById(R.id.grooming);
-        grooming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Grooming.class)));
+        grooming.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Grooming.class));
+            finish();
+        });
 
         vaccination = (Button) findViewById(R.id.vaccination);
-        vaccination.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Vaccine.class)));
+        vaccination.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Vaccine.class));
+            finish();
+        });
 
         fleas = (Button) findViewById(R.id.fleas);
-        fleas.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Fleas.class)));
+        fleas.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Fleas.class));
+            finish();
+        });
 
         deworming = (Button) findViewById(R.id.deworming);
-        deworming.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Deworming.class)));
+        deworming.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Deworming.class));
+            finish();
+        });
 
         surgery = (Button) findViewById(R.id.surgeryMenu);
-        surgery.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Surgery.class)));
+        surgery.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Surgery.class));
+            finish();
+        });
 
         medication = (Button) findViewById(R.id.medication_Menu);
-        medication.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Medication.class)));
+        medication.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Medication.class));
+            finish();
+        });
 
         allergy = (Button) findViewById(R.id.allergyMenu);
-        allergy.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Allergy.class)));
+        allergy.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Allergy.class));
+            finish();
+        });
 
         health = (Button) findViewById(R.id.Health_Menu);
-        health.setOnClickListener(view -> startActivity(new Intent(Main_menu.this, List__Health.class)));
+        health.setOnClickListener(view -> {
+            startActivity(new Intent(Main_menu.this, List__Health.class));
+            finish();
+        });
 
     }
 

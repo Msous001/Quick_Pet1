@@ -24,7 +24,10 @@ public class List__Grooming extends AppCompatActivity {
         setContentView(R.layout.activity_list_grooming);
 
         back_arrow = ((ImageView) findViewById(R.id.back_arrowGr));
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Grooming.this, Main_menu.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Grooming.this, Main_menu.class));
+            finish();
+        });
         btn_add = ((Button) findViewById(R.id.btn_list_grooming));
         lv_listGrooming = ((ListView) findViewById(R.id.listView_Grooming));
 

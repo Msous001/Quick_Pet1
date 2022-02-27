@@ -4,8 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -26,7 +24,10 @@ public class List__Surgery extends AppCompatActivity {
         setContentView(R.layout.activity_list_surgery);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowSg);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Surgery.this, Main_menu.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Surgery.this, Main_menu.class));
+            finish();
+        });
 
         btn_add = (Button) findViewById(R.id.btn_list_surgery);
         lv_surgery = (ListView) findViewById(R.id.listView_Surgery);
@@ -52,17 +53,10 @@ public class List__Surgery extends AppCompatActivity {
             Collections.sort(mySurgeries.getMySurgeryList());
             adapter.notifyDataSetChanged();
         }
-        lv_surgery.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                editSurgery(position);
-            }
-        });
-        btn_add.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(List__Surgery.this, Add_Surgery.class));
-            }
+        lv_surgery.setOnItemClickListener((adapterView, view, position, l) -> editSurgery(position));
+        btn_add.setOnClickListener(view -> {
+            startActivity(new Intent(List__Surgery.this, Add_Surgery.class));
+            finish();
         });
     }
 

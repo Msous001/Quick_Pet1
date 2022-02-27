@@ -2,6 +2,7 @@ package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
@@ -48,6 +49,11 @@ public class List__Fleas extends AppCompatActivity {
         back_arrow = (ImageView) findViewById(R.id.back_arrowFl);
         lv_fleas = (ListView) findViewById(R.id.listView_Fleas);
         btnadd = (Button) findViewById(R.id.btn_add_Fleas);
+
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Fleas.this, Main_menu.class));
+            finish();
+        });
 
         myFleas = ((C__GlobalVariable) this.getApplication()).getMyFleas();
         adapter = new C__FleasAdapter(List__Fleas.this, myFleas);

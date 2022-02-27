@@ -15,6 +15,11 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
@@ -31,7 +36,8 @@ public class Add_Appointment extends AppCompatActivity {
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
     C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
-    List<Uri> uriList;
+    private static String pic;
+
 
     private int mDate, mMonth, mYear, mHour, mMinute;
     int id;
@@ -42,15 +48,19 @@ public class Add_Appointment extends AppCompatActivity {
         setContentView(R.layout.activity_add_appointment);
         appointmentList = C__GlobalVariable.getAppointmentsList();
 
-        uriList = ((C__GlobalVariable) this.getApplication()).getUriList();
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
         et_time = (EditText) findViewById(R.id.edittime);
         et_direction = (EditText) findViewById(R.id.editDirection);
         et_reminder = (EditText) findViewById(R.id.editReminder);
         type = (Spinner) findViewById(R.id.spinnerType);
+
+        Bundle incomingMessages = getIntent().getExtras();
+        if(incomingMessages != null){
+            pic = incomingMessages.getString("picture");
+        }
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
-        circleImageView.setImageURI(uriList.get(0));
+        circleImageView.setImageURI(Uri.parse(pic));
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
         back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Appointment.this, List__Appointment.class)));
@@ -90,6 +100,11 @@ public class Add_Appointment extends AppCompatActivity {
 
                     appointmentList.add(newAppoint);
                     myApplication.setNextId(nextId++);
+                    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                    FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet").child("Appointement");
+                    appReference.push().setValue(newAppoint);
                 }
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
             } catch (Exception e) {

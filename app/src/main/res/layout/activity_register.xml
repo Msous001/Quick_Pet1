@@ -65,18 +65,19 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passw_input"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
-        android:background="@drawable/white_border"
+        android:paddingTop="0dp"
+        android:paddingBottom="1dp"
         android:textColorHint="@color/zambezi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/req1"
+        app:layout_constraintTop_toBottomOf="@+id/email_input"
         app:layout_constraintVertical_bias="0.0"
         app:passwordToggleDrawable="@drawable/password_toggle"
         app:passwordToggleEnabled="true">
@@ -101,11 +102,10 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="50dp"
-        android:background="@drawable/white_border"
         android:textColorHint="@color/zambezi"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -172,52 +172,6 @@
         app:layout_constraintVertical_bias="0.0"
         tools:ignore="TouchTargetSizeCheck" />
 
-    <TextView
-        android:id="@+id/req1"
-        style="@style/require"
-        android:text="@string/required"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email_input"
-        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/req2"
-        style="@style/required"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="@string/required"
-        android:textAlignment="textEnd"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passw_input"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/req3"
-        style="@style/required"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="50dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
-        android:text="@string/required"
-        android:textAlignment="textEnd"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout1"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

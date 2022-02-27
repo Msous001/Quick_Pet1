@@ -49,8 +49,14 @@ public class List__Allergy extends AppCompatActivity {
         }
 
         lv_allergy.setOnItemClickListener((adapterView, view, position, l) -> editAllergy(position));
-        btn_ok.setOnClickListener(view -> startActivity(new Intent(List__Allergy.this, Add_Allergy.class)));
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(List__Allergy.this, Main_menu.class)));
+        btn_ok.setOnClickListener(view -> {
+            startActivity(new Intent(List__Allergy.this, Add_Allergy.class));
+            finish();
+        });
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Allergy.this, Main_menu.class));
+            finish();
+        });
     }
 
     private void editAllergy(int position) {

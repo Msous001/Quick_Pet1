@@ -18,8 +18,6 @@ public class C__MedicationAdapter extends BaseAdapter {
         this.myActivity = myActivity;
         this.myMedication = myMedication;
     }
-
-
     @Override
     public int getCount() {return myMedication.getMyMedicationList().size();}
 

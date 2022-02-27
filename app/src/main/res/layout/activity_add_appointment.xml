@@ -219,7 +219,7 @@
                 android:fontFamily="@font/roboto_mono_italic"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
-                android:text="@string/date"
+                android:text="@string/time"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textSize="14sp"

@@ -2,13 +2,10 @@ package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -27,7 +24,10 @@ public class List__Sounds extends AppCompatActivity {
         setContentView(R.layout.activity_list_sounds);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowSound);
-        back_arrow.setOnClickListener(view -> finish());
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Sounds.this, List__Pet.class));
+            finish();
+        });
 
         lv_sound = (ListView)findViewById(R.id.listView_Sound);
 
@@ -36,35 +36,32 @@ public class List__Sounds extends AppCompatActivity {
         lv_sound.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        lv_sound.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+        lv_sound.setOnItemClickListener((adapterView, view, position, l) -> {
 
-                C__Sounds s = mySounds.getMySoundsList().get(position);
-                if(sound_player != null){
-                    if(sound_player.isPlaying()){
-                        sound_player.stop();
-                        sound_player.reset();
-                        s.setPlaying(false);
-                    }
+            C__Sounds s = mySounds.getMySoundsList().get(position);
+            if(sound_player != null){
+                if(sound_player.isPlaying()){
+                    sound_player.stop();
+                    sound_player.reset();
+                    s.setPlaying(false);
                 }
-                try{
-                    sound_player = MediaPlayer.create(List__Sounds.this, s.getId());
-                    if(sound_player.isPlaying()){
-                        sound_player.stop();
-                        sound_player.reset();
-                        s.setPlaying(false);
-                    }
-                    else{
-                        sound_player.start();
-                        s.setPlaying(true);
-                    }
-
-                }catch(Exception e){
-                    Log.e("Exception", e.getMessage());
-                }
-
             }
+            try{
+                sound_player = MediaPlayer.create(List__Sounds.this, s.getId());
+                if(sound_player.isPlaying()){
+                    sound_player.stop();
+                    sound_player.reset();
+                    s.setPlaying(false);
+                }
+                else{
+                    sound_player.start();
+                    s.setPlaying(true);
+                }
+
+            }catch(Exception e){
+                Log.e("Exception", e.getMessage());
+            }
+
         });
 
     }
