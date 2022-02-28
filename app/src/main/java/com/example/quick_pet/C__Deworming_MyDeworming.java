@@ -11,8 +11,7 @@ public class C__Deworming_MyDeworming {
     }
     public C__Deworming_MyDeworming(){
         this.myDewormingList = new ArrayList<>();
-        C__Deworming D0 = new C__Deworming("10/02/2020");
-        myDewormingList.add(D0);
+
     }
 
     public List<C__Deworming> getMyDewormingList() {

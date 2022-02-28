@@ -8,7 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
+import java.util.List;
 
 public class List__Grooming extends AppCompatActivity {
 
@@ -17,6 +23,8 @@ public class List__Grooming extends AppCompatActivity {
     ListView lv_listGrooming;
     C__Grooming_MyGrooming myGrooming;
     C__GroomingAdapter adapter;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +36,15 @@ public class List__Grooming extends AppCompatActivity {
             startActivity(new Intent(List__Grooming.this, Main_menu.class));
             finish();
         });
+
         btn_add = ((Button) findViewById(R.id.btn_list_grooming));
         lv_listGrooming = ((ListView) findViewById(R.id.listView_Grooming));
 
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
         myGrooming= ((C__GlobalVariable) this.getApplication()).getMyGrooming();
         adapter = new C__GroomingAdapter(List__Grooming.this, myGrooming);
         lv_listGrooming.setAdapter(adapter);
@@ -42,12 +56,21 @@ public class List__Grooming extends AppCompatActivity {
             String G_time = incomingMessages.getString("time");
             String G_direction = incomingMessages.getString("direction");
             int positionEdited = incomingMessages.getInt("edit");
-            
+
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
             C__Grooming g = new C__Grooming(G_place, G_dates, G_time, G_direction);
             if(positionEdited >-1){
                 myGrooming.getMyGroomingList().remove(positionEdited);
+                //here i need to call the database to delete the item
+
             }
             myGrooming.getMyGroomingList().add(g);
+
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Grooming").push().setValue(g);
+
             Collections.sort(myGrooming.myGroomingList);
             adapter.notifyDataSetChanged();
             

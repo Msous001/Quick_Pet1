@@ -11,8 +11,6 @@ public class C__Medication_MyMedication {
     }
     public C__Medication_MyMedication(){
         this.myMedicationList = new ArrayList<>();
-        C__Medication M0 = new C__Medication("RFF", "Jan 2020", "Injury");
-        myMedicationList.add(M0);
     }
     public List<C__Medication> getMyMedicationList() {return myMedicationList;}
     public void setMyMedicationList(List<C__Medication> myMedicationList) {

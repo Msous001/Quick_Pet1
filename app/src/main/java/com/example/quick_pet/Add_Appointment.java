@@ -1,5 +1,7 @@
 package com.example.quick_pet;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -13,12 +15,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -35,7 +43,10 @@ public class Add_Appointment extends AppCompatActivity {
     ImageView calendar_date_app, image_time_picker, back_arrow;
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
+    List<C__CurrentPet> currentPetList;
     C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
+    C__Pet_MyPets myPetList;
+    private static String  pet_name;
     private static String pic;
 
 
@@ -47,6 +58,9 @@ public class Add_Appointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
         appointmentList = C__GlobalVariable.getAppointmentsList();
+        currentPetList = C__GlobalVariable.getCurrentPets();
+        myPetList =  ((C__GlobalVariable) this.getApplication()).getMyPets();
+
 
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
@@ -55,12 +69,11 @@ public class Add_Appointment extends AppCompatActivity {
         et_reminder = (EditText) findViewById(R.id.editReminder);
         type = (Spinner) findViewById(R.id.spinnerType);
 
-        Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null){
-            pic = incomingMessages.getString("picture");
-        }
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
-        circleImageView.setImageURI(Uri.parse(pic));
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+            circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
+        }
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
         back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Appointment.this, List__Appointment.class)));
@@ -88,6 +101,7 @@ public class Add_Appointment extends AppCompatActivity {
         } else {
 
         }
+
         btnNext = (Button) findViewById(R.id.next_btn);
         btnNext.setOnClickListener(view -> {
             try {
@@ -103,9 +117,11 @@ public class Add_Appointment extends AppCompatActivity {
                     FirebaseAuth fAuth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
-                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet").child("Appointement");
-                    appReference.push().setValue(newAppoint);
+                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+                    appReference.child("Appointment").push().setValue(newAppoint);
                 }
+                //
+
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
             } catch (Exception e) {
                 Toast.makeText(Add_Appointment.this, "Error", Toast.LENGTH_SHORT).show();

@@ -12,6 +12,7 @@ import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 public class Add_Allergy extends AppCompatActivity {
 
@@ -21,10 +22,13 @@ public class Add_Allergy extends AppCompatActivity {
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_allergy);
+
+
 
         name = (EditText) findViewById(R.id.et_allergy_name);
         dates = (EditText) findViewById(R.id.et_allergy_date);
@@ -33,6 +37,7 @@ public class Add_Allergy extends AppCompatActivity {
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_allergy);
         back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Allergy.this, List__Allergy.class)));
+
 
         calendar_app_newVet = (ImageView) findViewById(R.id.calendar_date_allergy);
         calendar_app_newVet.setOnClickListener(view -> {
@@ -78,6 +83,7 @@ public class Add_Allergy extends AppCompatActivity {
             if (TextUtils.isEmpty(newDates)) {newDates = "Not Defined";}
             if (TextUtils.isEmpty(newSymptom)) {newSymptom = "Not Defined";}
             if (TextUtils.isEmpty(newMedication)) {newMedication = "Not Defined";}
+
 
             Intent i = new Intent(view.getContext(), List__Allergy.class);
             i.putExtra("edit", positionToEdit);

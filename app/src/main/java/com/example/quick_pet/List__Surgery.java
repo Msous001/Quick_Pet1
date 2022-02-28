@@ -8,7 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
+import java.util.List;
 
 public class List__Surgery extends AppCompatActivity {
 
@@ -17,6 +23,8 @@ public class List__Surgery extends AppCompatActivity {
     ListView lv_surgery;
     C__Surgery_MySurgeries mySurgeries;
     C__SurgeryAdapter adapter;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,11 @@ public class List__Surgery extends AppCompatActivity {
             startActivity(new Intent(List__Surgery.this, Main_menu.class));
             finish();
         });
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
 
         btn_add = (Button) findViewById(R.id.btn_list_surgery);
         lv_surgery = (ListView) findViewById(R.id.listView_Surgery);
@@ -45,11 +58,17 @@ public class List__Surgery extends AppCompatActivity {
             String note = incomingMessages.getString("note");
             int positionEdited = incomingMessages.getInt("edit");
 
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
             C__Surgery s = new C__Surgery(name, date, med1, med2, note);
             if(positionEdited >-1){
                 mySurgeries.getMySurgeryList().remove(positionEdited);
+                //here i need to call the database to delete the item
+
             }
             mySurgeries.getMySurgeryList().add(s);
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Surgery").push().setValue(s);
             Collections.sort(mySurgeries.getMySurgeryList());
             adapter.notifyDataSetChanged();
         }

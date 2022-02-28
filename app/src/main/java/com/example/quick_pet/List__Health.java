@@ -8,6 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.List;
+
 public class List__Health extends AppCompatActivity {
 
     ImageView back_arrow;
@@ -15,7 +22,8 @@ public class List__Health extends AppCompatActivity {
     ListView lv_listHealth;
     C__HealthAdapter adapter;
     C__Health_MyHealth myHealth;
-
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +36,11 @@ public class List__Health extends AppCompatActivity {
             finish();
         });
 
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
         btn_add = (Button) findViewById(R.id.btn_list_health);
         lv_listHealth = (ListView) findViewById(R.id.listView_Health);
 
@@ -43,11 +56,19 @@ public class List__Health extends AppCompatActivity {
             String medication = incomingMessages.getString("medication");
             int positionEdited = incomingMessages.getInt("edit");
 
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
             C__Health h = new C__Health(name, effect, symptom, medication);
             if (positionEdited > -1) {
                 myHealth.getMyHealthList().remove(positionEdited);
+                //here i need to call the database to delete the item
+
             }
             myHealth.getMyHealthList().add(h);
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Health C").push().setValue(h);
+
             adapter.notifyDataSetChanged();
         }
         lv_listHealth.setOnItemClickListener((adapterView, view, position, l) -> editHealth(position));

@@ -28,6 +28,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -49,6 +50,7 @@ public class Add_pet extends AppCompatActivity {
     private int mDate, mMonth, mYear;
     C__Pet_MyPets myPets;
     TextView selection;
+    List<C__CurrentPet> currentPet;
 
 
 
@@ -108,6 +110,8 @@ public class Add_pet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
+
+        currentPet = C__GlobalVariable.getCurrentPets();
 
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
@@ -210,11 +214,16 @@ public class Add_pet extends AppCompatActivity {
 
             C__Pet newpet = new C__Pet(Sname, Stype, Sgender, Sbreed, Sbod, Scolour, Sintact, imageUriSelected.toString());
             myPets.getMyPetList().add(newpet);
+            C__CurrentPet c = new C__CurrentPet(Sname, imageUriSelected.toString());
+            currentPet.add(c);
+
+
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
-            DatabaseReference pet_Reference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet");
+            DatabaseReference pet_Reference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet " +Sname);
             pet_Reference.push().setValue(newpet);
+
             Intent i = new Intent(v.getContext(), List__Pet.class);
             i.putExtra("p_image", imageUriSelected);
             startActivity(i);

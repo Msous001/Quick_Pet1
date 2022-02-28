@@ -8,7 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
+import java.util.List;
 
 public class List__Medication extends AppCompatActivity {
 
@@ -17,6 +23,8 @@ public class List__Medication extends AppCompatActivity {
     Button btn_ok;
     C__MedicationAdapter adapter;
     C__Medication_MyMedication myMedication;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +35,11 @@ public class List__Medication extends AppCompatActivity {
         lv_medication = (ListView) findViewById(R.id.listView_Medication);
         btn_ok = (Button) findViewById(R.id.btn_list_medication);
 
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
         myMedication = ((C__GlobalVariable) this.getApplication()).getMyMedication();
         adapter = new C__MedicationAdapter(List__Medication.this, myMedication);
         lv_medication.setAdapter(adapter);
@@ -38,11 +51,20 @@ public class List__Medication extends AppCompatActivity {
             String reason = incomingMessages.getString("reason");
             int positionEdited = incomingMessages.getInt("edit");
 
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
             C__Medication m = new C__Medication(name, date, reason);
             if (positionEdited > -1){
                 myMedication.getMyMedicationList().remove(positionEdited);
+                //here i need to call the database to delete this item
+
             }
             myMedication.getMyMedicationList().add(m);
+
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Medication").push().setValue(m);
+
             Collections.sort(myMedication.getMyMedicationList());
             adapter.notifyDataSetChanged();
         }

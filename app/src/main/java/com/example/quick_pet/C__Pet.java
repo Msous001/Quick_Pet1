@@ -23,6 +23,7 @@ public class C__Pet {
         this.imageUrl = imageUrl;
     }
 
+
     public String getName() {
         return name;
     }

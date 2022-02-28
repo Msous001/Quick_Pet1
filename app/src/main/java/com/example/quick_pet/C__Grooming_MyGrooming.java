@@ -11,8 +11,7 @@ public class C__Grooming_MyGrooming {
     }
     public C__Grooming_MyGrooming(){
         this.myGroomingList = new ArrayList<>();
-        C__Grooming G0 = new C__Grooming("Pet's Place","15 Nov", "3:00", "Croydon");
-        myGroomingList.add(G0);
+
     }
 
     public List<C__Grooming> getMyGroomingList() {

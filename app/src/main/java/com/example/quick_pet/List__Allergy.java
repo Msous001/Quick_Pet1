@@ -8,7 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
+import java.util.List;
 
 public class List__Allergy extends AppCompatActivity {
 
@@ -17,6 +23,8 @@ public class List__Allergy extends AppCompatActivity {
     Button btn_ok;
     C__AllergyAdapter adapter;
     C__Allergy_MyAllergies myAllergies;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +34,11 @@ public class List__Allergy extends AppCompatActivity {
         back_arrow = (ImageView) findViewById(R.id.back_arrowTLA);
         lv_allergy = (ListView) findViewById(R.id.listView_Allergy);
         btn_ok = (Button) findViewById(R.id.btn_list_allergy);
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
 
         myAllergies = ((C__GlobalVariable) this.getApplication()).getMyAllergies();
         adapter = new C__AllergyAdapter(List__Allergy.this, myAllergies);
@@ -39,11 +52,20 @@ public class List__Allergy extends AppCompatActivity {
             String A_medication = incominMessages.getString("medication");
             int positionEdited = incominMessages.getInt("edit");
 
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
             C__Allergy a = new C__Allergy(A_name, A_date, A_symptom, A_medication);
             if(positionEdited >-1){
                 myAllergies.getMyAllergyList().remove(positionEdited);
+                //here i need to call the database to delete the item
             }
             myAllergies.getMyAllergyList().add(a);
+
+
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Allergy").push().setValue(a);
+
+
             Collections.sort(myAllergies.getMyAllergyList());
             adapter.notifyDataSetChanged();
         }

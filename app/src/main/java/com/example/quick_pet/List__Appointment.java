@@ -23,12 +23,10 @@ public class List__Appointment extends AppCompatActivity {
     List<C__Appointment> appointmentList;
     CircleImageView circleImageView;
     ImageView back_arrow;
-    C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
-    List<Uri> uriList;
+    List<C__CurrentPet> currentPetList;
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-    private static String pic;
 
 
     @Override
@@ -36,8 +34,10 @@ public class List__Appointment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_appointment);
 
-        appointmentList = myApplication.getAppointmentsList();
-        Log.d(TAG, "onCreate"+ appointmentList.toString());
+        appointmentList = C__GlobalVariable.getAppointmentsList();
+        Log.d(TAG, "onCreate" + appointmentList.toString());
+
+        currentPetList = C__GlobalVariable.getCurrentPets();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -48,24 +48,20 @@ public class List__Appointment extends AppCompatActivity {
 
         mAdapter = new RecyclerViewAdapter(appointmentList, List__Appointment.this);
         recyclerView.setAdapter(mAdapter);
-        Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null){
-            pic = incomingMessages.getString("picture");
-        }
 
         circleImageView = (CircleImageView) findViewById(R.id.circle_Image_pet_app_list);
-        circleImageView.setImageURI(Uri.parse(pic));
+        for (C__CurrentPet c : currentPetList) {
+            circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
+        }
 
         btn_addAppointment = (Button) findViewById(R.id.btn_addAppointment);
         btn_addAppointment.setOnClickListener(view -> {
             Intent i = new Intent(getApplicationContext(), Add_Appointment.class);
-            i.putExtra("picture", pic);
             startActivity(i);
         });
-        back_arrow = (ImageView)findViewById(R.id.back_arrow_appointment_list);
+        back_arrow = (ImageView) findViewById(R.id.back_arrow_appointment_list);
         back_arrow.setOnClickListener(view -> {
             Intent a = new Intent(List__Appointment.this, Main_menu.class);
-            a.putExtra("picture", pic);
             startActivity(a);
         });
 

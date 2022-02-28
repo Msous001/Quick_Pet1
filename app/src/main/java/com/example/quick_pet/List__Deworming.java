@@ -11,9 +11,15 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.List;
 
 public class List__Deworming extends AppCompatActivity {
 
@@ -24,6 +30,8 @@ public class List__Deworming extends AppCompatActivity {
     ListView lv_deworm;
     C__Deworming_MyDeworming myDeworming;
     C__DewormingAdapter adapter;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +54,12 @@ public class List__Deworming extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
+        currentPetList = C__GlobalVariable.getCurrentPets();
+
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
+
         back_arrow = (ImageView) findViewById(R.id.back_arrowDw);
         lv_deworm = (ListView) findViewById(R.id.listView_Deworming);
         btnadd = (Button) findViewById(R.id.btn_add_Deworming);
@@ -58,6 +72,10 @@ public class List__Deworming extends AppCompatActivity {
             startActivity(new Intent(List__Deworming.this, Main_menu.class));
             finish();
         });
+
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
         btnadd.setOnClickListener(view -> {
             String f_date = dates.getText().toString();
             if(TextUtils.isEmpty(f_date)){
@@ -66,6 +84,10 @@ public class List__Deworming extends AppCompatActivity {
             else{
                 C__Deworming d = new C__Deworming(f_date);
                 myDeworming.getMyDewormingList().add(d);
+                DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+                appReference.child("Deworming").push().setValue(f_date);
+
+
                 Collections.sort(myDeworming.getMyDewormingList());
                 adapter.notifyDataSetChanged();
                 dates.setText("");

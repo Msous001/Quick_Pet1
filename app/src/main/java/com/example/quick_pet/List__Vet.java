@@ -8,7 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Collections;
+import java.util.List;
 
 public class List__Vet extends AppCompatActivity {
 
@@ -17,6 +23,8 @@ public class List__Vet extends AppCompatActivity {
     ListView lv_listVet;
     C__VetAdapter adapter;
     C__Vet_MyVets myVets;
+    List<C__CurrentPet> currentPetList;
+    private static String  pet_name;
 
 
     @Override
@@ -33,6 +41,10 @@ public class List__Vet extends AppCompatActivity {
         btn_add = (Button) findViewById(R.id.btn_list_vet);
         lv_listVet = (ListView) findViewById(R.id.listView_Vet);
 
+        currentPetList = currentPetList = C__GlobalVariable.getCurrentPets();
+        for(C__CurrentPet c : currentPetList){
+            pet_name = c.getName();
+        }
         myVets = ((C__GlobalVariable) this.getApplication()).getMyVets();
         adapter = new C__VetAdapter(List__Vet.this, myVets);
         lv_listVet.setAdapter(adapter);
@@ -45,11 +57,18 @@ public class List__Vet extends AppCompatActivity {
             int weight = incomingMessages.getInt("weight");
             int positionEdited = incomingMessages.getInt("edit");
 
+            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+            FirebaseUser firebaseUser = fAuth.getCurrentUser();
             C__Vet c = new C__Vet(name, date, direction, weight);
             if (positionEdited > -1) {
                 myVets.getMyVetsList().remove(positionEdited);
+                //here i need to call the database to delete the item
+
             }
             myVets.getMyVetsList().add(c);
+            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+            appReference.child("Veterinary Visits").push().setValue(c);
+
             Collections.sort(myVets.getMyVetsList());
             adapter.notifyDataSetChanged();
         }

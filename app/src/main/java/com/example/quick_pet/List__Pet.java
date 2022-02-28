@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -50,11 +51,11 @@ public class List__Pet extends AppCompatActivity {
         myPetGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                sendPic(position);
+                Intent i = new Intent(getApplicationContext(), Main_menu.class);
+                startActivity(i);
+
             }
         });
-
-
         btn_add.setOnClickListener(view -> startActivity(new Intent(List__Pet.this, Add_pet.class)));
 
 
@@ -97,12 +98,5 @@ public class List__Pet extends AppCompatActivity {
         });
     }
 
-    private void sendPic(int position) {
-        Intent i = new Intent(getApplicationContext(), Main_menu.class);
-        C__Pet p = myPets.getMyPetList().get(position);
-        String uri = p.getImageUrl().toString();
-        i.putExtra("picture", uri);
-        startActivity(i);
-    }
 
 }

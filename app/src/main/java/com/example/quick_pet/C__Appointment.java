@@ -1,5 +1,8 @@
 package com.example.quick_pet;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class C__Appointment {
     private int id;
     private String type;
@@ -17,6 +20,8 @@ public class C__Appointment {
         this.time = time;
         this.direction = direction;
         this.reminder = reminder;
+
+        List<C__Appointment> appointmentList = new ArrayList<>();
     }
 
     public int getId() {

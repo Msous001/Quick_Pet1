@@ -12,8 +12,7 @@ public class C__Fleas_MyFleas {
 
     public C__Fleas_MyFleas(){
         this.myFleasList = new ArrayList<>();
-        C__Fleas F0 = new C__Fleas("10/02/2020");
-        myFleasList.add(F0);
+
     }
 
     public List<C__Fleas> getMyFleasList() {

@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,8 @@ public class Main_menu extends AppCompatActivity {
     Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication,
             allergy, health ;
     CircleImageView circleImagepet1;
-    private static String pic;
+    List<C__CurrentPet> currentPetList;
+    C__Pet_MyPets myPetList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,8 @@ public class Main_menu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         circleImagepet1 = (CircleImageView) findViewById(R.id.imagePet);
+        myPetList =  ((C__GlobalVariable) this.getApplication()).getMyPets();
+        currentPetList = C__GlobalVariable.getCurrentPets();
 
         toolbar = (Toolbar) findViewById(R.id.materialToolbar);
         toolbar.inflateMenu(R.menu.top_menu);
@@ -68,18 +72,16 @@ public class Main_menu extends AppCompatActivity {
             }
             return false;
         });
-        Bundle incomingMessages = getIntent().getExtras();
-        if (incomingMessages != null){
-            pic = incomingMessages.getString("picture");
-            circleImagepet1.setImageURI(Uri.parse(pic));
-        }
 
+        for(C__CurrentPet c : currentPetList){
+            circleImagepet1.setImageURI(Uri.parse(c.getImageUrl()));
+
+        }
         appointment = (Button) findViewById(R.id.appointment);
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getApplicationContext(), List__Appointment.class);
-                i.putExtra("picture", pic);
                 startActivity(i);
             }
         });

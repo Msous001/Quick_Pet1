@@ -11,8 +11,7 @@ public class C__Vaccine_MyVaccine {
     }
     public C__Vaccine_MyVaccine(){
         this.myVaccineList = new ArrayList<>();
-        C__Vaccine Va = new C__Vaccine("DHP", "28 Jan", "Pet Care");
-        myVaccineList.add(Va);
+
     }
 
     public List<C__Vaccine> getMyVaccineList() {return myVaccineList;}
