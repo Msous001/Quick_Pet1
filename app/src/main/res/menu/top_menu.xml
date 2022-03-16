@@ -31,7 +31,6 @@
         android:title="@string/logout" />
     <item
         android:id="@+id/exit"
-        android:icon="@drawable/exit_to_app"
         android:iconTint="@null"
         android:title="@string/exit" />
 </menu>

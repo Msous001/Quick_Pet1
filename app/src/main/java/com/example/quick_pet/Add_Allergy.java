@@ -12,13 +12,14 @@ import android.widget.ImageView;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.List;
+
 
 public class Add_Allergy extends AppCompatActivity {
 
+    //variables
     Button btnNext;
     ImageView back_arrow, calendar_app_newVet;
-    EditText name, dates, symptom, medication;
+    private EditText name, dates, symptom, medication;
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
 
@@ -28,17 +29,20 @@ public class Add_Allergy extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_allergy);
 
-
-
+        //matching the variables with the elements in xml file
         name = (EditText) findViewById(R.id.et_allergy_name);
         dates = (EditText) findViewById(R.id.et_allergy_date);
         symptom = (EditText) findViewById(R.id.et_allergy_symptoms);
         medication = (EditText) findViewById(R.id.et_allergy_medication);
 
+        // back button
         back_arrow = (ImageView) findViewById(R.id.back_arrow_allergy);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Allergy.this, List__Allergy.class)));
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Allergy.this, List__Allergy.class));
+        });
 
-
+        //setting the calendar picker
         calendar_app_newVet = (ImageView) findViewById(R.id.calendar_date_allergy);
         calendar_app_newVet.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
@@ -55,6 +59,7 @@ public class Add_Allergy extends AppCompatActivity {
             datePickerDialog.show();
         });
 
+        //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
         if (incomingIntent != null) {
             String A_name = incomingIntent.getString("name");
@@ -62,7 +67,7 @@ public class Add_Allergy extends AppCompatActivity {
             String A_symptom = incomingIntent.getString("symptom");
             String A_medication = incomingIntent.getString("medication");
             positionToEdit = incomingIntent.getInt("edit");
-
+            //validation to avoid system crash
             if (TextUtils.isEmpty(A_name)) {A_name = "Not Defined";}
             if (TextUtils.isEmpty(A_date)) {A_date = "Not Defined";}
             if (TextUtils.isEmpty(A_symptom)) {A_symptom = "Not Defined";}
@@ -73,18 +78,21 @@ public class Add_Allergy extends AppCompatActivity {
             medication.setText(A_medication);
         }
         btnNext = (Button) findViewById(R.id.next_btn_allergy);
+        // click listener for the button
         btnNext.setOnClickListener(view -> {
+            //collecting information from user input
             String newName = name.getText().toString();
             String newDates = dates.getText().toString();
             String newSymptom = symptom.getText().toString();
             String newMedication = medication.getText().toString();
 
+            //validation to avoid system crash
             if (TextUtils.isEmpty(newName)) {newName = "Not Defined";}
             if (TextUtils.isEmpty(newDates)) {newDates = "Not Defined";}
             if (TextUtils.isEmpty(newSymptom)) {newSymptom = "Not Defined";}
             if (TextUtils.isEmpty(newMedication)) {newMedication = "Not Defined";}
 
-
+            // I use Intents to transfer data from one Activity to another
             Intent i = new Intent(view.getContext(), List__Allergy.class);
             i.putExtra("edit", positionToEdit);
             i.putExtra("name", newName);

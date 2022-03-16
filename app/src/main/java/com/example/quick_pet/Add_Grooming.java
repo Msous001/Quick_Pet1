@@ -17,8 +17,9 @@ import java.util.Locale;
 
 public class Add_Grooming extends AppCompatActivity {
 
+    //variables
     Button btnNext;
-    EditText et_place, et_date, et_time, et_direction;
+    private EditText et_place, et_date, et_time, et_direction;
     ImageView calendar_date_app, image_time_picker, back_arrow;
     private int mDate, mMonth, mYear, mHour, mMinute;
     int positionToEdit = -1;
@@ -27,15 +28,20 @@ public class Add_Grooming extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grooming);
-
+        //matching the variables with the elements in xml file
         et_place = ((EditText) findViewById(R.id.et_grooming_place));
         et_date = ((EditText) findViewById(R.id.et_grooming_date));
         et_time = ((EditText) findViewById(R.id.et_grooming_time));
         et_direction = ((EditText) findViewById(R.id.et_grooming_direction));
 
+        //back button
         back_arrow = ((ImageView) findViewById(R.id.back_arrow_grooming));
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Grooming.this, List__Grooming.class)));
-
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Grooming.this, List__Grooming.class));
+            finish();
+        });
+        //setting the calendar picker
         calendar_date_app = ((ImageView)findViewById(R.id.calendar_date_grooming));
         calendar_date_app.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
@@ -53,7 +59,7 @@ public class Add_Grooming extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
-
+        // setting the time picker
         image_time_picker = ((ImageView) findViewById(R.id.calendar_time_grooming));
         image_time_picker.setOnClickListener(view -> {
             TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
@@ -66,7 +72,7 @@ public class Add_Grooming extends AppCompatActivity {
             timePickerDialog.setTitle("Select Time");
             timePickerDialog.show();
         });
-
+        //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
         if(incomingIntent != null){
             String G_place = incomingIntent.getString("place");
@@ -94,12 +100,14 @@ public class Add_Grooming extends AppCompatActivity {
 
         }
         btnNext = ((Button) findViewById(R.id.next_btn_grooming));
+        // click listener for the button
         btnNext.setOnClickListener(view -> {
+            //collecting information from user input
             String newPlace = et_place.getText().toString();
             String newDates = et_date.getText().toString();
             String newTime = et_time.getText().toString();
             String newDirection = et_direction.getText().toString();
-
+            //validataion to avoid system crash
             if (TextUtils.isEmpty(newPlace)) {
                 newPlace = "Not Defined";
             }
@@ -112,6 +120,7 @@ public class Add_Grooming extends AppCompatActivity {
             if (TextUtils.isEmpty(newDirection)) {
                 newDirection = "Not Defined";
             }
+            // I use Intents to transfer data from one Activity to another
             Intent i = new Intent(view.getContext(), List__Grooming.class);
             i.putExtra("edit", positionToEdit);
             i.putExtra("place", newPlace);

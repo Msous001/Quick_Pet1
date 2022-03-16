@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -18,9 +19,8 @@ public class Add_Vet extends AppCompatActivity {
 
     Button btnNext;
     ImageView back_arrow, calendar_app_newVet;
-    EditText name, dates, direction, weight;
+    private EditText name, dates, direction, weight;
     int positionToEdit = -1;
-
     private int mDate, mMonth, mYear;
 
     @Override
@@ -63,7 +63,7 @@ public class Add_Vet extends AppCompatActivity {
             String E_name = incomingIntent.getString("name");
             String E_date = incomingIntent.getString("date");
             String E_direction = incomingIntent.getString("direction");
-            int E_weight = incomingIntent.getInt("weight");
+            float E_weight = incomingIntent.getFloat("weight");
             positionToEdit = incomingIntent.getInt("edit");
 
             if (TextUtils.isEmpty(E_name)) {
@@ -81,7 +81,7 @@ public class Add_Vet extends AppCompatActivity {
             name.setText(E_name);
             dates.setText(E_date);
             direction.setText(E_direction);
-            weight.setText((Integer.toString(E_weight)));
+            weight.setText((Float.toString(E_weight)));
         }
         btnNext.setOnClickListener(view -> {
             String newName = name.getText().toString();
@@ -97,7 +97,6 @@ public class Add_Vet extends AppCompatActivity {
             }
             if (TextUtils.isEmpty(newDirection)) {
                 newDirection = "Not Defined";
-
             }
             if (TextUtils.isEmpty(String.valueOf(newWeight))) {
                 newWeight = "Not Defined";

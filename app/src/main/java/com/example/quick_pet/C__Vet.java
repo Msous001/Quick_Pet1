@@ -4,9 +4,9 @@ public class C__Vet implements Comparable<C__Vet>{
     private String Name;
     private String date;
     private String direction;
-    private int weight;
+    private float weight;
 
-    public C__Vet(String name, String date, String direction, int weight) {
+    public C__Vet(String name, String date, String direction, float weight) {
         Name = name;
         this.date = date;
         this.direction = direction;
@@ -23,10 +23,10 @@ public class C__Vet implements Comparable<C__Vet>{
     public String getDirection() {return direction;}
     public void setDirection(String direction) {this.direction = direction;}
 
-    public int getWeight() {
+    public float getWeight() {
         return weight;
     }
-    public void setWeight(int weight) {
+    public void setWeight(float weight) {
         this.weight = weight;
     }
 

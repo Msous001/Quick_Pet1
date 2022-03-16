@@ -37,9 +37,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Appointment extends AppCompatActivity {
 
+    //variables
     Button btnNext;
-    EditText et_Name, et_date, et_time, et_direction, et_reminder;
-    Spinner type;
+    private EditText et_Name, et_date, et_time, et_direction, et_reminder;
+    private Spinner type;
     ImageView calendar_date_app, image_time_picker, back_arrow;
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
@@ -47,37 +48,41 @@ public class Add_Appointment extends AppCompatActivity {
     C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
     C__Pet_MyPets myPetList;
     private static String  pet_name;
-    private static String pic;
-
-
     private int mDate, mMonth, mYear, mHour, mMinute;
-    int id;
+    private int id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
+
+        //connecting to the global variable
         appointmentList = C__GlobalVariable.getAppointmentsList();
         currentPetList = C__GlobalVariable.getCurrentPets();
         myPetList =  ((C__GlobalVariable) this.getApplication()).getMyPets();
 
-
+        //matching th variables with the elements in xml file
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
         et_time = (EditText) findViewById(R.id.edittime);
         et_direction = (EditText) findViewById(R.id.editDirection);
         et_reminder = (EditText) findViewById(R.id.editReminder);
         type = (Spinner) findViewById(R.id.spinnerType);
-
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
+
+        //set the image from the current pet
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
             circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
         }
-
+        // back button
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Appointment.this, List__Appointment.class)));
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
+        });
 
+        //check if are any appointment on the array
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
         C__Appointment appointment = null;
@@ -103,30 +108,33 @@ public class Add_Appointment extends AppCompatActivity {
         }
 
         btnNext = (Button) findViewById(R.id.next_btn);
+        // click listener for the button
         btnNext.setOnClickListener(view -> {
             try {
                 if (id >= 0) {
+                    //updating/ editing data
                     C__Appointment updateApp = new C__Appointment(id, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
                     appointmentList.set(id, updateApp);
                 } else {
+                    //adding new data
                     int nextId = myApplication.getNextId();
                     C__Appointment newAppoint = new C__Appointment(nextId, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
 
-                    appointmentList.add(newAppoint);
+                    appointmentList.add(newAppoint);// adding the new appointment to the array
                     myApplication.setNextId(nextId++);
+                    //calling the database
                     FirebaseAuth fAuth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = fAuth.getCurrentUser();
-
+                    //setting the database reference
                     DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
                     appReference.child("Appointment").push().setValue(newAppoint);
                 }
-                //
-
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
             } catch (Exception e) {
                 Toast.makeText(Add_Appointment.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
+        //setting the calendar picker
         calendar_date_app = (ImageView) findViewById(R.id.calendar_app_date);
         calendar_date_app.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
@@ -144,7 +152,7 @@ public class Add_Appointment extends AppCompatActivity {
                     }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
-
+        // setting the time picker
         image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
         image_time_picker.setOnClickListener(view -> {
             TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {

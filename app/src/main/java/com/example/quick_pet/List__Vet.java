@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
 import java.util.Collections;
 import java.util.List;
 
@@ -54,12 +55,12 @@ public class List__Vet extends AppCompatActivity {
             String name = incomingMessages.getString("name");
             String date = incomingMessages.getString("date");
             String direction = incomingMessages.getString("direction");
-            int weight = incomingMessages.getInt("weight");
+            String weight = incomingMessages.getString("weight");
             int positionEdited = incomingMessages.getInt("edit");
 
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
-            C__Vet c = new C__Vet(name, date, direction, weight);
+            C__Vet c = new C__Vet(name, date, direction, Float.parseFloat(weight));
             if (positionEdited > -1) {
                 myVets.getMyVetsList().remove(positionEdited);
                 //here i need to call the database to delete the item

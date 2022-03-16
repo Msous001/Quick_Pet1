@@ -46,22 +46,28 @@ public class Main_menu extends AppCompatActivity {
                 case R.id.homeT:
                     Intent i = new Intent(Main_menu.this, List__Pet.class);
                     startActivity(i);
+                    finish();
                     return true;
                 case R.id.settings:
                     Toast.makeText(Main_menu.this, "test", Toast.LENGTH_SHORT).show();
-                    return true;
+
                 case R.id.photos:
                     Intent a = new Intent(Main_menu.this, List__Photos.class);
                     startActivity(a);
+                    finish();
+                    return true;
                 case R.id.sounds:
                     Intent s = new Intent(Main_menu.this, List__Sounds.class);
                     startActivity(s);
+                    finish();
+                    return true;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(Main_menu.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+//                    Intent intent = new Intent(Main_menu.this, MainActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                            | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+                    System.exit(0);
                     finish(); // to close activity
                     return true;
                 case R.id.exit:

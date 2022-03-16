@@ -17,8 +17,9 @@ import java.util.Calendar;
 
 public class Add_Medication extends AppCompatActivity {
 
+    //variables
     ImageView back_arrow, calendar_medication;
-    EditText name, dates, reason;
+    private EditText name, dates, reason;
     Button btn_add;
     private int mDate, mMonth, mYear;
     int positionToEdit = -1;
@@ -28,6 +29,7 @@ public class Add_Medication extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_medication);
 
+        //matching the variables with the elements in xml file
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addMed);
         calendar_medication = (ImageView) findViewById(R.id.calendar_date_addMedication);
 
@@ -37,25 +39,27 @@ public class Add_Medication extends AppCompatActivity {
 
         btn_add = (Button) findViewById(R.id.next_btn_addMedication);
 
-        calendar_medication.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Calendar cal1 = Calendar.getInstance();
-                mDate = cal1.get(Calendar.DATE);
-                mMonth = cal1.get(Calendar.MONTH);
-                mYear = cal1.get(Calendar.YEAR);
-                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Medication.this,
-                        android.R.style.Theme_DeviceDefault_Dialog, (datePicker, year, month, date) -> {
-                    SimpleDateFormat sdf = new SimpleDateFormat("MMM YYYY");
-                    cal1.set(year, month, date);
-                    String dateString = sdf.format(cal1.getTime());
-                    dates.setText(dateString);
-                }, mYear, mMonth, mDate);
-                datePickerDialog.show();
-            }
+        //setting the calendar picker
+        calendar_medication.setOnClickListener(view -> {
+            final Calendar cal1 = Calendar.getInstance();
+            mDate = cal1.get(Calendar.DATE);
+            mMonth = cal1.get(Calendar.MONTH);
+            mYear = cal1.get(Calendar.YEAR);
+            DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Medication.this,
+                    android.R.style.Theme_DeviceDefault_Dialog, (datePicker, year, month, date) -> {
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM YYYY");
+                cal1.set(year, month, date);
+                String dateString = sdf.format(cal1.getTime());
+                dates.setText(dateString);
+            }, mYear, mMonth, mDate);
+            datePickerDialog.show();
         });
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Medication.this, List__Medication.class)));
-
+        //click listener for the back button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Medication.this, List__Medication.class));
+            finish();
+        });
+        //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
         if(incomingIntent != null){
             String M_name = incomingIntent.getString("name");
@@ -63,6 +67,7 @@ public class Add_Medication extends AppCompatActivity {
             String M_reason = incomingIntent.getString("reason");
             positionToEdit = incomingIntent.getInt("edit");
 
+            //validation to avoid system crash
             if (TextUtils.isEmpty(M_name)) {
                 Toast.makeText(Add_Medication.this, "Please add a Name", Toast.LENGTH_SHORT).show();
             }
@@ -77,10 +82,11 @@ public class Add_Medication extends AppCompatActivity {
             reason.setText(M_reason);
         }
         btn_add.setOnClickListener(view -> {
+            //collecting information from user input
             String newName = name.getText().toString();
             String newDates = dates.getText().toString();
             String newReason = reason.getText().toString();
-
+            //validation to avoid system crash
             if(TextUtils.isEmpty(newName)){
                 Toast.makeText(Add_Medication.this, "Please add a Name", Toast.LENGTH_SHORT).show();
             }
@@ -90,7 +96,7 @@ public class Add_Medication extends AppCompatActivity {
             if (TextUtils.isEmpty(newReason)) {
                 newReason = "";
             }
-
+            // I use Intents to transfer data from one Activity to another
             Intent i = new Intent(view.getContext(), List__Medication.class);
             i.putExtra("edit", positionToEdit);
             i.putExtra("name", newName);

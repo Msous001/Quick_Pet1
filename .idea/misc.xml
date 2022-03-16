@@ -18,38 +18,48 @@
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/brown_border.xml" value="0.1859375" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/circle_pet_add.xml" value="0.1859375" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/circle_white.xml" value="0.14020270270270271" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/delete.xml" value="0.16228070175438597" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/exit_to_app.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/forward.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/green_button.xml" value="0.1712962962962963" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/grey_border.xml" value="0.1859375" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/home.xml" value="0.16228070175438597" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_add24.xml" value="0.14020270270270271" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_add_24.xml" value="0.16228070175438597" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_arrow_back_grey.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_baseline_add_box_24.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_baseline_camera_alt_24.xml" value="0.14020270270270271" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_baseline_visibility_24.xml" value="0.1" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_baseline_visibility_off_24.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_visibility_off.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/ic_visibility_on.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/icon_medical_button.xml" value="0.165625" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/medical.xml" value="0.1859375" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/music.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/music_white.xml" value="0.1859375" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/password_toggle.xml" value="0.11587837837837837" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/photo.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/photo_border.xml" value="0.15657894736842104" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/picture_base.xml" value="0.14020270270270271" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/pop_menu.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/req.xml" value="0.13402777777777777" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/settings.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/tab_indicator.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/volume.xml" value="0.15657894736842104" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/volume_up.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/drawable/white_border.xml" value="0.1712962962962963" />
-        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_allergy.xml" value="0.1" />
-        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_appointment.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_allergy.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_appointment.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_grooming.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_health.xml" value="0.1497835497835498" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_medication.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_new_allergy.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_new_appointment.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_new_health_condition.xml" value="0.6" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_new_vet.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_new_vet_visit.xml" value="0.22" />
-        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_pet.xml" value="0.4466666666666667" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_pet.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_surgery.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_vaccine.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_add_vet.xml" value="0.1" />
@@ -78,7 +88,7 @@
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_tab_layout.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/activity_table_layout.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/fragment_frag1__vet.xml" value="0.14298245614035088" />
-        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_allergies.xml" value="0.5" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_allergies.xml" value="0.22" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_allergies_visit.xml" value="0.14666666666666667" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_appointment.xml" value="0.3406478578892372" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/one_line_deworming.xml" value="0.13903508771929823" />
@@ -99,6 +109,8 @@
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/vet_fragment.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/layout/vet_health_fragment.xml" value="0.1" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/menu/top_menu.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.15657894736842104" />
+        <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.10438596491228071" />
         <entry key="..\:/Users/mcarm/AndroidStudioProjects/Quick_Pet/app/src/main/res/xml/file_paths.xml" value="0.1" />
       </map>
     </option>

@@ -37,15 +37,15 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_pet extends AppCompatActivity {
 
-
-    EditText name, dateTxt;
+    //variables
+    private EditText name, dateTxt;
     ImageView calendar, back_arrow;
-    Spinner type, gender, colour, intact;
+    private Spinner type, gender, colour, intact;
     Button nextbtn;
     CircleImageView circleImageView;
     public static final int IMAGE_CODE = 1;
     Uri imageUri, imageUriDog, imageUriCat, imageUriSelected;
-    AutoCompleteTextView editT;
+    private AutoCompleteTextView editT;
     private static Boolean press = true;
     private int mDate, mMonth, mYear;
     C__Pet_MyPets myPets;
@@ -53,7 +53,7 @@ public class Add_pet extends AppCompatActivity {
     List<C__CurrentPet> currentPet;
 
 
-
+    //dog breed name arrays for autocomplete textview
     private static final String[] Dog_breed = new String[]{"Affenpinscher", "Afghan Hound",
             "Airedale Terrier", "Akita", "Alaskan Malamute", "Anatolian Shepherd", "Australian Cattle",
             "Australian Shepherd", "Australian Silky", "Australian Terrier", "Azawakh", "Barbet",
@@ -95,6 +95,7 @@ public class Add_pet extends AppCompatActivity {
             "White Swiss Shepherd", "Xoloitzcuintle", "Yorkshire Terrier", "Not Defined"
 
     };
+    //cat breed name arrays for autocomplete textview
     private static final String[] Cat_breed = new String[]{"Abyssinian", "Balinese", "Bengal",
             "Birman", "British Shorthair", "Burmese", "Burmilla", "Chinchilla", "Cornish Rex",
             "Devon Rex", "Moggie", "Exotic Shorthair", "Japanese Bobtail", "Korat", "Maine Coon",
@@ -102,6 +103,7 @@ public class Add_pet extends AppCompatActivity {
             "Russian Blue", "Scottish Fold", "Siamese", "Siberian Forest Cat", "Singapura", "Snowshoe",
             "Somali", "Sphynx", "Tiffanie", "Tonkinesse", "Turkish Van", "Not Defined"
     };
+    //type name arrays
     private static final String[] pet_Type = new String[]{"", "Dog", "Cat"};
 
 
@@ -110,14 +112,12 @@ public class Add_pet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
-
+        //connecting to global variable
         currentPet = C__GlobalVariable.getCurrentPets();
 
+        //matching the variables with the elements in xml file
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
-
-        back_arrow = (ImageView) findViewById(R.id.back_arrow_addPet);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, List__Pet.class)));
 
         type = (Spinner) findViewById(R.id.spinnerType);
         gender = (Spinner) findViewById(R.id.spinnerGender);
@@ -125,6 +125,12 @@ public class Add_pet extends AppCompatActivity {
         intact = (Spinner) findViewById(R.id.spinnerIntact);
         selection = (TextView)findViewById(R.id.adapter);
 
+        //back button
+        back_arrow = (ImageView) findViewById(R.id.back_arrow_addPet);
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, List__Pet.class)));
+
+        // selecting two images from file for adding a new pet without profile picture
         imageUriDog = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
                 .authority(getResources().getResourcePackageName(R.drawable.dog_1))
                 .appendPath(getResources().getResourceTypeName(R.drawable.dog_1))
@@ -137,6 +143,7 @@ public class Add_pet extends AppCompatActivity {
                 .build();
 
         circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
+        // adding a click listener
         circleImageView.setOnClickListener(view -> {
             press = false;
             openimageform();
@@ -168,10 +175,11 @@ public class Add_pet extends AppCompatActivity {
 
             }
         });
-        // -- next button code to navigate
+        // -- accessing global variable
         myPets = ((C__GlobalVariable) this.getApplication()).getMyPets();
 
         nextbtn = (Button) findViewById(R.id.next_btn);
+        // click listener for the button
         nextbtn.setOnClickListener(v -> {
 
             String Sname = name.getText().toString();
@@ -188,6 +196,7 @@ public class Add_pet extends AppCompatActivity {
             String Scolour = colour.getSelectedItem().toString();
             String Sintact = intact.getSelectedItem().toString();
 
+            //validation to avoid system crash
             if (TextUtils.isEmpty(Sgender)) {
                 Sgender = "Not Defined";
             }
@@ -207,8 +216,18 @@ public class Add_pet extends AppCompatActivity {
                     } else if (Stype.equals("Cat")) {
                         imageUriSelected = imageUriCat;
                     }
-                } else {
-                    imageUriSelected = imageUri;
+                }
+                else {
+                    if(imageUri != null){
+                        imageUriSelected = imageUri;
+                    }
+                    else{
+                        if (Stype.equals("Dog")) {
+                            imageUriSelected = imageUriDog;
+                        } else if (Stype.equals("Cat")) {
+                            imageUriSelected = imageUriCat;
+                        }
+                    }
                 }
             }
 
@@ -217,7 +236,7 @@ public class Add_pet extends AppCompatActivity {
             C__CurrentPet c = new C__CurrentPet(Sname, imageUriSelected.toString());
             currentPet.add(c);
 
-
+            //Connecting to the database
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
 

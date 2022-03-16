@@ -76,18 +76,20 @@ public class List__Pet extends AppCompatActivity {
                     Intent a = new Intent(List__Pet.this, List__Photos.class);
                     startActivity(a);
                     finish();
+                    return true;
                 case R.id.sounds:
                     Intent s = new Intent(List__Pet.this, List__Sounds.class);
                     startActivity(s);
                     finish();
+                    return true;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
-                    Intent intent = new Intent(List__Pet.this, MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                            | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
+//                    Intent intent = new Intent(List__Pet.this, MainActivity.class);
+//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
+//                            | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
+                    System.exit(0);
                     finish(); // to close activity
-
                     return true;
                 case R.id.exit:
                     Toast.makeText(List__Pet.this, "Exit", Toast.LENGTH_SHORT).show();
