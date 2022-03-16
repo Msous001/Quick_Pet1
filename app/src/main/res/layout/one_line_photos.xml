@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/oneLinePhotos"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="40dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/photo_border"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_photos"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:scaleType="fitXY"
+        android:src="@mipmap/ic_launcher" />
+
+</RelativeLayout>
+<!--<de.hdodenhof.circleimageview.CircleImageView-->
+<!--android:id="@+id/circle_Image_Photos"-->
+<!--android:layout_width="100sp"-->
+<!--android:layout_height="100sp"-->
+<!--android:layout_centerInParent="true"-->
+<!--android:layout_marginTop="10dp"-->
+<!--app:civ_border_color="@color/green_button"-->
+<!--app:civ_border_width="20dp"-->
+<!--app:civ_circle_background_color="@color/green_button"-->
+<!--app:layout_constraintEnd_toEndOf="parent"-->
+<!--app:layout_constraintHorizontal_bias="0.501"-->
+<!--app:layout_constraintStart_toStartOf="parent" />-->

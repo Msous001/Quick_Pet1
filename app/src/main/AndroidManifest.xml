@@ -3,8 +3,10 @@
     package="com.example.quick_pet">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".C__GlobalVariable"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,16 +14,86 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
-            android:name=".MainActivity"
+            android:name=".List__Sounds"
+            android:exported="false" />
+        <activity
+            android:name=".List__Photos"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Medication"
+            android:exported="false" />
+        <activity
+            android:name=".List__Medication"
+            android:exported="false" />
+        <activity
+            android:name=".List__Surgery"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Surgery"
+            android:exported="false" />
+        <activity
+            android:name=".List__Deworming"
+            android:exported="false" />
+        <activity
+            android:name=".List__Fleas"
+            android:exported="false" />
+        <activity
+            android:name=".List__Vaccine"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Vaccine"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Grooming"
+            android:exported="false" />
+        <activity
+            android:name=".List__Grooming"
+            android:exported="false" />
+        <activity
+            android:name=".List__Health"
+            android:exported="false" />
+        <activity
+            android:name=".List__Allergy"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Vet"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Allergy"
+            android:exported="false" />
+        <activity
+            android:name=".Add_HealthCondition"
+            android:exported="false" />
+        <activity
+            android:name=".List__Vet"
+            android:exported="false" />
+        <activity
+            android:name=".Main_menu"
+            android:exported="false" />
+        <activity
+            android:name=".List__Appointment"
+            android:exported="false" />
+        <activity
+            android:name=".Add_Appointment"
+            android:exported="false" />
+        <activity
+            android:name=".Add_pet"
+            android:exported="false" />
+        <activity
+            android:name=".List__Pet"
+            android:exported="false" />
+        <activity
+            android:name=".Logout"
             android:exported="false" />
         <activity
             android:name=".Register"
             android:exported="false" />
         <activity
-            android:name=".Logout"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "144637985190",
+    "firebase_url": "https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "quick-pet",
     "storage_bucket": "quick-pet.appspot.com"
   },
