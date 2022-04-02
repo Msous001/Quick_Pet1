@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class List__Surgery extends AppCompatActivity {
             startActivity(new Intent(List__Surgery.this, Main_menu.class));
             finish();
         });
-        currentPetList = C__GlobalVariable.getCurrentPets();
+        //currentPetList = C__GlobalVariable.getCurrentPets();
 
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
@@ -46,6 +47,7 @@ public class List__Surgery extends AppCompatActivity {
         lv_surgery = (ListView) findViewById(R.id.listView_Surgery);
 
         mySurgeries = ((C__GlobalVariable) this.getApplication()).getMySurgeries();
+        mySurgeries.mySurgeryList = new ArrayList<>();
         adapter = new C__SurgeryAdapter(List__Surgery.this, mySurgeries);
         lv_surgery.setAdapter(adapter);
 
@@ -60,7 +62,7 @@ public class List__Surgery extends AppCompatActivity {
 
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
-            C__Surgery s = new C__Surgery(name, date, med1, med2, note);
+            C__Surgery s = new C__Surgery(pet_name, name, date, med1, med2, note);
             if(positionEdited >-1){
                 mySurgeries.getMySurgeryList().remove(positionEdited);
                 //here i need to call the database to delete the item
@@ -85,8 +87,8 @@ public class List__Surgery extends AppCompatActivity {
         i.putExtra("edit", position);
         i.putExtra("name", s.getName());
         i.putExtra("date",s.getDate());
-        i.putExtra("med1", s.getMedication());
-        i.putExtra("med2", s.getAddmed1());
+        i.putExtra("med1", s.getAddmed1());
+        i.putExtra("med2", s.getAddmed2());
         i.putExtra("note", s.getAddnote());
         startActivity(i);
 

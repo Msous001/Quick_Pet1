@@ -18,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -26,6 +27,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.auth.User;
 
 import java.text.SimpleDateFormat;
@@ -44,22 +46,24 @@ public class Add_Appointment extends AppCompatActivity {
     ImageView calendar_date_app, image_time_picker, back_arrow;
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
-    List<C__CurrentPet> currentPetList;
     C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
-    C__Pet_MyPets myPetList;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static String  pet_name;
     private int mDate, mMonth, mYear, mHour, mMinute;
     private int id;
+    FirebaseFirestore db;
+    private static String dbSalt;
+    private static final String TAG = "Add App";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_appointment);
+        db = FirebaseFirestore.getInstance();
 
         //connecting to the global variable
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
         appointmentList = C__GlobalVariable.getAppointmentsList();
-        currentPetList = C__GlobalVariable.getCurrentPets();
-        myPetList =  ((C__GlobalVariable) this.getApplication()).getMyPets();
 
         //matching th variables with the elements in xml file
         et_Name = (EditText) findViewById(R.id.editName);
@@ -70,23 +74,55 @@ public class Add_Appointment extends AppCompatActivity {
         type = (Spinner) findViewById(R.id.spinnerType);
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
 
-        //set the image from the current pet
-        for(C__CurrentPet c : currentPetList){
-            pet_name = c.getName();
-            circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
-        }
+        //setting the calendar picker
+        calendar_date_app = (ImageView) findViewById(R.id.calendar_app_date);
+        calendar_date_app.setOnClickListener(v -> {
+            final Calendar cal1 = Calendar.getInstance();
+            mDate = cal1.get(Calendar.DATE);
+            mMonth = cal1.get(Calendar.MONTH);
+            mYear = cal1.get(Calendar.YEAR);
+            // @SuppressLint("SetTextI18n")
+            DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Appointment.this,
+                    android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
+                SimpleDateFormat sdf = new SimpleDateFormat("dd MMM" + "\n yyyy");
+                cal1.set(year, month, date);
+                String dateString = sdf.format(cal1.getTime());
+                et_date.setText(dateString);
+
+            }, mYear, mMonth, mDate);
+            datePickerDialog.show();
+        });
+        // setting the time picker
+        image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
+        image_time_picker.setOnClickListener(view -> {
+            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+                mHour = selectedHour;
+                mMinute = selectedMinute;
+                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+            };
+            int style = AlertDialog.THEME_HOLO_DARK;
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, style, onTimeSetListener, mHour, mMinute, true);
+            timePickerDialog.setTitle("Select Time");
+            timePickerDialog.show();
+
+        });
         // back button
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
         // click listener for the button
         back_arrow.setOnClickListener(view -> {
-            startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
+            startActivity(new Intent(getApplicationContext(), List__Appointment.class));
         });
+
+        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+            circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
+            pet_name = c.getName();
+
+        }
 
         //check if are any appointment on the array
         Intent intent = getIntent();
         id = intent.getIntExtra("id", -1);
         C__Appointment appointment = null;
-
         if (id >= 0) {
             for (C__Appointment ap : appointmentList) {
                 if (ap.getId() == id) {
@@ -113,58 +149,53 @@ public class Add_Appointment extends AppCompatActivity {
             try {
                 if (id >= 0) {
                     //updating/ editing data
-                    C__Appointment updateApp = new C__Appointment(id, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
+                    C__Appointment updateApp = new C__Appointment(id,pet_name, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
                     appointmentList.set(id, updateApp);
                 } else {
                     //adding new data
-                    int nextId = myApplication.getNextId();
-                    C__Appointment newAppoint = new C__Appointment(nextId, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
+                    int nextId = C__GlobalVariable.getNextId();
+                    C__Appointment newAppoint = new C__Appointment(nextId, pet_name,type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
+                    //appointmentList.add(newAppoint);// adding the new appointment to the array
+                    C__GlobalVariable.setNextId(nextId++);
 
-                    appointmentList.add(newAppoint);// adding the new appointment to the array
-                    myApplication.setNextId(nextId++);
-                    //calling the database
+
+                    if( et_Name.getText().toString().length() > 2){
+                        dbSalt = et_Name.getText().toString().substring(0,2);
+
+                    }else{
+                        dbSalt = et_Name.getText().toString();
+                    }
+                    String separator = " ";
+                    String dbDates;
+                    int sep = et_Name.getText().toString().lastIndexOf(separator);
+                    dbDates= et_Name.getText().toString().substring(0,sep);
+                    dbSalt = dbSalt + dbDates;
                     FirebaseAuth fAuth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = fAuth.getCurrentUser();
-                    //setting the database reference
-                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-                    appReference.child("Appointment").push().setValue(newAppoint);
+
+
+                    db.collection("Users").document(firebaseUser.getUid()).collection("Pets").document(pet_name).collection("Appointment")
+                            .document("Ap-"+dbSalt)
+                            .set(newAppoint).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Toast.makeText(getApplicationContext(), "Pet Added", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+                    //calling the database
+//                    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+//                    FirebaseUser firebaseUser = fAuth.getCurrentUser();
+//                    //setting the database reference
+//                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+//                    appReference.child("Appointment").push().setValue(newAppoint);
                 }
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
+                finish();
             } catch (Exception e) {
                 Toast.makeText(Add_Appointment.this, "Error", Toast.LENGTH_SHORT).show();
             }
         });
-        //setting the calendar picker
-        calendar_date_app = (ImageView) findViewById(R.id.calendar_app_date);
-        calendar_date_app.setOnClickListener(v -> {
-            final Calendar cal1 = Calendar.getInstance();
-            mDate = cal1.get(Calendar.DATE);
-            mMonth = cal1.get(Calendar.MONTH);
-            mYear = cal1.get(Calendar.YEAR);
-            // @SuppressLint("SetTextI18n")
-            DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Appointment.this,
-                    android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
-                        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM" + "\n yyyy");
-                        cal1.set(year, month, date);
-                        String dateString = sdf.format(cal1.getTime());
-                        et_date.setText(dateString);
 
-                    }, mYear, mMonth, mDate);
-            datePickerDialog.show();
-        });
-        // setting the time picker
-        image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
-        image_time_picker.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-                mHour = selectedHour;
-                mMinute = selectedMinute;
-                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-            };
-            int style = AlertDialog.THEME_HOLO_DARK;
-            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, style, onTimeSetListener, mHour, mMinute, true);
-            timePickerDialog.setTitle("Select Time");
-            timePickerDialog.show();
-
-        });
     }
 }

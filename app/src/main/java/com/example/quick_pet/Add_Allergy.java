@@ -9,6 +9,12 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -22,12 +28,20 @@ public class Add_Allergy extends AppCompatActivity {
     private EditText name, dates, symptom, medication;
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
+    private static final String TAG = "Add Allergy";
+    FirebaseFirestore db;
+    private static String  pet_name;
+    private static String dbSalt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_allergy);
+
+        db = FirebaseFirestore.getInstance();
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
 
         //matching the variables with the elements in xml file
         name = (EditText) findViewById(R.id.et_allergy_name);
@@ -40,6 +54,7 @@ public class Add_Allergy extends AppCompatActivity {
         // click listener for the button
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(Add_Allergy.this, List__Allergy.class));
+            finish();
         });
 
         //setting the calendar picker
@@ -58,6 +73,9 @@ public class Add_Allergy extends AppCompatActivity {
                     }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
+        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+            pet_name = c.getName();
+        }
 
         //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
@@ -87,19 +105,57 @@ public class Add_Allergy extends AppCompatActivity {
             String newMedication = medication.getText().toString();
 
             //validation to avoid system crash
-            if (TextUtils.isEmpty(newName)) {newName = "Not Defined";}
-            if (TextUtils.isEmpty(newDates)) {newDates = "Not Defined";}
-            if (TextUtils.isEmpty(newSymptom)) {newSymptom = "Not Defined";}
-            if (TextUtils.isEmpty(newMedication)) {newMedication = "Not Defined";}
+            if (TextUtils.isEmpty(newName)) {
+                name.setError("Required");
+                name.requestFocus();
+            } else if (TextUtils.isEmpty(newDates)) {
+                dates.setError("Required");
+                dates.requestFocus();
 
-            // I use Intents to transfer data from one Activity to another
-            Intent i = new Intent(view.getContext(), List__Allergy.class);
-            i.putExtra("edit", positionToEdit);
-            i.putExtra("name", newName);
-            i.putExtra("date", newDates);
-            i.putExtra("symptom", newSymptom);
-            i.putExtra("medication", newMedication);
-            startActivity(i);
+            } else {
+                if (TextUtils.isEmpty(newSymptom)) {
+                    newSymptom = "Not Defined";
+                }
+                if (TextUtils.isEmpty(newMedication)) {
+                    newMedication = "Not Defined";
+                }
+                C__Allergy ca = new C__Allergy(pet_name, newName, newDates, newSymptom, newMedication);
+
+
+                if ( newName.length() > 2){
+                    dbSalt = newName.substring(0,2);
+                }else{
+                    dbSalt = newName;
+                }
+                String separator = " ";
+                String dbDates;
+                int sep = newDates.lastIndexOf(separator);
+                dbDates= newDates.substring(0,sep);
+                dbSalt = dbSalt + dbDates;
+                //Connecting to the database
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+
+                db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
+                        .document(pet_name).collection("Allergy").document("A-"+dbSalt)
+                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Allergy Added", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                // I use Intents to transfer data from one Activity to another
+                Intent i = new Intent(view.getContext(), List__Allergy.class);
+//                i.putExtra("edit", positionToEdit);
+//                i.putExtra("name", newName);
+//                i.putExtra("date", newDates);
+//                i.putExtra("symptom", newSymptom);
+//                i.putExtra("medication", newMedication);
+                startActivity(i);
+            }
+
         });
 
     }

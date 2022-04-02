@@ -87,22 +87,25 @@ public class Add_Medication extends AppCompatActivity {
             String newDates = dates.getText().toString();
             String newReason = reason.getText().toString();
             //validation to avoid system crash
-            if(TextUtils.isEmpty(newName)){
-                Toast.makeText(Add_Medication.this, "Please add a Name", Toast.LENGTH_SHORT).show();
+            if(TextUtils.isEmpty(newName)) {
+                name.setError("This field is required");
+                name.requestFocus();
+
+                if (TextUtils.isEmpty(newDates)) {
+                    dates.setError("This field is required");
+                }
+                if (TextUtils.isEmpty(newReason)) {
+                    newReason = "";
+                }else {
+                    // I use Intents to transfer data from one Activity to another
+                    Intent i = new Intent(view.getContext(), List__Medication.class);
+                    i.putExtra("edit", positionToEdit);
+                    i.putExtra("name", newName);
+                    i.putExtra("date", newDates);
+                    i.putExtra("reason", newReason);
+                    startActivity(i);
+                }
             }
-            if (TextUtils.isEmpty(newDates)) {
-                newDates = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newReason)) {
-                newReason = "";
-            }
-            // I use Intents to transfer data from one Activity to another
-            Intent i = new Intent(view.getContext(), List__Medication.class);
-            i.putExtra("edit", positionToEdit);
-            i.putExtra("name", newName);
-            i.putExtra("date", newDates);
-            i.putExtra("reason", newReason);
-            startActivity(i);
         });
     }
 }

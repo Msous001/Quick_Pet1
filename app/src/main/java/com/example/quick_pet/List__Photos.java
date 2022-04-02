@@ -11,6 +11,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 public class List__Photos extends AppCompatActivity {
 
     Button btn_add;
@@ -36,6 +38,7 @@ public class List__Photos extends AppCompatActivity {
         btn_add.setOnClickListener(view -> openimageform());
         myGrid = findViewById(R.id.gridView);
         myPhotos = ((C__GlobalVariable) this.getApplication()).getMyPhotos();
+        myPhotos.myPhotoList = new ArrayList<>();
         adapter = new C__PhotosAdapter(List__Photos.this, myPhotos);
         myGrid.setAdapter(adapter);
     }

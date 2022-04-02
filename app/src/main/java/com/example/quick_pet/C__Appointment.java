@@ -5,6 +5,7 @@ import java.util.List;
 
 public class C__Appointment {
     private int id;
+    private String ida;
     private String type;
     private String Name;
     private String date;
@@ -12,7 +13,8 @@ public class C__Appointment {
     private String direction;
     private String reminder;
 
-    public C__Appointment(int id, String type, String name, String date, String time, String direction, String reminder) {
+    public C__Appointment(int id, String ida, String type, String name, String date, String time, String direction, String reminder) {
+        this.ida = ida;
         this.id = id;
         this.type = type;
         this.Name = name;
@@ -24,6 +26,10 @@ public class C__Appointment {
         List<C__Appointment> appointmentList = new ArrayList<>();
     }
 
+    public C__Appointment(){
+
+    }
+
     public int getId() {
         return id;
     }
@@ -32,28 +38,28 @@ public class C__Appointment {
         this.id = id;
     }
 
+    public String getIda() {
+        return ida;
+    }
+
+    public void setIda(String ida) {
+        this.ida = ida;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public String getName() {
         return Name;
     }
 
     public void setName(String name) {
         Name = name;
-    }
-
-    public String getDirection() {
-        return direction;
-    }
-
-    public void setDirection(String direction) {
-        this.direction = direction;
-    }
-
-    public String getReminder() {
-        return reminder;
-    }
-
-    public void setReminder(String reminder) {
-        this.reminder = reminder;
     }
 
     public String getDate() {
@@ -72,18 +78,27 @@ public class C__Appointment {
         this.time = time;
     }
 
-    public String getType() {
-        return type;
+    public String getDirection() {
+        return direction;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public String getReminder() {
+        return reminder;
+    }
+
+    public void setReminder(String reminder) {
+        this.reminder = reminder;
     }
 
     @Override
     public String toString() {
-        return "Appointment_class_pet1{" +
+        return "C__Appointment{" +
                 "id=" + id +
+                ", ida='" + ida + '\'' +
                 ", type='" + type + '\'' +
                 ", Name='" + Name + '\'' +
                 ", date='" + date + '\'' +

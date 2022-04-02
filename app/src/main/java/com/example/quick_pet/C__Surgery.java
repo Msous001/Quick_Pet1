@@ -1,42 +1,81 @@
 package com.example.quick_pet;
 
 public class C__Surgery implements Comparable<C__Surgery>{
+    private String id;
     private String name;
     private String date;
-    private String medication;
     private String addmed1;
+    private String addmed2;
     private String addnote;
 
-    public C__Surgery(String name, String date, String medication, String addmed1, String addnote) {
+
+    public C__Surgery(){}
+
+    public C__Surgery(String id, String name, String date, String addmed1, String addmed2, String addnote) {
+        this.id = id;
         this.name = name;
         this.date = date;
-        this.medication = medication;
         this.addmed1 = addmed1;
+        this.addmed2 = addmed2;
         this.addnote = addnote;
     }
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public String getId() {
+        return id;
+    }
 
-    public String getDate() {return date;}
-    public void setDate(String date) {this.date = date;}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getMedication() {return medication;}
-    public void setMedication(String medication) {this.medication = medication;}
+    public String getName() {
+        return name;
+    }
 
-    public String getAddmed1() {return addmed1;}
-    public void setAddmed1(String addmed1) {this.addmed1 = addmed1;}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-    public String getAddnote() {return addnote;}
-    public void setAddnote(String addnote) {this.addnote = addnote;}
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getAddmed1() {
+        return addmed1;
+    }
+
+    public void setAddmed1(String addmed1) {
+        this.addmed1 = addmed1;
+    }
+
+    public String getAddmed2() {
+        return addmed2;
+    }
+
+    public void setAddmed2(String addmed2) {
+        this.addmed2 = addmed2;
+    }
+
+    public String getAddnote() {
+        return addnote;
+    }
+
+    public void setAddnote(String addnote) {
+        this.addnote = addnote;
+    }
 
     @Override
     public String toString() {
         return "C__Surgery{" +
-                "name='" + name + '\'' +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
                 ", date='" + date + '\'' +
-                ", medication='" + medication + '\'' +
                 ", addmed1='" + addmed1 + '\'' +
+                ", addmed2='" + addmed2 + '\'' +
                 ", addnote='" + addnote + '\'' +
                 '}';
     }

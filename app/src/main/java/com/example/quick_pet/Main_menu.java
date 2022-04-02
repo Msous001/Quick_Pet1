@@ -13,7 +13,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -23,9 +25,10 @@ public class Main_menu extends AppCompatActivity {
     Toolbar toolbar;
     Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication,
             allergy, health ;
-    CircleImageView circleImagepet1;
-    List<C__CurrentPet> currentPetList;
-    C__Pet_MyPets myPetList;
+    private CircleImageView circleImagepet1;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +36,7 @@ public class Main_menu extends AppCompatActivity {
         setContentView(R.layout.activity_main_menu);
 
         circleImagepet1 = (CircleImageView) findViewById(R.id.imagePet);
-        myPetList =  ((C__GlobalVariable) this.getApplication()).getMyPets();
-        currentPetList = C__GlobalVariable.getCurrentPets();
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
 
         toolbar = (Toolbar) findViewById(R.id.materialToolbar);
         toolbar.inflateMenu(R.menu.top_menu);
@@ -50,7 +52,7 @@ public class Main_menu extends AppCompatActivity {
                     return true;
                 case R.id.settings:
                     Toast.makeText(Main_menu.this, "test", Toast.LENGTH_SHORT).show();
-
+                    break;
                 case R.id.photos:
                     Intent a = new Intent(Main_menu.this, List__Photos.class);
                     startActivity(a);
@@ -63,26 +65,28 @@ public class Main_menu extends AppCompatActivity {
                     return true;
                 case R.id.logout:
                     FirebaseAuth.getInstance().signOut();
-//                    Intent intent = new Intent(Main_menu.this, MainActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                            | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-                    System.exit(0);
+                    Intent intent = new Intent(Main_menu.this, MainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                     finish(); // to close activity
+                    //System.exit(0);
                     return true;
                 case R.id.exit:
                     Toast.makeText(Main_menu.this, "Exit", Toast.LENGTH_SHORT).show();
-                    System.exit(0);
                     finish();
+                    System.exit(0);
+
                     return true;
             }
             return false;
         });
 
-        for(C__CurrentPet c : currentPetList){
+        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
             circleImagepet1.setImageURI(Uri.parse(c.getImageUrl()));
-
         }
+
+
         appointment = (Button) findViewById(R.id.appointment);
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -94,14 +94,15 @@ public class Register extends AppCompatActivity {
 
                 FirebaseUser firebaseUser = fAuth.getCurrentUser();
                 //to register the user in realtime database
-                C__User writeUserDetails = new C__User(email);
+                //C__User writeUserDetails = new C__User(email);
 
                 //Extracting user reference from database
-                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
+                //DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
 
-                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-                        firebaseUser.sendEmailVerification();
+                assert firebaseUser != null;
+//                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
+//                    if (task1.isSuccessful()) {
+//                        firebaseUser.sendEmailVerification();
 
                         Toast.makeText(Register.this, "User Created. Please verify your email", Toast.LENGTH_LONG).show();
 
@@ -112,10 +113,10 @@ public class Register extends AppCompatActivity {
                         startActivity(intent);
                         finish(); // to close activity
 
-                    } else {
-                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
-                    }
-                });
+//                    } else {
+//                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
+//                    }
+//                });
             } else {
                 try {
                     throw task.getException();

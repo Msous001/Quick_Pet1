@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,12 +36,13 @@ public class List__Medication extends AppCompatActivity {
         lv_medication = (ListView) findViewById(R.id.listView_Medication);
         btn_ok = (Button) findViewById(R.id.btn_list_medication);
 
-        currentPetList = C__GlobalVariable.getCurrentPets();
+       // currentPetList = C__GlobalVariable.getCurrentPets();
 
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
         }
         myMedication = ((C__GlobalVariable) this.getApplication()).getMyMedication();
+        myMedication.myMedicationList = new ArrayList<>();
         adapter = new C__MedicationAdapter(List__Medication.this, myMedication);
         lv_medication.setAdapter(adapter);
 
@@ -54,7 +56,7 @@ public class List__Medication extends AppCompatActivity {
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
-            C__Medication m = new C__Medication(name, date, reason);
+            C__Medication m = new C__Medication(pet_name, name, date, reason);
             if (positionEdited > -1){
                 myMedication.getMyMedicationList().remove(positionEdited);
                 //here i need to call the database to delete this item

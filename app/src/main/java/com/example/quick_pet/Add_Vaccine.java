@@ -33,7 +33,10 @@ public class Add_Vaccine extends AppCompatActivity {
         vetName = (EditText) findViewById(R.id.et_addvaccine_vetName);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addVaccine);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Vaccine.this, List__Vaccine.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Vaccine.this, List__Vaccine.class));
+            finish();
+        });
 
         calendar_app_newVaccine = (ImageView) findViewById(R.id.calendar_date_addvaccine);
         calendar_app_newVaccine.setOnClickListener(view -> {
@@ -80,17 +83,28 @@ public class Add_Vaccine extends AppCompatActivity {
                 String newDates = dates.getText().toString();
                 String newVetName = vetName.getText().toString();
 
-                if (TextUtils.isEmpty(newName)) {newName = "Not Defined";}
-                if (TextUtils.isEmpty(newDates)) {newDates = "Not Defined";}
-                if (TextUtils.isEmpty(newVetName)){newVetName = "Not Defined";}
+                if (TextUtils.isEmpty(newName)) {
+                    name.setError("This field is required");
+                    name.requestFocus();
 
-                Intent i = new Intent(view.getContext(), List__Vaccine.class);
-                i.putExtra("edit", positionToEdit);
-                i.putExtra("name", newName);
-                i.putExtra("date", newDates);
-                i.putExtra("vetName", newVetName);
-                startActivity(i);
+                    if (TextUtils.isEmpty(newDates)) {
+                        dates.setError("This field is required");
+                        dates.requestFocus();
+                    }
+                    else if (TextUtils.isEmpty(newVetName)) {
+                        newVetName = "Not Defined";
+                    } else {
+
+                        Intent i = new Intent(view.getContext(), List__Vaccine.class);
+                        i.putExtra("edit", positionToEdit);
+                        i.putExtra("name", newName);
+                        i.putExtra("date", newDates);
+                        i.putExtra("vetName", newVetName);
+                        startActivity(i);
+                    }
+                }
             }
         });
+
     }
 }

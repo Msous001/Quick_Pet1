@@ -54,7 +54,7 @@ public class List__Deworming extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
-        currentPetList = C__GlobalVariable.getCurrentPets();
+       // currentPetList = C__GlobalVariable.getCurrentPets();
 
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
@@ -82,7 +82,7 @@ public class List__Deworming extends AppCompatActivity {
                 Toast.makeText(List__Deworming.this, "Please insert date", Toast.LENGTH_SHORT).show();
             }
             else{
-                C__Deworming d = new C__Deworming(f_date);
+                C__Deworming d = new C__Deworming(pet_name, f_date);
                 myDeworming.getMyDewormingList().add(d);
                 DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
                 appReference.child("Deworming").push().setValue(f_date);
@@ -99,5 +99,6 @@ public class List__Deworming extends AppCompatActivity {
     private void editDeworm(int position) {
         myDeworming.getMyDewormingList().remove(position);
         adapter.notifyDataSetChanged();
+
     }
 }

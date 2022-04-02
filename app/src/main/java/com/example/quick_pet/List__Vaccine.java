@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -35,12 +36,13 @@ public class List__Vaccine extends AppCompatActivity {
         lv_vaccine = (ListView) findViewById(R.id.listView_Vaccine);
         btn_ok = (Button) findViewById(R.id.btn_list_vaccine);
 
-        currentPetList = C__GlobalVariable.getCurrentPets();
+        //currentPetList = C__GlobalVariable.getCurrentPets();
 
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
         }
         myVaccine = ((C__GlobalVariable) this.getApplication()).getMyVaccine();
+        myVaccine.myVaccineList = new ArrayList<>();
         adapter = new C__VaccineAdapter(List__Vaccine.this, myVaccine);
         lv_vaccine.setAdapter(adapter);
 
@@ -53,7 +55,7 @@ public class List__Vaccine extends AppCompatActivity {
 
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
-            C__Vaccine Va = new C__Vaccine(V_name, V_date, V_vetName);
+            C__Vaccine Va = new C__Vaccine(pet_name, V_name, V_date, V_vetName);
             if(positionEdited >-1){
                 myVaccine.getMyVaccineList().remove(positionEdited);
                 //here i need to call the database to delete the item

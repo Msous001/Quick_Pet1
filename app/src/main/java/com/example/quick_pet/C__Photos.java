@@ -4,9 +4,11 @@ package com.example.quick_pet;
 public class C__Photos {
     private String picPicture;
 
+
     public C__Photos(String picPicture) {
         this.picPicture = picPicture;
     }
+    public C__Photos(){}
 
     public String getPicPicture() {
         return picPicture;

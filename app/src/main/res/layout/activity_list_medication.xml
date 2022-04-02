@@ -81,7 +81,7 @@
         android:drawableEnd="@drawable/ic_add24"
         android:paddingStart="60dp"
         android:paddingEnd="70dp"
-        android:text="@string/vet_visit"
+        android:text="@string/add"
         android:textAllCaps="false"
         android:textColor="@color/white_lila"
         android:textSize="16sp"

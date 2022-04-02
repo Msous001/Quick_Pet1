@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class C__VetAdapter extends BaseAdapter {
     Activity mActivity;
     C__Vet_MyVets myVets;

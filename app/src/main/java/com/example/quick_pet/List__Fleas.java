@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
@@ -54,7 +55,7 @@ public class List__Fleas extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
-        currentPetList = C__GlobalVariable.getCurrentPets();
+        //currentPetList = C__GlobalVariable.getCurrentPets();
 
         for(C__CurrentPet c : currentPetList){
             pet_name = c.getName();
@@ -70,6 +71,7 @@ public class List__Fleas extends AppCompatActivity {
         });
 
         myFleas = ((C__GlobalVariable) this.getApplication()).getMyFleas();
+        myFleas.myFleasList = new ArrayList<>();
         adapter = new C__FleasAdapter(List__Fleas.this, myFleas);
         lv_fleas.setAdapter(adapter);
 
@@ -82,7 +84,7 @@ public class List__Fleas extends AppCompatActivity {
                 Toast.makeText(List__Fleas.this, "Please insert date", Toast.LENGTH_SHORT).show();
             }
             else {
-                C__Fleas f = new C__Fleas(f_date);
+                C__Fleas f = new C__Fleas(pet_name, f_date);
                 myFleas.getMyFleasList().add(f);
                 DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
                 appReference.child("Fleas").push().setValue(f_date);

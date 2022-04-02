@@ -10,9 +10,7 @@ public class C__Allergy_MyAllergies {
         this.myAllergyList = myAllergyList;
     }
     public C__Allergy_MyAllergies() {
-        this.myAllergyList = new ArrayList<>();
-//        C__Allergy A0 = new C__Allergy("Milk Intolerance", "May 2020", "Diarrhea Vomiting", "N/A");
-//        myAllergyList.add(A0);
+
     }
     public List<C__Allergy> getMyAllergyList() {
         return myAllergyList;

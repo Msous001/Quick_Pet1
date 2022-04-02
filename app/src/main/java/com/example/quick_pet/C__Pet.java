@@ -22,6 +22,9 @@ public class C__Pet {
         this.intact = intact;
         this.imageUrl = imageUrl;
     }
+    public C__Pet(){
+
+    }
 
 
     public String getName() {

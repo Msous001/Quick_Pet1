@@ -34,7 +34,10 @@ public class Add_Surgery extends AppCompatActivity {
         notes = (EditText) findViewById(R.id.et_addSurgery_note);
 
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addSurgery);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Surgery.this, Main_menu.class)));
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Surgery.this, Main_menu.class));
+            finish();
+        });
 
         calendar_newSurgery = (ImageView) findViewById(R.id.calendar_date_addSurgery);
         calendar_newSurgery.setOnClickListener(view -> {
@@ -80,21 +83,34 @@ public class Add_Surgery extends AppCompatActivity {
             String newMed2 = med2.getText().toString();
             String newNote = notes.getText().toString();
 
-            if(TextUtils.isEmpty(newName)){newName = "Not Defined";}
-            if(TextUtils.isEmpty(newDates)){newDates = "Not Defined";}
-            if(TextUtils.isEmpty(newMed1)){newMed1 = "Not Defined";}
-            if(TextUtils.isEmpty(newMed2)){newMed2 = "";}
-            if(TextUtils.isEmpty(newNote)){newNote = "";}
+            if(TextUtils.isEmpty(newName)) {
+                name.setError("This field is required");
+                name.requestFocus();
+                if (TextUtils.isEmpty(newDates)) {
+                    dates.setError("This field is required");
+                    dates.requestFocus();
+                }
+                if (TextUtils.isEmpty(newMed1)) {
+                    newMed1 = "Not Defined";
+                }
+                if (TextUtils.isEmpty(newMed2)) {
+                    newMed2 = "";
+                }
+                if (TextUtils.isEmpty(newNote)) {
+                    newNote = "";
+                }
 
-            Intent i = new Intent(view.getContext(), List__Surgery.class);
-            i.putExtra("edit", positionToEdit);
-            i.putExtra("name", newName);
-            i.putExtra("date", newDates);
-            i.putExtra("med1", newMed1);
-            i.putExtra("med2", newMed2);
-            i.putExtra("note", newNote);
-            startActivity(i);
+                Intent i = new Intent(view.getContext(), List__Surgery.class);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("date", newDates);
+                i.putExtra("med1", newMed1);
+                i.putExtra("med2", newMed2);
+                i.putExtra("note", newNote);
+                startActivity(i);
 
+            }
         });
+
     }
 }
