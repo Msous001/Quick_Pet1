@@ -24,7 +24,7 @@ public class Add_HealthCondition extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Health Condition";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
     @Override
@@ -51,7 +51,7 @@ public class Add_HealthCondition extends AppCompatActivity {
         //matching the variables with the elements in xml file
         btnNext = (Button) findViewById(R.id.next_btn_addHealth);
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         //receive information for editing process

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/link_water"
+    tools:context=".Add_Surgery">
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutSurgery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
+
+        <ImageView
+            android:id="@+id/back_arrow_addSurgery"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            app:srcCompat="@drawable/arrow_back_grey"
+            android:contentDescription="@string/arrow" />
+
+        <ImageView
+            android:id="@+id/image_vet_tool"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:scaleX="-1"
+            app:srcCompat="@drawable/vet"
+            android:contentDescription="@string/veterinarian_tool" />
+
+        <TextView
+            android:id="@+id/tv_title_newSurgery"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/brown_border"
+            android:fontFamily="@font/roboto_mono_italic"
+            android:paddingLeft="8dp"
+            android:paddingTop="0dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="0dp"
+            android:text="@string/adding_a_surgery"
+            android:textAlignment="center"
+            android:textColor="@color/link_water"
+            android:textSize="18sp" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/white_border"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tv_addSurgery_name"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/name"
+                android:textAlignment="textEnd"
+                android:textStyle="bold"
+                android:textColor="@color/black"/>
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@color/zambezi" />
+
+
+            <EditText
+                android:id="@+id/et_addSurgery_name"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:inputType="textPersonName" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/white_border"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tv_addSurgery_date"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/date"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@color/zambezi"/>
+
+            <EditText
+                android:id="@+id/et_addSurgery_date"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:inputType="date"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:drawableEnd="@drawable/calen_dar"
+                android:textSize="16sp" />
+            
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/white_border"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tv_addSurgery_med1"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/medic1"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@color/zambezi"/>
+
+            <EditText
+                android:id="@+id/et_addSurgery_med1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:inputType="textPersonName"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/white_border"
+            android:padding="4dp">
+
+            <TextView
+                android:id="@+id/tv_addSurgery_med2"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/medic2"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@color/zambezi"/>
+
+            <EditText
+                android:id="@+id/et_addSurgery_med2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:inputType="textPersonName"
+                android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/white_border"
+            android:padding="4dp"
+            android:layout_marginBottom="40dp">
+
+            <TextView
+                android:id="@+id/tv_addSurgery_note"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:fontFamily="@font/roboto"
+                android:paddingStart="0dp"
+                android:paddingEnd="4dp"
+                android:text="@string/note"
+                android:textAlignment="textEnd"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_marginRight="3dp"
+                android:background="@color/zambezi"/>
+
+            <EditText
+                android:id="@+id/et_addSurgery_note"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:inputType="textPersonName"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor" />
+        </TableRow>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/next_btn_addSurgery"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/green_button"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/LinearLayoutSurgery"
+        tools:ignore="TextContrastCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

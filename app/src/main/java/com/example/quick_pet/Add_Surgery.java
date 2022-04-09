@@ -9,6 +9,12 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -20,12 +26,20 @@ public class Add_Surgery extends AppCompatActivity {
     EditText name, dates, med1, med2, notes;
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
+    private static final String TAG = "Add Surgery";
+    FirebaseFirestore db;
+    private static String  pet_name;
+    private static String dbSalt;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_surgery);
+
+        db = FirebaseFirestore.getInstance();
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
 
         name = (EditText) findViewById(R.id.et_addSurgery_name);
         dates = (EditText) findViewById(R.id.et_addSurgery_date);
@@ -54,6 +68,10 @@ public class Add_Surgery extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
+
+        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+            pet_name = c.getName();
+        }
         Bundle incomingIntent = getIntent().getExtras();
         if(incomingIntent != null){
             String S_name = incomingIntent.getString("name");
@@ -86,10 +104,12 @@ public class Add_Surgery extends AppCompatActivity {
             if(TextUtils.isEmpty(newName)) {
                 name.setError("This field is required");
                 name.requestFocus();
-                if (TextUtils.isEmpty(newDates)) {
+            }
+                else if (TextUtils.isEmpty(newDates)) {
                     dates.setError("This field is required");
                     dates.requestFocus();
                 }
+                else{
                 if (TextUtils.isEmpty(newMed1)) {
                     newMed1 = "Not Defined";
                 }
@@ -99,6 +119,31 @@ public class Add_Surgery extends AppCompatActivity {
                 if (TextUtils.isEmpty(newNote)) {
                     newNote = "";
                 }
+
+                C__Surgery ca = new C__Surgery(pet_name, newName,newDates,newMed1,newMed2,newNote);
+                if(newName.length() > 2){
+                    dbSalt = newName.substring(0,2);
+                }else{
+                    dbSalt = newName;
+                }
+                String separator = " ";
+                String dbDates;
+                int sep = newDates.lastIndexOf(separator);
+                dbDates= newDates.substring(0,sep);
+                dbSalt = dbSalt + dbDates;
+                //Connecting to the database
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+                db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
+                        .document(pet_name).collection("Surgery").document("S-"+dbSalt)
+                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Surgery Added", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
 
                 Intent i = new Intent(view.getContext(), List__Surgery.class);
                 i.putExtra("edit", positionToEdit);

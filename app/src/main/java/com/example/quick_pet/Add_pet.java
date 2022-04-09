@@ -19,7 +19,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +45,6 @@ public class Add_pet extends AppCompatActivity {
     private AutoCompleteTextView editT;
     private static Boolean press = true;
     private int mDate, mMonth, mYear;
-    TextView selection;
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Pet";
     FirebaseFirestore db;
@@ -121,7 +119,6 @@ public class Add_pet extends AppCompatActivity {
         gender = (Spinner) findViewById(R.id.spinnerGender);
         colour = (Spinner) findViewById(R.id.spinnerColour);
         intact = (Spinner) findViewById(R.id.spinnerIntact);
-        selection = (TextView)findViewById(R.id.adapter);
         db = FirebaseFirestore.getInstance();
 
         //back button
@@ -162,7 +159,7 @@ public class Add_pet extends AppCompatActivity {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
                     editT.setAdapter(adapter);
                     editT.getText();
-                    //selection = (String) editT.getAdapter().getItem(position);
+
                 }
                 if (position == 2) {
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
@@ -250,7 +247,6 @@ public class Add_pet extends AppCompatActivity {
 
 
         //-- date picker from a calendar and set to with the format dd-mmm-yyyy
-        calendar = (ImageView) findViewById(R.id.calendar);
         dateTxt.setOnClickListener(v -> {
             final Calendar cal = Calendar.getInstance();
             mDate = cal.get(Calendar.DATE);

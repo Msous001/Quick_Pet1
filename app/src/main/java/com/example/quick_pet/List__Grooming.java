@@ -32,7 +32,6 @@ public class List__Grooming extends AppCompatActivity {
     private static String  pet_name;
     FirebaseFirestore db;
     private static String dbSalt;
-    private static String JSON_URL;
     private static final String TAG = "List_Grooming";
 
     @Override
@@ -43,8 +42,8 @@ public class List__Grooming extends AppCompatActivity {
         myGrooming= ((C__GlobalVariable) this.getApplication()).getMyGrooming();
         myGrooming.myGroomingList = new ArrayList<>();
 
-
         db = FirebaseFirestore.getInstance();
+
         back_arrow = ((ImageView) findViewById(R.id.back_arrowGr));
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(List__Grooming.this, Main_menu.class));

@@ -43,12 +43,12 @@ public class Add_Appointment extends AppCompatActivity {
     Button btnNext;
     private EditText et_Name, et_date, et_time, et_direction, et_reminder;
     private Spinner type;
-    ImageView calendar_date_app, image_time_picker, back_arrow;
+    ImageView back_arrow;
     CircleImageView circleImageView;
     List<C__Appointment> appointmentList;
     C__GlobalVariable myApplication = (C__GlobalVariable) this.getApplication();
     private C__CurrentPet_MyCurrentPet myCurrentPet;
-    private static String  pet_name;
+    private static String pet_name;
     private int mDate, mMonth, mYear, mHour, mMinute;
     private int id;
     FirebaseFirestore db;
@@ -75,8 +75,7 @@ public class Add_Appointment extends AppCompatActivity {
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
 
         //setting the calendar picker
-        calendar_date_app = (ImageView) findViewById(R.id.calendar_app_date);
-        calendar_date_app.setOnClickListener(v -> {
+        et_Name.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -93,8 +92,7 @@ public class Add_Appointment extends AppCompatActivity {
             datePickerDialog.show();
         });
         // setting the time picker
-        image_time_picker = (ImageView) findViewById(R.id.imageViewTime);
-        image_time_picker.setOnClickListener(view -> {
+        et_time.setOnClickListener(view -> {
             TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
                 mHour = selectedHour;
                 mMinute = selectedMinute;
@@ -113,7 +111,7 @@ public class Add_Appointment extends AppCompatActivity {
             startActivity(new Intent(getApplicationContext(), List__Appointment.class));
         });
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             circleImageView.setImageURI(Uri.parse(c.getImageUrl()));
             pet_name = c.getName();
 
@@ -149,33 +147,32 @@ public class Add_Appointment extends AppCompatActivity {
             try {
                 if (id >= 0) {
                     //updating/ editing data
-                    C__Appointment updateApp = new C__Appointment(id,pet_name, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
+                    C__Appointment updateApp = new C__Appointment(id, pet_name, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
                     appointmentList.set(id, updateApp);
                 } else {
                     //adding new data
                     int nextId = C__GlobalVariable.getNextId();
-                    C__Appointment newAppoint = new C__Appointment(nextId, pet_name,type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
+                    C__Appointment newAppoint = new C__Appointment(nextId, pet_name, type.getSelectedItem().toString(), et_Name.getText().toString(), et_date.getText().toString(), et_time.getText().toString(), et_direction.getText().toString(), et_reminder.getText().toString());
                     //appointmentList.add(newAppoint);// adding the new appointment to the array
                     C__GlobalVariable.setNextId(nextId++);
 
+                    if (et_Name.getText().toString().length() > 2) {
+                        dbSalt = et_Name.getText().toString().substring(0, 2);
 
-                    if( et_Name.getText().toString().length() > 2){
-                        dbSalt = et_Name.getText().toString().substring(0,2);
-
-                    }else{
+                    } else {
                         dbSalt = et_Name.getText().toString();
                     }
                     String separator = " ";
                     String dbDates;
                     int sep = et_Name.getText().toString().lastIndexOf(separator);
-                    dbDates= et_Name.getText().toString().substring(0,sep);
+                    dbDates = et_Name.getText().toString().substring(0, sep);
                     dbSalt = dbSalt + dbDates;
                     FirebaseAuth fAuth = FirebaseAuth.getInstance();
                     FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
 
                     db.collection("Users").document(firebaseUser.getUid()).collection("Pets").document(pet_name).collection("Appointment")
-                            .document("Ap-"+dbSalt)
+                            .document("Ap-" + dbSalt)
                             .set(newAppoint).addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override
                         public void onSuccess(Void unused) {
@@ -183,12 +180,6 @@ public class Add_Appointment extends AppCompatActivity {
                         }
                     });
 
-                    //calling the database
-//                    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//                    FirebaseUser firebaseUser = fAuth.getCurrentUser();
-//                    //setting the database reference
-//                    DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-//                    appReference.child("Appointment").push().setValue(newAppoint);
                 }
                 startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
                 finish();

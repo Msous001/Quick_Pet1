@@ -27,7 +27,7 @@ public class Add_Grooming extends AppCompatActivity {
     //variables
     Button btnNext;
     private EditText et_place, et_date, et_time, et_direction;
-    ImageView calendar_date_app, image_time_picker, back_arrow;
+    ImageView back_arrow;
     private int mDate, mMonth, mYear, mHour, mMinute;
     int positionToEdit = -1;
     private C__CurrentPet_MyCurrentPet myCurrentPet;
@@ -58,8 +58,7 @@ public class Add_Grooming extends AppCompatActivity {
             finish();
         });
         //setting the calendar picker
-        calendar_date_app = ((ImageView)findViewById(R.id.calendar_date_grooming));
-        calendar_date_app.setOnClickListener(v -> {
+        et_date.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -76,8 +75,7 @@ public class Add_Grooming extends AppCompatActivity {
             datePickerDialog.show();
         });
         // setting the time picker
-        image_time_picker = ((ImageView) findViewById(R.id.calendar_time_grooming));
-        image_time_picker.setOnClickListener(view -> {
+        et_time.setOnClickListener(view -> {
             TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
                 mHour = selectedHour;
                 mMinute = selectedMinute;
@@ -166,13 +164,6 @@ public class Add_Grooming extends AppCompatActivity {
 
                     }
                 });
-
-
-
-
-
-
-
                 // I use Intents to transfer data from one Activity to another
                 Intent i = new Intent(view.getContext(), List__Grooming.class);
                 i.putExtra("edit", positionToEdit);

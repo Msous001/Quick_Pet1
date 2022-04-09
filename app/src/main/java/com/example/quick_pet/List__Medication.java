@@ -8,10 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,53 +28,64 @@ public class List__Medication extends AppCompatActivity {
     Button btn_ok;
     C__MedicationAdapter adapter;
     C__Medication_MyMedication myMedication;
-    List<C__CurrentPet> currentPetList;
-    private static String  pet_name;
+    C__CurrentPet_MyCurrentPet myCurrentPet;
+    FirebaseFirestore db;
+    private static String pet_name;
+    private static String dbSalt;
+    private static final String TAG = "List_Health";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_medication);
 
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
+        myMedication = ((C__GlobalVariable) this.getApplication()).getMyMedication();
+        myMedication.myMedicationList = new ArrayList<>();
+
+        db = FirebaseFirestore.getInstance();
+
         back_Arrow = (ImageView) findViewById(R.id.back_arrowMed);
         lv_medication = (ListView) findViewById(R.id.listView_Medication);
         btn_ok = (Button) findViewById(R.id.btn_list_medication);
 
-       // currentPetList = C__GlobalVariable.getCurrentPets();
+        // currentPetList = C__GlobalVariable.getCurrentPets();
 
-        for(C__CurrentPet c : currentPetList){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
-        myMedication = ((C__GlobalVariable) this.getApplication()).getMyMedication();
-        myMedication.myMedicationList = new ArrayList<>();
+
         adapter = new C__MedicationAdapter(List__Medication.this, myMedication);
         lv_medication.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
         Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null){
+        if (incomingMessages != null) {
             String name = incomingMessages.getString("name");
             String date = incomingMessages.getString("date");
             String reason = incomingMessages.getString("reason");
             int positionEdited = incomingMessages.getInt("edit");
 
-            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-
-            C__Medication m = new C__Medication(pet_name, name, date, reason);
-            if (positionEdited > -1){
-                myMedication.getMyMedicationList().remove(positionEdited);
-                //here i need to call the database to delete this item
-
-            }
-            myMedication.getMyMedicationList().add(m);
-
-            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-            appReference.child("Medication").push().setValue(m);
-
-            Collections.sort(myMedication.getMyMedicationList());
-            adapter.notifyDataSetChanged();
+//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
+//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
+//
+//            C__Medication m = new C__Medication(pet_name, name, date, reason);
+//            if (positionEdited > -1){
+//                myMedication.getMyMedicationList().remove(positionEdited);
+//                //here i need to call the database to delete this item
+//
+//            }
+//            myMedication.getMyMedicationList().add(m);
+//
+//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
+//            appReference.child("Medication").push().setValue(m);
+//
+//            Collections.sort(myMedication.getMyMedicationList());
+//            adapter.notifyDataSetChanged();
         }
         lv_medication.setOnItemClickListener((adapterView, view, position, l) -> editMedication(position));
+        EventChangeListener();
+
         btn_ok.setOnClickListener(view -> {
             startActivity(new Intent(List__Medication.this, Add_Medication.class));
             finish();
@@ -80,6 +95,25 @@ public class List__Medication extends AppCompatActivity {
             finish();
         });
     }
+
+    private void EventChangeListener() {
+        FirebaseAuth fAuth = FirebaseAuth.getInstance();
+        FirebaseUser firebaseUser = fAuth.getCurrentUser();
+        db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
+                .document(pet_name).collection("Medication").whereEqualTo("id", pet_name)
+                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                    myMedication.getMyMedicationList().add(snapshot.toObject(C__Medication.class));
+
+                }
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
+
+
 
     private void editMedication(int position) {
 
@@ -92,3 +126,4 @@ public class List__Medication extends AppCompatActivity {
         startActivity(i);
     }
 }
+

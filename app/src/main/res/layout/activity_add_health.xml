@@ -44,20 +44,20 @@
             android:layout_marginEnd="24dp"
             android:background="@drawable/brown_border"
             android:fontFamily="@font/roboto_mono_italic"
+            android:text="@string/adding_health_condition"
             android:paddingLeft="8dp"
             android:paddingTop="0dp"
             android:paddingRight="8dp"
             android:paddingBottom="0dp"
-            android:text="Adding Health Condition"
             android:textAlignment="center"
             android:textColor="@color/link_water"
             android:textSize="18sp" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
             android:paddingStart="4dp"
@@ -67,13 +67,14 @@
 
             <TextView
                 android:id="@+id/tv_addHealth_name"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
-                android:text="Condition Name"
+                android:text="@string/condition_name"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -89,19 +90,22 @@
             <EditText
                 android:id="@+id/et_addHealth_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
                 android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
             android:paddingStart="4dp"
@@ -111,13 +115,14 @@
 
             <TextView
                 android:id="@+id/tv_addHealth_effects"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
-                android:text="Effects"
+                android:text="@string/effects"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -133,20 +138,23 @@
             <EditText
                 android:id="@+id/et_addHealth_effects"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
                 android:inputType="textPersonName" />
         </TableRow>
 
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
             android:paddingStart="4dp"
@@ -156,14 +164,13 @@
 
             <TextView
                 android:id="@+id/tv_addHealth_symptom"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/symptoms"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -179,24 +186,22 @@
             <EditText
                 android:id="@+id/et_addHealth_symptoms"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:labelFor="@id/editDirection"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
+                android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:inputType="textPersonName"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
             android:paddingStart="4dp"
@@ -207,14 +212,13 @@
 
             <TextView
                 android:id="@+id/tv_addHealth_medication"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_width="120dp"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/medication"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -230,16 +234,15 @@
             <EditText
                 android:id="@+id/et_addHealth_medication"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
-                android:inputType="textPersonName"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
+                android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:inputType="textPersonName"/>
         </TableRow>
 
     </LinearLayout>
