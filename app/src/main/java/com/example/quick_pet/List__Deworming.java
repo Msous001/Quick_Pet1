@@ -6,9 +6,11 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -28,8 +30,8 @@ import java.util.Collections;
 public class List__Deworming extends AppCompatActivity {
 
     Button btnadd;
-    ImageView back_arrow, calendar_app_deworm;
-    TextView dates;
+    ImageView back_arrow;
+    EditText dates;
     private int mDate, mMonth, mYear;
     ListView lv_deworm;
     C__Deworming_MyDeworming myDeworming;
@@ -52,9 +54,8 @@ public class List__Deworming extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        dates = (TextView) findViewById(R.id.et_date_Deworming);
-        calendar_app_deworm = (ImageView) findViewById(R.id.calendar_Deworming);
-        calendar_app_deworm.setOnClickListener(view -> {
+        dates = (EditText) findViewById(R.id.et_date_Deworming);
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);

@@ -42,6 +42,7 @@
                 android:layout_centerInParent="true"
                 android:layout_marginTop="80dp"
                 android:contextClickable="true"
+                android:src="@drawable/camera_add"
                 app:civ_border_color="@color/green_button"
                 app:civ_border_width="20dp"
                 app:civ_circle_background_color="@color/green_button" />

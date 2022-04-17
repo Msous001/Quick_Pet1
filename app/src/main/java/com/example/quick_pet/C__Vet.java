@@ -15,31 +15,24 @@ public class C__Vet implements Comparable<C__Vet>{
         this.weight = weight;
     }
     public C__Vet(){}
-
     public String getId() {
         return id;
     }
-
     public void setId(String id) {
         this.id = id;
     }
-
     public String getName() {
         return Name;
     }
-
     public void setName(String name) {
         Name = name;
     }
-
     public String getDate() {
         return date;
     }
-
     public void setDate(String date) {
         this.date = date;
     }
-
     public String getDirection() {
         return direction;
     }

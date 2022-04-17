@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class Add_Vaccine extends AppCompatActivity {
 
     Button btnNext;
-    ImageView back_arrow, calendar_app_newVaccine;
+    ImageView back_arrow;
     EditText name, dates, vetName;
     int positionToEdit = -1;
     private C__CurrentPet_MyCurrentPet myCurrentPet;
@@ -55,8 +55,7 @@ public class Add_Vaccine extends AppCompatActivity {
             pet_name = c.getName();
         }
 
-        calendar_app_newVaccine = (ImageView) findViewById(R.id.calendar_date_addvaccine);
-        calendar_app_newVaccine.setOnClickListener(view -> {
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -131,10 +130,10 @@ public class Add_Vaccine extends AppCompatActivity {
                 });
 
                 Intent i = new Intent(view.getContext(), List__Vaccine.class);
-//                    i.putExtra("edit", positionToEdit);
-//                    i.putExtra("name", newName);
-//                    i.putExtra("date", newDates);
-//                    i.putExtra("vetName", newVetName);
+                    i.putExtra("edit", positionToEdit);
+                    i.putExtra("name", newName);
+                    i.putExtra("date", newDates);
+                    i.putExtra("vetName", newVetName);
                 startActivity(i);
                 finish();
             }

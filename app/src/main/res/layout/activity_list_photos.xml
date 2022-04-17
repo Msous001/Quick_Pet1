@@ -36,8 +36,8 @@
             android:layout_height="100dp"
             android:src="@drawable/dog1"
             android:layout_gravity="center"/>
-    </com.google.android.material.appbar.MaterialToolbar>
 
+    </com.google.android.material.appbar.MaterialToolbar>
 
     <GridView
         android:id="@+id/gridView"
@@ -52,7 +52,17 @@
         android:gravity="clip_horizontal"
         android:horizontalSpacing="20dp"
         android:numColumns="2"
-        android:verticalSpacing="10dp" />
+        android:verticalSpacing="10dp" >
+
+    </GridView>
+
+    <ProgressBar
+        android:id="@+id/progressBarPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:elevation="10dp"
+        android:visibility="invisible" />
 
 
     <Button
@@ -67,5 +77,7 @@
         android:textSize="16sp"
         app:backgroundTint="@null"
         android:layout_gravity="center"/>
+
+
 
 </LinearLayout>

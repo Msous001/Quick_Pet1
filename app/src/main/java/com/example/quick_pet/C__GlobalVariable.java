@@ -24,7 +24,7 @@ public class C__GlobalVariable extends Application {
     private C__CurrentPet_MyCurrentPet myCurrentPet= new C__CurrentPet_MyCurrentPet();
     private C__Pet_MyPets myPets = new C__Pet_MyPets();
 
-    private static List<C__Pet> petList;
+    private static List<C__Pet> petList = new ArrayList<>();
     //private static List<C__CurrentPet> currentPets = new ArrayList<>();
 
     private static List<C__Appointment> appointmentsList;

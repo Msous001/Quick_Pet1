@@ -50,7 +50,6 @@
 
         <TextView
             android:id="@+id/title"
-            style="@style/label"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/brown_border"
@@ -74,7 +73,6 @@
 
             <TextView
                 android:id="@+id/typeInput"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -112,7 +110,6 @@
 
             <TextView
                 android:id="@+id/nameInput"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -158,7 +155,6 @@
 
             <TextView
                 android:id="@+id/datetextView"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -202,7 +198,6 @@
 
             <TextView
                 android:id="@+id/timetextView"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -248,7 +243,6 @@
 
             <TextView
                 android:id="@+id/direction"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
@@ -293,7 +287,6 @@
 
             <TextView
                 android:id="@+id/Reminder"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"

@@ -128,12 +128,12 @@ public class List__Grooming extends AppCompatActivity {
 
     private void editGrooming(int position) {
         Intent i = new Intent(getApplicationContext(),Add_Grooming.class);
-//        C__Grooming g = myGrooming.getMyGroomingList().get(position);
-//        i.putExtra("place", g.getPlace());
-//        i.putExtra("date", g.getDate());
-//        i.putExtra("time", g.getTime());
-//        i.putExtra("direction", g.getDirection());
-//        i.putExtra("edit", position);
+        C__Grooming g = myGrooming.getMyGroomingList().get(position);
+        i.putExtra("place", g.getPlace());
+        i.putExtra("date", g.getDate());
+        i.putExtra("time", g.getTime());
+        i.putExtra("direction", g.getDirection());
+        i.putExtra("edit", position);
         startActivity(i);
 
     }

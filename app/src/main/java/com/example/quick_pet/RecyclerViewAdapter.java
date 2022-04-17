@@ -18,17 +18,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private List<C__Appointment> appointmentList;
     Context context;
 
-   public RecyclerViewAdapter(List<C__Appointment> appointmentList, Context context) {
-       this.appointmentList = appointmentList;
-       this.context = context;
-   }
+    public RecyclerViewAdapter(List<C__Appointment> appointmentList, Context context) {
+        this.appointmentList = appointmentList;
+        this.context = context;
+    }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-       View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_appointment, parent,false);
-       MyViewHolder holder = new MyViewHolder(view);
-       return holder;
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_appointment, parent, false);
+        MyViewHolder holder = new MyViewHolder(view);
+        return holder;
     }
 
     @Override
@@ -37,25 +37,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.tv_date.setText(appointmentList.get(position).getDate());
         holder.tv_time.setText(appointmentList.get(position).getTime());
         holder.tv_placeName.setText(appointmentList.get(position).getName());
-        holder.parentLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, Add_Appointment.class);
-                intent.putExtra("id",appointmentList.get(position).getId());
-                context.startActivity(intent);
-            }
+        holder.parentLayout.setOnClickListener(view -> {
+            Intent intent = new Intent(context, Add_Appointment.class);
+            intent.putExtra("id", appointmentList.get(position).getId());
+            context.startActivity(intent);
         });
     }
 
     @Override
-    public int getItemCount(){return appointmentList.size();}
+    public int getItemCount() {
+        return appointmentList.size();
+    }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
-       TextView tv_date;
-       TextView tv_time;
-       TextView tv_placeName;
-       TextView tv_type;
-       ConstraintLayout parentLayout;
+    public class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tv_date;
+        TextView tv_time;
+        TextView tv_placeName;
+        TextView tv_type;
+        ConstraintLayout parentLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,6 +65,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             parentLayout = itemView.findViewById(R.id.oneLineAppointmentLayout);
         }
     }
+
     public List<C__Appointment> getAppointmentList() {
         return appointmentList;
     }

@@ -24,7 +24,7 @@ import java.util.Calendar;
 public class Add_Vet extends AppCompatActivity {
 
     Button btnNext;
-    ImageView back_arrow, calendar_app_newVet;
+    ImageView back_arrow;
     private EditText name, dates, direction, weight;
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
@@ -50,8 +50,7 @@ public class Add_Vet extends AppCompatActivity {
 
         btnNext = (Button) findViewById(R.id.next_btn_newVet);
 
-        calendar_app_newVet = findViewById(R.id.calendar_date_newVet);
-        calendar_app_newVet.setOnClickListener(view -> {
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -87,32 +86,32 @@ public class Add_Vet extends AppCompatActivity {
         for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
             pet_name = c.getName();
         }
-//        Bundle incomingIntent = getIntent().getExtras();
-//        if (incomingIntent != null) {
-//
-//            String E_name = incomingIntent.getString("name");
-//            String E_date = incomingIntent.getString("date");
-//            String E_direction = incomingIntent.getString("direction");
-//            float E_weight = incomingIntent.getFloat("weight");
-//            positionToEdit = incomingIntent.getInt("edit");
-//
-//            if (TextUtils.isEmpty(E_name)) {
-//                E_name = "Not Defined";
-//            }
-//            if (TextUtils.isEmpty(E_date)) {
-//                E_date = "Not Defined";
-//            }
-//            if (TextUtils.isEmpty(E_direction)) {
-//                E_direction = "Not Defined";
-//            }
-//            if (TextUtils.isEmpty(String.valueOf(E_weight))) {
-//                E_weight = 0;
-//            }
-//            name.setText(E_name);
-//            dates.setText(E_date);
-//            direction.setText(E_direction);
-//            weight.setText(Double.toString(E_weight));
-  //      }
+        Bundle incomingIntent = getIntent().getExtras();
+        if (incomingIntent != null) {
+
+            String E_name = incomingIntent.getString("name");
+            String E_date = incomingIntent.getString("date");
+            String E_direction = incomingIntent.getString("direction");
+            float E_weight = incomingIntent.getFloat("weight");
+            positionToEdit = incomingIntent.getInt("edit");
+
+            if (TextUtils.isEmpty(E_name)) {
+                E_name = "Not Defined";
+            }
+            if (TextUtils.isEmpty(E_date)) {
+                E_date = "Not Defined";
+            }
+            if (TextUtils.isEmpty(E_direction)) {
+                E_direction = "Not Defined";
+            }
+            if (TextUtils.isEmpty(String.valueOf(E_weight))) {
+                E_weight = 0;
+            }
+            name.setText(E_name);
+            dates.setText(E_date);
+            direction.setText(E_direction);
+            weight.setText(Double.toString(E_weight));
+      }
         btnNext.setOnClickListener(view -> {
             String newName = name.getText().toString();
             String newDates = dates.getText().toString();
@@ -161,11 +160,11 @@ public class Add_Vet extends AppCompatActivity {
                     }
                 });
                 Intent i = new Intent(view.getContext(), List__Vet.class);
-//                i.putExtra("edit", positionToEdit);
-//                i.putExtra("name", newName);
-//                i.putExtra("date", newDates);
-//                i.putExtra("direction", newDirection);
-//                i.putExtra("weight", newWeight);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("date", newDates);
+                i.putExtra("direction", newDirection);
+                i.putExtra("weight", newWeight);
 
                 startActivity(i);
             }

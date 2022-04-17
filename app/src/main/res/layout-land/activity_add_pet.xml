@@ -40,6 +40,7 @@
                 android:layout_height="80sp"
                 android:layout_centerInParent="true"
                 android:contextClickable="true"
+                android:src="@drawable/camera_add"
                 app:civ_border_color="@color/green_button"
                 app:civ_border_width="20dp"
                 app:civ_circle_background_color="@color/green_button" />
@@ -140,6 +141,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="0dp"
+                    android:focusableInTouchMode="false"
                     android:layout_marginEnd="8dp"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </TableRow>
@@ -182,6 +184,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="0dp"
                     android:layout_marginEnd="8dp"
+                    android:focusableInTouchMode="false"
                     android:entries="@array/gender"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
@@ -269,6 +272,7 @@
                 android:background="@android:color/transparent"
                 android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
+                android:focusableInTouchMode="false"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:padding="4dp"
@@ -311,6 +315,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
+                android:focusableInTouchMode="false"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/petColour"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
@@ -350,6 +355,7 @@
                 android:layout_width="220dp"
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
+                android:focusableInTouchMode="false"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/intact" />
 
@@ -369,7 +375,7 @@
             app:backgroundTint="@null"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="TextContrastCheck" />
+            tools:ignore="RtlHardcoded,TextContrastCheck" />
 
         <ProgressBar
             android:id="@+id/progressBar"

@@ -1,7 +1,5 @@
 package com.example.quick_pet;
 
-import android.net.Uri;
-
 public class C__Pet {
     private String name;
     private String type;
@@ -23,74 +21,55 @@ public class C__Pet {
         this.imageUrl = imageUrl;
     }
     public C__Pet(){
-
     }
-
-
     public String getName() {
         return name;
     }
-
     public void setName(String name) {
         this.name = name;
     }
-
     public String getType() {
         return type;
     }
-
     public void setType(String type) {
         this.type = type;
     }
-
     public String getGender() {
         return gender;
     }
-
     public void setGender(String gender) {
         this.gender = gender;
     }
-
     public String getBreed() {
         return breed;
     }
-
     public void setBreed(String breed) {
         this.breed = breed;
     }
-
     public String getBod() {
         return bod;
     }
-
     public void setBod(String bod) {
         this.bod = bod;
     }
-
     public String getColour() {
         return colour;
     }
-
     public void setColour(String colour) {
         this.colour = colour;
     }
-
     public String getIntact() {
         return intact;
     }
-
     public void setIntact(String intact) {
         this.intact = intact;
     }
-
     public String getImageUrl() {
         return imageUrl;
     }
-
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
     }
-
     @Override
     public String toString() {
         return "pet{" +

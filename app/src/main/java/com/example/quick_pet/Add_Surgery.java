@@ -22,7 +22,7 @@ import java.util.Calendar;
 public class Add_Surgery extends AppCompatActivity {
 
     Button btnNext;
-    ImageView back_arrow, calendar_newSurgery;
+    ImageView back_arrow;
     EditText name, dates, med1, med2, notes;
     int positionToEdit = -1;
     private int mDate, mMonth, mYear;
@@ -53,8 +53,7 @@ public class Add_Surgery extends AppCompatActivity {
             finish();
         });
 
-        calendar_newSurgery = (ImageView) findViewById(R.id.calendar_date_addSurgery);
-        calendar_newSurgery.setOnClickListener(view -> {
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);

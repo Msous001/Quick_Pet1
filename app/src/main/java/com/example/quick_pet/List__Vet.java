@@ -77,21 +77,21 @@ public class List__Vet extends AppCompatActivity {
         Collections.sort(myVets.getMyVetsList());
         adapter.notifyDataSetChanged();
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         EventChangeListener();
         lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));
 
 
-//        Bundle incomingMessages = getIntent().getExtras();
-//        if (incomingMessages != null) {
-//            String name = incomingMessages.getString("name");
-//            String date = incomingMessages.getString("date");
-//            String direction = incomingMessages.getString("direction");
-//            String weight = incomingMessages.getString("weight");
-//            int positionEdited = incomingMessages.getInt("edit");
-//
+        Bundle incomingMessages = getIntent().getExtras();
+        if (incomingMessages != null) {
+            String name = incomingMessages.getString("name");
+            String date = incomingMessages.getString("date");
+            String direction = incomingMessages.getString("direction");
+            String weight = incomingMessages.getString("weight");
+            int positionEdited = incomingMessages.getInt("edit");
+
 ////            FirebaseAuth fAuth = FirebaseAuth.getInstance();
 ////            FirebaseUser firebaseUser = fAuth.getCurrentUser();
 ////            ca = new C__Vet(name, date, direction, Double.parseDouble(weight));
@@ -103,21 +103,20 @@ public class List__Vet extends AppCompatActivity {
 //                dbSalt = name.substring(0,2);
 //            }else{
 //                dbSalt = name;
-//            }
-//            String separator = " ";
-//            String dbDates;
-//            int sep = date.lastIndexOf(separator);
-//             dbDates= date.substring(0,sep);
-//             dbSalt = dbSalt + dbDates;
+            //          }
+            String separator = " ";
+            String dbDates;
+            int sep = date.lastIndexOf(separator);
+            dbDates = date.substring(0, sep);
+            dbSalt = dbSalt + dbDates;
 
 
+            btn_add.setOnClickListener(view -> {
+                startActivity(new Intent(List__Vet.this, Add_Vet.class));
+                finish();
+            });
 
-
-        btn_add.setOnClickListener(view -> {
-            startActivity(new Intent(List__Vet.this, Add_Vet.class));
-            finish();
-        });
-
+        }
     }
 
     private void EventChangeListener() {

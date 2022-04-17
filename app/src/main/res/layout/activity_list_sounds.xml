@@ -37,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:layout_marginEnd="32dp"
-            android:text="Sounds"
+            android:text="@string/sounds"
             android:textColor="@color/white_lila"
             android:textSize="24sp"
             android:textStyle="italic" />
@@ -64,7 +64,7 @@
         android:layout_marginStart="100dp"
         android:layout_marginTop="32dp"
         android:layout_marginEnd="100dp"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="200dp"
         android:divider="@android:color/transparent"
         android:dividerHeight="10dp"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <resources>
+        <color name="white_lila">#4F514F</color>
+        <color name="green_button">#404544</color>
+        <color name="link_water">#4F514F</color>
+        <color name="zambezi">#3E3C3C</color>
+        <color name="blue">#CAC3F3</color>
+        <color name="black">#F6F5F5</color>
+        <color name="white">#0E0E0E</color>
+        <color name ="link">#430245</color>
+        <color name ="red">#C68F8F</color>
+        <color name="lightgrey">#393737</color>
+        <color name="grey">#EAE4E4</color>
+
+        <color name="colorPrimary">#D8DCF4</color>
+        <color name="colorPrimaryDark">#D0D5EF</color>
+        <color name="colorAccent">#CAAFB9</color>
+        <color name="gradient_start">#D6DAEF</color>
+        <color name="gradient_end">#DED8E8</color>
+        <color name="profile_desc">#1010FA</color>
+        <color name="bg_meta_container">#FAF7F7</color>
+        <color name="profile_default_tint">#D50202</color>
+    </resources>

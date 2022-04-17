@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,79 +7,78 @@
     android:background="@color/link_water"
     tools:context=".Add_HealthCondition">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <LinearLayout
+        android:id="@+id/LinearLayoutAddHealth"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="24dp"
+        android:background="@android:color/transparent"
+        android:orientation="vertical"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-    <ImageView
-        android:id="@+id/back_arrow_addHealth"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_alignParentStart="true"
-        android:contentDescription="@string/arrow"
-        app:srcCompat="@drawable/arrow_back_grey" />
 
-    <ImageView
-        android:id="@+id/image_vet_tool"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="@string/veterinarian_tool"
-        app:srcCompat="@drawable/vet" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="10dp">
 
-        <LinearLayout
-            android:id="@+id/LinearLayoutAddHealth"
+            <ImageView
+                android:id="@+id/back_arrow_addHealth"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:contentDescription="@string/arrow"
+                app:srcCompat="@drawable/arrow_back_grey" />
+
+            <ImageView
+                android:id="@+id/image_vet_tool"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/veterinarian_tool"
+                app:srcCompat="@drawable/vet" />
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tv_title_addHealth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="100dp"
-            android:background="@android:color/transparent"
-            android:orientation="vertical">
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:background="@drawable/brown_border"
+            android:fontFamily="@font/roboto_mono_italic"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:text="@string/adding_health_condition"
+            android:textAlignment="center"
+            android:textColor="@color/link_water"
+            android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/tv_title_addHealth"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="24dp"
-                android:background="@drawable/brown_border"
-                android:fontFamily="@font/roboto_mono_italic"
-                android:paddingLeft="8dp"
-                android:paddingTop="0dp"
-                android:paddingRight="8dp"
-                android:paddingBottom="0dp"
-                android:text="@string/adding_health_condition"
-                android:textAlignment="center"
-                android:textColor="@color/link_water"
-                android:textSize="18sp" />
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/white_border"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp">
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/tv_addHealth_name"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto"
-                    android:paddingStart="0dp"
-                    android:paddingTop="7dp"
-                    android:paddingEnd="4dp"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
                     android:text="@string/condition_name"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
@@ -96,10 +94,8 @@
 
                 <EditText
                     android:id="@+id/et_addHealth_name"
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="8dp"
                     android:background="@android:color/transparent"
                     android:ems="10"
                     android:importantForAutofill="no"
@@ -111,23 +107,17 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/white_border"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp">
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/tv_addHealth_effects"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto"
                     android:paddingStart="0dp"
-                    android:paddingTop="7dp"
                     android:paddingEnd="4dp"
                     android:text="@string/effects"
                     android:textAlignment="textEnd"
@@ -155,23 +145,22 @@
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
+        </TableRow>
 
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TableRow
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
                 android:background="@drawable/white_border"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp">
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/tv_addHealth_symptom"
-                    android:layout_width="120dp"
+                    android:layout_width="100dp"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto"
@@ -192,12 +181,9 @@
 
                 <EditText
                     android:id="@+id/et_addHealth_symptoms"
-                    android:layout_width="match_parent"
+                    android:layout_width="270dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginEnd="8dp"
                     android:background="@android:color/transparent"
-                    android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
@@ -207,24 +193,18 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="20dp"
-                android:layout_marginBottom="14dp"
+                android:layout_marginStart="10dp"
                 android:background="@drawable/white_border"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp">
+                android:padding="4dp">
+
 
                 <TextView
                     android:id="@+id/tv_addHealth_medication"
-                    android:layout_width="120dp"
-                    android:layout_height="match_parent"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
                     android:background="@android:color/transparent"
                     android:fontFamily="@font/roboto"
                     android:paddingStart="0dp"
-                    android:paddingTop="7dp"
                     android:paddingEnd="4dp"
                     android:text="@string/medication"
                     android:textAlignment="textEnd"
@@ -251,25 +231,23 @@
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
-
-
-        </LinearLayout>
+        </TableRow>
 
         <Button
             android:id="@+id/next_btn_addHealth"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
+            android:layout_marginTop="14dp"
             android:background="@drawable/green_button"
             android:gravity="center"
             android:text="@string/next"
             android:textAllCaps="false"
             android:textColor="@color/white"
             app:backgroundTint="@null"
-            android:layout_below="@+id/LinearLayoutAddHealth"
-            android:layout_centerHorizontal="true"
             tools:ignore="TextContrastCheck" />
-    </RelativeLayout>
+
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

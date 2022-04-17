@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,7 +31,7 @@ public class List__Fleas extends AppCompatActivity {
 
     Button btnadd;
     ImageView back_arrow, calendar_app_newFleas;
-    TextView dates;
+    EditText dates;
     private int mDate, mMonth, mYear;
     ListView lv_fleas;
     C__Fleas_MyFleas myFleas;
@@ -53,9 +54,8 @@ public class List__Fleas extends AppCompatActivity {
 
         db = FirebaseFirestore.getInstance();
 
-        dates = (TextView) findViewById(R.id.et_date_Fleas);
-        calendar_app_newFleas = (ImageView) findViewById(R.id.calendar_Fleas);
-        calendar_app_newFleas.setOnClickListener(view -> {
+        dates = (EditText) findViewById(R.id.et_date_Fleas);
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);

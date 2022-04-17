@@ -51,6 +51,8 @@ public class Main_menu extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.settings:
+                    Intent se = new Intent(Main_menu.this, Settings.class);
+                    startActivity(se);
                     Toast.makeText(Main_menu.this, "test", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.photos:

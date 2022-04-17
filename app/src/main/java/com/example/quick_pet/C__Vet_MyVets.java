@@ -22,7 +22,6 @@ public class C__Vet_MyVets {
     }
     public C__Vet_MyVets(){
        // this.myVetsList = new ArrayList<>();
-
     }
 
     public List<C__Vet> getMyVetsList() {

@@ -1,6 +1,5 @@
 package com.example.quick_pet;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,20 +8,13 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,7 +35,6 @@ public class List__Appointment extends AppCompatActivity {
     private static String  pet_name;
     private static String dbSalt;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,8 +43,6 @@ public class List__Appointment extends AppCompatActivity {
         appointmentList = C__GlobalVariable.getAppointmentsList();
         appointmentList = new ArrayList<>();
         Log.d(TAG, "onCreate" + appointmentList.toString());
-
-        //currentPetList = C__GlobalVariable.getCurrentPets();
 
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setHasFixedSize(true);
@@ -69,10 +58,8 @@ public class List__Appointment extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-
         mAdapter = new RecyclerViewAdapter(appointmentList, List__Appointment.this);
         recyclerView.setAdapter(mAdapter);
-
 
         circleImageView = (CircleImageView) findViewById(R.id.circle_Image_pet_app_list);
         for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
@@ -87,8 +74,6 @@ public class List__Appointment extends AppCompatActivity {
             startActivity(i);
             finish();
         });
-
-
     }
 
     private void EventChangeListener() {
@@ -98,15 +83,11 @@ public class List__Appointment extends AppCompatActivity {
 
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Appointment").whereEqualTo("ida", pet_name)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                    appointmentList.add(snapshot.toObject(C__Appointment.class));
-
-                }
-                mAdapter.notifyDataSetChanged();
-            }
-        });
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                        appointmentList.add(snapshot.toObject(C__Appointment.class));
+                    }
+                    mAdapter.notifyDataSetChanged();
+                });
     }
 }

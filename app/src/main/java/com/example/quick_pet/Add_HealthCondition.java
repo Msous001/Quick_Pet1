@@ -130,11 +130,11 @@ public class Add_HealthCondition extends AppCompatActivity {
 
                 // I use Intents to transfer data from one Activity to another
                 Intent i = new Intent(view.getContext(), List__Health.class);
-//                i.putExtra("edit", positionToEdit);
-//                i.putExtra("name", newName);
-//                i.putExtra("effects", newEffect);
-//                i.putExtra("symptoms", newSymptom);
-//                i.putExtra("medication", newMedication);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("effects", newEffect);
+                i.putExtra("symptoms", newSymptom);
+                i.putExtra("medication", newMedication);
                 startActivity(i);
                 finish();
             }

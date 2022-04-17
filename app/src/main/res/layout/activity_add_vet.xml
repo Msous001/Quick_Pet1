@@ -11,10 +11,9 @@
     <LinearLayout
         android:id="@+id/LinearLayoutVet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" >
@@ -57,23 +56,21 @@
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_name"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
                 android:text="@string/vet_name"
                 android:textAlignment="textEnd"
@@ -90,33 +87,34 @@
             <EditText
                 android:id="@+id/et_newVet_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
                 android:inputType="textPersonName" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_date"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
                 android:text="@string/date"
                 android:textAlignment="textEnd"
@@ -131,59 +129,44 @@
 
             <EditText
                 android:id="@+id/et_newVet_date"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/dd_mm_yyyy"
-                android:inputType="date"
-                android:labelFor="@id/nameInput"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:drawableEnd="@drawable/calen_dar"
+                android:inputType="date"/>
 
-            <ImageView
-                android:id="@+id/calendar_date_newVet"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/calendar"
-                app:srcCompat="@drawable/cal" />
         </TableRow>
 
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_direction"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:text="@string/direction"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:text="@string/direction"/>
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
@@ -194,41 +177,36 @@
             <EditText
                 android:id="@+id/et_newVet_direction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
+                android:ems="10"
                 android:inputType="textPersonName"
-                android:labelFor="@id/editDirection"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"/>
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp"
+            android:layout_marginBottom="40dp">
 
             <TextView
                 android:id="@+id/tv_newVet_weight"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingTop="7dp"
+                android:paddingStart="0dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/weight"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -243,29 +221,23 @@
 
             <EditText
                 android:id="@+id/et_newVet_weight"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:inputType="numberDecimal"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp" />
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:textSize="16sp"
+                android:importantForAutofill="no"
+                tools:ignore="LabelFor"
+                android:inputType="numberDecimal" />
 
             <TextView
                 android:id="@+id/tv_newVet_Kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/kg"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -280,7 +252,6 @@
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
             android:background="@drawable/green_button"
             android:gravity="center"
             android:text="@string/next"

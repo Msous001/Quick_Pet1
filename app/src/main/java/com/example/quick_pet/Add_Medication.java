@@ -23,7 +23,7 @@ import java.util.Calendar;
 public class Add_Medication extends AppCompatActivity {
 
     //variables
-    ImageView back_arrow, calendar_medication;
+    ImageView back_arrow;
     private EditText name, dates, reason;
     Button btn_add;
     private int mDate, mMonth, mYear;
@@ -49,13 +49,13 @@ public class Add_Medication extends AppCompatActivity {
 
         //matching the variables with the elements in xml file
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addMed);
-        calendar_medication = (ImageView) findViewById(R.id.calendar_date_addMedication);
+
 
 
         btn_add = (Button) findViewById(R.id.next_btn_addMedication);
 
         //setting the calendar picker
-        calendar_medication.setOnClickListener(view -> {
+        dates.setOnClickListener(view -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -141,10 +141,10 @@ public class Add_Medication extends AppCompatActivity {
                 });
                     // I use Intents to transfer data from one Activity to another
                     Intent i = new Intent(view.getContext(), List__Medication.class);
-//                    i.putExtra("edit", positionToEdit);
-//                    i.putExtra("name", newName);
-//                    i.putExtra("date", newDates);
-//                    i.putExtra("reason", newReason);
+                    i.putExtra("edit", positionToEdit);
+                    i.putExtra("name", newName);
+                    i.putExtra("date", newDates);
+                    i.putExtra("reason", newReason);
                     startActivity(i);
                     finish();
 

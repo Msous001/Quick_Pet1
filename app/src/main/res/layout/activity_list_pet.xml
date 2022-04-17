@@ -44,10 +44,10 @@
     <GridView
         android:id="@+id/gridViewPet"
         android:layout_width="0dp"
-        android:layout_height="395dp"
+        android:layout_height="355dp"
         android:layout_gravity="center"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:foregroundGravity="center"
         android:gravity="clip_horizontal"
@@ -63,14 +63,16 @@
 
     <Button
         android:id="@+id/btn_list_Pet"
-        android:layout_width="120dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
         android:background="@drawable/green_button"
-        android:text="Add pet"
+        android:text="@string/add_pet"
         android:textAllCaps="false"
-        android:textColor="@color/white_lila"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -80,95 +82,5 @@
         app:layout_constraintTop_toBottomOf="@+id/gridViewPet"
         app:layout_constraintVertical_bias="0.0" />
 
-    <!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/circleImageView"-->
-<!--        android:layout_width="95dp"-->
-<!--        android:layout_height="95dp"-->
-<!--        android:baselineAlignBottom="true"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/paw_circle"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.501"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/logo"-->
-<!--        app:layout_constraintVertical_bias="0.038"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/pet1"-->
-<!--        android:layout_width="95dp"-->
-<!--        android:layout_height="95dp"-->
-<!--        android:baselineAlignBottom="true"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/circle_pet_add"-->
-<!--        android:visibility="invisible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.292"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/logo"-->
-<!--        app:layout_constraintVertical_bias="0.272"-->
-<!--        app:civ_border_color="@color/green_button"-->
-<!--        app:civ_border_width="20dp"-->
-<!--        app:civ_circle_background_color="@color/green_button"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/pet2"-->
-<!--        android:layout_width="95dp"-->
-<!--        android:layout_height="95dp"-->
-<!--        android:baselineAlignBottom="true"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/circle_pet_add"-->
-<!--        android:visibility="invisible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.717"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/logo"-->
-<!--        app:layout_constraintVertical_bias="0.272"-->
-<!--        app:civ_border_color="@color/green_button"-->
-<!--        app:civ_border_width="20dp"-->
-<!--        app:civ_circle_background_color="@color/green_button"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/pet3"-->
-<!--        android:layout_width="95dp"-->
-<!--        android:layout_height="95dp"-->
-<!--        android:baselineAlignBottom="true"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/circle_pet_add"-->
-<!--        android:visibility="invisible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.292"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/logo"-->
-<!--        app:layout_constraintVertical_bias="0.508"-->
-<!--        app:civ_border_color="@color/green_button"-->
-<!--        app:civ_border_width="20dp"-->
-<!--        app:civ_circle_background_color="@color/green_button"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
-
-<!--    <de.hdodenhof.circleimageview.CircleImageView-->
-<!--        android:id="@+id/pet4"-->
-<!--        android:layout_width="95dp"-->
-<!--        android:layout_height="95dp"-->
-<!--        android:baselineAlignBottom="true"-->
-<!--        android:clickable="true"-->
-<!--        android:src="@drawable/circle_pet_add"-->
-<!--        android:visibility="invisible"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.717"-->
-<!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toBottomOf="@+id/logo"-->
-<!--        app:layout_constraintVertical_bias="0.508"-->
-<!--        app:civ_border_color="@color/green_button"-->
-<!--        app:civ_border_width="20dp"-->
-<!--        app:civ_circle_background_color="@color/green_button"-->
-<!--        tools:ignore="SpeakableTextPresentCheck" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

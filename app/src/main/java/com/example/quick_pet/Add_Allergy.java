@@ -147,11 +147,11 @@ public class Add_Allergy extends AppCompatActivity {
                 });
                 // I use Intents to transfer data from one Activity to another
                 Intent i = new Intent(view.getContext(), List__Allergy.class);
-//                i.putExtra("edit", positionToEdit);
-//                i.putExtra("name", newName);
-//                i.putExtra("date", newDates);
-//                i.putExtra("symptom", newSymptom);
-//                i.putExtra("medication", newMedication);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("date", newDates);
+                i.putExtra("symptom", newSymptom);
+                i.putExtra("medication", newMedication);
                 startActivity(i);
             }
 

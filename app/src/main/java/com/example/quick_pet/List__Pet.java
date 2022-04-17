@@ -1,13 +1,9 @@
 package com.example.quick_pet;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 
 import android.util.Log;
@@ -16,24 +12,12 @@ import android.widget.GridView;
 import android.widget.Toast;
 
 
-//import com.bumptech.glide.Glide;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.google.firebase.firestore.Source;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 public class List__Pet extends AppCompatActivity {
 
@@ -43,7 +27,6 @@ public class List__Pet extends AppCompatActivity {
     C__Pet_MyPets myPets;
     C__Pet_Adapter adapter;
     FirebaseFirestore db;
-    ProgressDialog progressDialog;
     C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "List_Pet";
 
@@ -52,12 +35,6 @@ public class List__Pet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_pet);
 
-//        progressDialog = new ProgressDialog(this);
-//        progressDialog.setCancelable(false);
-//        progressDialog.setMessage("Fetching Data.....");
-//        progressDialog.show();
-
-        //myPetsList = new ArrayList<>();
         btn_add = (Button) findViewById(R.id.btn_list_Pet);
         myPetGrid = (GridView) findViewById(R.id.gridViewPet);
         myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
@@ -72,7 +49,7 @@ public class List__Pet extends AppCompatActivity {
         myCurrentPet.getMyCurrentPet().clear();
         myPetGrid.setOnItemClickListener((adapterView, view, position, l) -> {
             editPet(position);
-            C__CurrentPet ab = new C__CurrentPet(myPets.getMyPetList().get(position).getName(),myPets.getMyPetList().get(position).getImageUrl());
+            C__CurrentPet ab = new C__CurrentPet(myPets.getMyPetList().get(position).getName(), myPets.getMyPetList().get(position).getImageUrl());
             myCurrentPet.getMyCurrentPet().add(ab);
 
         });
@@ -80,7 +57,6 @@ public class List__Pet extends AppCompatActivity {
             startActivity(new Intent(List__Pet.this, Add_pet.class));
             finish();
         });
-
 
         // -- toolbar code on top right corner
         toolbar = (Toolbar) findViewById(R.id.materialToolbar);
@@ -93,16 +69,18 @@ public class List__Pet extends AppCompatActivity {
                     finish();
                     return true;
                 case R.id.settings:
+                    Intent s = new Intent(List__Pet.this, Settings.class);
+                    startActivity(s);
                     Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.photos:
-                    Intent a = new Intent(getApplicationContext(), List__Photos.class);
+                    Intent a = new Intent(List__Pet.this, List__Photos.class);
                     startActivity(a);
                     finish();
                     return true;
                 case R.id.sounds:
-                    Intent s = new Intent(getApplicationContext(), List__Sounds.class);
-                    startActivity(s);
+                    Intent se = new Intent(List__Pet.this, List__Sounds.class);
+                    startActivity(se);
                     finish();
                     return true;
                 case R.id.logout:
@@ -136,30 +114,22 @@ public class List__Pet extends AppCompatActivity {
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if(error != null){
-//                            if(progressDialog.isShowing())
-//                                progressDialog.dismiss();
-                            Log.e("Firestore error", error.getMessage());
-                            return;
-                        }
-                        Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
+                .addSnapshotListener((value, error) -> {
+                    if (error != null) {
+//
+                        Log.e("Firestore error", error.getMessage());
+                        return;
+                    }
+                    Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
 
-                        for(DocumentChange dc : value.getDocumentChanges()){
-                            if(dc.getType() == DocumentChange.Type.ADDED){
-                                myPets.getMyPetList().add(dc.getDocument().toObject(C__Pet.class));
-                                Toast.makeText(getApplicationContext(), "Here ", Toast.LENGTH_SHORT).show();
-                            }
-
-                            adapter.notifyDataSetChanged();
-//                            if(progressDialog.isShowing())
-//                                progressDialog.dismiss();
+                    for (DocumentChange dc : value.getDocumentChanges()) {
+                        if (dc.getType() == DocumentChange.Type.ADDED) {
+                            myPets.getMyPetList().add(dc.getDocument().toObject(C__Pet.class));
+                            Toast.makeText(getApplicationContext(), "Here ", Toast.LENGTH_SHORT).show();
                         }
+                        adapter.notifyDataSetChanged();
                     }
                 });
-
     }
 
 

@@ -114,12 +114,12 @@ public class List__Health extends AppCompatActivity {
 
     private void editHealth(int position) {
         Intent i = new Intent(getApplicationContext(), Add_HealthCondition.class);
-//        C__Health h = myHealth.getMyHealthList().get(position);
-//        i.putExtra("edit", position);
-//        i.putExtra("name", h.getName());
-//        i.putExtra("effects", h.getEffects());
-//        i.putExtra("symptoms", h.getSymptomsName());
-//        i.putExtra("medication", h.getMedicationName());
+        C__Health h = myHealth.getMyHealthList().get(position);
+        i.putExtra("edit", position);
+        i.putExtra("name", h.getName());
+        i.putExtra("effects", h.getEffects());
+        i.putExtra("symptoms", h.getSymptomsName());
+        i.putExtra("medication", h.getMedicationName());
         startActivity(i);
     }
 
