@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -60,7 +61,7 @@
             android:paddingBottom="0dp"
             android:text="@string/new_pet"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -105,6 +106,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -143,6 +145,7 @@
                     android:layout_marginStart="0dp"
                     android:focusableInTouchMode="false"
                     android:layout_marginEnd="8dp"
+                    android:textColor="@color/black"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </TableRow>
         </TableRow>
@@ -186,6 +189,7 @@
                     android:layout_marginEnd="8dp"
                     android:focusableInTouchMode="false"
                     android:entries="@array/gender"
+                    android:textColor="@color/black"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
             </TableRow>
@@ -228,7 +232,8 @@
                     android:dropDownVerticalOffset="10dp"
                     android:hint="@string/select_a_breed"
                     android:padding="4dp"
-                    android:popupBackground="@color/link_water"
+                    android:textColor="@color/black"
+                    android:popupBackground="@color/white"
                     android:textSize="16sp" />
             </TableRow>
         </TableRow>
@@ -272,10 +277,11 @@
                 android:background="@android:color/transparent"
                 android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
-                android:focusableInTouchMode="false"
+                android:focusable="false"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -318,6 +324,7 @@
                 android:focusableInTouchMode="false"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/petColour"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
@@ -357,6 +364,7 @@
                 android:layout_marginStart="0dp"
                 android:focusableInTouchMode="false"
                 android:layout_marginEnd="8dp"
+                android:textColor="@color/black"
                 android:entries="@array/intact" />
 
         </TableRow>

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class C__Appointment {
-    private int id;
+    //private int id;
     private String ida;
     private String type;
     private String Name;
@@ -13,25 +13,25 @@ public class C__Appointment {
     private String direction;
     private String reminder;
 
-    public C__Appointment(int id, String ida, String type, String name, String date, String time, String direction, String reminder) {
+    public C__Appointment(String ida, String type, String name, String date, String time, String direction, String reminder) {
+
+        //this.id = id;
         this.ida = ida;
-        this.id = id;
         this.type = type;
         this.Name = name;
         this.date = date;
         this.time = time;
         this.direction = direction;
         this.reminder = reminder;
-        List<C__Appointment> appointmentList = new ArrayList<>();
-    }
+        }
 
     public C__Appointment(){}
-    public int getId() {
-        return id;
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+//    public int getId() {
+//        return id;
+//    }
+//    public void setId(int id) {
+//        this.id = id;
+//    }
     public String getIda() {
         return ida;
     }
@@ -78,7 +78,6 @@ public class C__Appointment {
     @Override
     public String toString() {
         return "C__Appointment{" +
-                "id=" + id +
                 ", ida='" + ida + '\'' +
                 ", type='" + type + '\'' +
                 ", Name='" + Name + '\'' +

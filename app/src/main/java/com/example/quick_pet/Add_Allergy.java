@@ -138,13 +138,7 @@ public class Add_Allergy extends AppCompatActivity {
 
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                         .document(pet_name).collection("Allergy").document("A-"+dbSalt)
-                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Allergy Added", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                        .set(ca).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Allergy Added", Toast.LENGTH_SHORT).show());
                 // I use Intents to transfer data from one Activity to another
                 Intent i = new Intent(view.getContext(), List__Allergy.class);
                 i.putExtra("edit", positionToEdit);

@@ -119,13 +119,7 @@ public class Add_HealthCondition extends AppCompatActivity {
 
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                         .document(pet_name).collection("Health-Condition").document("HC-" + dbSalt)
-                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Heath-Condition Added", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                        .set(ca).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Heath-Condition Added", Toast.LENGTH_SHORT).show());
 
 
                 // I use Intents to transfer data from one Activity to another

@@ -8,9 +8,11 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -76,14 +78,29 @@ public class Add_Grooming extends AppCompatActivity {
         });
         // setting the time picker
         et_time.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-                mHour = selectedHour;
-                mMinute = selectedMinute;
-                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-            };
-            int style = AlertDialog.THEME_HOLO_DARK;
-            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
-            timePickerDialog.setTitle("Select Time");
+//            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+//                mHour = selectedHour;
+//                mMinute = selectedMinute;
+//                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+//            };
+//            int style = AlertDialog.THEME_HOLO_DARK;
+//            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
+//            timePickerDialog.setTitle("Select Time");
+//            timePickerDialog.show();
+            Calendar calendar = Calendar.getInstance();
+            mHour = calendar.get(Calendar.HOUR_OF_DAY);
+            mMinute = calendar.get(Calendar.MINUTE);
+            calendar.set(0,0,0, mHour, mMinute);
+
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
+                    et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
+                }
+            }, 12, 0, true);
+
+            timePickerDialog.updateTime(mHour, mMinute);
+            timePickerDialog.setTitle("Select time");
             timePickerDialog.show();
         });
 

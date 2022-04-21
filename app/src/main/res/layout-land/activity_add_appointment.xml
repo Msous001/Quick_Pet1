@@ -61,7 +61,7 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="@string/new_appointment"
-            android:textColor="@color/white_lila"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -143,6 +143,7 @@
                     android:inputType="textPersonName"
                     android:padding="8dp"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     android:importantForAutofill="no"
                     tools:ignore="LabelFor"/>
             </TableRow>
@@ -193,6 +194,7 @@
                     android:layout_marginEnd="4dp"
                     android:padding="8dp"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="Autofill,LabelFor" />
 
 
@@ -234,12 +236,13 @@
                     android:drawableEnd="@drawable/calen_dar"
                     android:ems="10"
                     android:focusableInTouchMode="false"
+                    android:focusable="false"
                     android:layout_marginEnd="4dp"
                     android:inputType="date"
                     android:labelFor="@id/nameInput"
                     android:padding="8dp"
-                    android:textColorHint="@color/white"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="Autofill,LabelFor" />
 
 
@@ -292,7 +295,8 @@
                     android:padding="4dp"
                     android:layout_marginEnd="4dp"
                     android:focusableInTouchMode="false"
-                    android:textColorHint="@color/white"
+                    android:focusable="false"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:drawableEnd="@drawable/alarm_add_black"
                     tools:ignore="Autofill,LabelFor" />
@@ -341,7 +345,7 @@
                     android:labelFor="@id/editDirection"
                     android:layout_marginEnd="4dp"
                     android:padding="4dp"
-                    android:textColorHint="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="Autofill,DuplicateSpeakableTextCheck,LabelFor,TextContrastCheck,TouchTargetSizeCheck" />
 

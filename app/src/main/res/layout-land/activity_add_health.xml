@@ -57,7 +57,7 @@
             android:paddingRight="8dp"
             android:text="@string/adding_health_condition"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -101,6 +101,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -142,6 +143,7 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
@@ -187,6 +189,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -229,6 +232,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="LabelFor" />
             </TableRow>
         </TableRow>

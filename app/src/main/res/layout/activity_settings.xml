@@ -36,7 +36,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="32dp"
             android:text="@string/settings"
-            android:textColor="@color/white_lila"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="italic" />
 
@@ -50,6 +50,7 @@
         android:layout_marginTop="50dp"
         android:text="@string/theme"
         android:textSize="24sp"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,6 +67,8 @@
         android:switchPadding="60dp"
         android:text="@string/dark_mode"
         android:textSize="16sp"
+        android:scaleX="1.4"
+        android:scaleY="1.4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

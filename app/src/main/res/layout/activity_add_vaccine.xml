@@ -50,7 +50,7 @@
             android:paddingBottom="0dp"
             android:text="@string/adding_vaccine"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -93,6 +93,7 @@
                 android:ems="10"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor"
                 android:inputType="textPersonName" />
         </TableRow>
@@ -137,7 +138,9 @@
                 android:textSize="16sp"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"
+                android:textColor="@color/black"
                 android:drawableEnd="@drawable/calen_dar"
+                android:focusable="false"
                 android:inputType="date"/>
 
         </TableRow>
@@ -180,6 +183,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"
                 android:inputType="textPersonName" />

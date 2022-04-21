@@ -2,26 +2,37 @@ package com.example.quick_pet;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TimePicker;
 import android.widget.Toast;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -33,13 +44,13 @@ public class Add_Appointment extends AppCompatActivity {
     private Spinner type;
     ImageView back_arrow;
     CircleImageView circleImageView;
-    List<C__Appointment> appointmentList;
+    int positionToEdit = -1;
     private static String pet_name;
     private int mDate, mMonth, mYear, mHour, mMinute;
-    private int id;
     FirebaseFirestore db;
     private static String dbSalt;
     private static final String TAG = "Add App";
+    private long mmMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +60,6 @@ public class Add_Appointment extends AppCompatActivity {
 
         //connecting to the global variable
         C__CurrentPet_MyCurrentPet myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
-        appointmentList = C__GlobalVariable.getAppointmentsList();
 
         //matching th variables with the elements in xml file
         et_Name = (EditText) findViewById(R.id.editName);
@@ -78,23 +88,65 @@ public class Add_Appointment extends AppCompatActivity {
             datePickerDialog.show();
         });
         // setting the time picker
-        et_time.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-                mHour = selectedHour;
-                mMinute = selectedMinute;
-                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-            };
-            int style = AlertDialog.THEME_HOLO_DARK;
-            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this,
-                    style, onTimeSetListener, mHour, mMinute, true);
-            timePickerDialog.setTitle("Select Time");
-            timePickerDialog.show();
+          et_time.setOnClickListener(view -> {
+              Calendar calendar = Calendar.getInstance();
+              mHour = calendar.get(Calendar.HOUR_OF_DAY);
+              mMinute = calendar.get(Calendar.MINUTE);
+              calendar.set(0,0,0, mHour, mMinute);
+
+              TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
+                  @Override
+                  public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
+                      et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
+                  }
+              }, 12, 0, true);
+
+              timePickerDialog.updateTime(mHour, mMinute);
+              timePickerDialog.setTitle("Select time");
+              timePickerDialog.show();
+
+          });
+
+        et_reminder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Calendar calendar = Calendar.getInstance();
+                mHour = calendar.get(Calendar.HOUR_OF_DAY);
+                mMinute = calendar.get(Calendar.MINUTE);
+                calendar.set(0,0,0, mHour, mMinute);
+
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker timePicker, int hourAD, int minuteAD) {
+                        et_reminder.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourAD, minuteAD, true));
+                        mmMinute = minuteAD - mMinute;
+                    }
+                }, 12, 0, true);
+
+                timePickerDialog.updateTime(mHour, mMinute);
+                timePickerDialog.setTitle("Select time");
+                timePickerDialog.show();
+            }
         });
+//        et_time.setOnClickListener(view -> {
+//            Calendar calendar = Calendar.getInstance();
+//            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+//                mHour = selectedHour;
+//                mMinute = selectedMinute;
+//                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+//            };
+//            int style = AlertDialog.THEME_HOLO_DARK;
+//            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this,
+//                    style, onTimeSetListener, mHour, mMinute, true);
+//            timePickerDialog.setTitle("Select Time");
+//            timePickerDialog.show();
+//        });
         // back button
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
         // click listener for the button
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(getApplicationContext(), List__Appointment.class));
+            finish();
         });
 
         for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
@@ -103,76 +155,130 @@ public class Add_Appointment extends AppCompatActivity {
         }
 
         //check if are any appointment on the array
-        Intent intent = getIntent();
-        id = intent.getIntExtra("id", -1);
-        C__Appointment appointment = null;
-        if (id >= 0) {
-            for (C__Appointment ap : appointmentList) {
-                if (ap.getId() == id) {
-                    appointment = ap;
-                }
-            }
-            String Stype = appointment.getType().toString();
-            ArrayAdapter myAdap = (ArrayAdapter) type.getAdapter();
-            int spinnerPosition = myAdap.getPosition(Stype);
+        Bundle incomingIntent = getIntent().getExtras();
+        if (incomingIntent != null) {
+            String A_type = incomingIntent.getString("a_type");
+            String A_name = incomingIntent.getString("a_name");
+            String A_date = incomingIntent.getString("a_date");
+            String A_time = incomingIntent.getString("a_time");
+            String A_direction = incomingIntent.getString("a_direction");
+            String A_reminder = incomingIntent.getString("a_reminder");
+            positionToEdit = incomingIntent.getInt("edit");
 
-            type.setSelection(spinnerPosition);
-            et_Name.setText(appointment.getName());
-            et_date.setText(String.valueOf(appointment.getDate()));
-            et_time.setText(String.valueOf(appointment.getTime()));
-            et_direction.setText(appointment.getDirection());
-            et_reminder.setText(String.valueOf(appointment.getReminder()));
-        } else {        }
+            if (TextUtils.isEmpty(A_name)) {
+                A_name = "";
+            }
+            if (TextUtils.isEmpty(A_date)) {
+                A_date = "";
+            }
+            if (TextUtils.isEmpty(A_time)) {
+                A_time = "";
+            }
+            if (TextUtils.isEmpty(A_direction)) {
+                A_direction = "";
+            }
+            if (TextUtils.isEmpty(A_reminder)) {
+                A_reminder = "";
+            }
+            et_Name.setText(A_name);
+            et_date.setText(A_date);
+            et_time.setText(A_time);
+            et_direction.setText(A_direction);
+            et_reminder.setText(A_reminder);
+        }
+
 
         btnNext = (Button) findViewById(R.id.next_btn);
         // click listener for the button
         btnNext.setOnClickListener(view -> {
-            try {
-                if (id >= 0) {
-                    //updating/ editing data
-                    C__Appointment updateApp = new C__Appointment(id, pet_name, type.getSelectedItem()
-                            .toString(), et_Name.getText().toString(), et_date.getText().toString(),
-                            et_time.getText().toString(), et_direction.getText().toString(), et_reminder
-                            .getText().toString());
-                    appointmentList.set(id, updateApp);
-                } else {
-                    //adding new data
-                    int nextId = C__GlobalVariable.getNextId();
-                    C__Appointment newAppoint = new C__Appointment(nextId, pet_name, type.getSelectedItem()
-                            .toString(), et_Name.getText().toString(), et_date.getText().toString(),
-                            et_time.getText().toString(), et_direction.getText().toString(),
-                            et_reminder.getText().toString());
-                    //appointmentList.add(newAppoint);// adding the new appointment to the array
-                    C__GlobalVariable.setNextId(nextId + 1);
+            String newType = type.getSelectedItem().toString();
+            String newName = et_Name.getText().toString();
+            String newDates = et_date.getText().toString();
+            String newTime = et_time.getText().toString();
+            String newDirection = et_direction.getText().toString();
+            String newReminder = et_reminder.getText().toString();
 
-                    if (et_Name.getText().toString().length() > 2) {
-                        dbSalt = et_Name.getText().toString().substring(0, 2);
-
-                    } else {
-                        dbSalt = et_Name.getText().toString();
-                    }
-                    String separator = " ";
-                    String dbDates;
-                    int sep = et_Name.getText().toString().lastIndexOf(separator);
-                    dbDates = et_Name.getText().toString().substring(0, sep);
-                    dbSalt = dbSalt + dbDates;
-                    FirebaseAuth fAuth = FirebaseAuth.getInstance();
-                    FirebaseUser firebaseUser = fAuth.getCurrentUser();
-
-                    assert firebaseUser != null;
-                    db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                            .document(pet_name).collection("Appointment")
-                            .document("Ap-" + dbSalt)
-                            .set(newAppoint).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(),
-                            "Pet Added", Toast.LENGTH_SHORT).show());
+            if (TextUtils.isEmpty(newName)) {
+                et_Name.setError("Required");
+                et_Name.requestFocus();
+            } else if (TextUtils.isEmpty(newDates)) {
+                et_date.setError("Required");
+                et_date.requestFocus();
+            } else {
+                if (TextUtils.isEmpty(newTime)) {
+                    newTime = "Not Defined";
                 }
-                startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
+                if (TextUtils.isEmpty(newDirection)) {
+                    newDirection = "Not Defined";
+                }
+                if (TextUtils.isEmpty(newReminder)) {
+                    newReminder = "Not Defined";
+                }
+                C__Appointment ap = new C__Appointment(pet_name, newType, newName, newDates, newTime, newDirection, newReminder);
+                if (newName.length() > 2) {
+                    dbSalt = newName.substring(0, 2);
+                } else {
+                    dbSalt = newName;
+                }
+                String separator = " ";
+                String dbDates;
+                int sep = newDates.lastIndexOf(separator);
+                dbDates = newDates.substring(0, sep);
+                dbSalt = dbSalt + dbDates;
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
+                assert firebaseUser != null;
+                db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
+                        .document(pet_name).collection("Appointment")
+                        .document("Ap-" + UUID.randomUUID())
+                        .set(ap).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(),
+                        "APP Added", Toast.LENGTH_SHORT).show());
+
+
+
+                //startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
+                Intent i = new Intent(view.getContext(), List__Appointment.class);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("a_type", newType);
+                i.putExtra("a_name", newName);
+                i.putExtra("a_date", newDates);
+                i.putExtra("a_time", newTime);
+                i.putExtra("a_direction", newDirection);
+                i.putExtra("a_reminder", newReminder);
+                setNotification();
+                startActivity(i);
                 finish();
-            } catch (Exception e) {
-                Log.e(TAG, e.getMessage());
-                Toast.makeText(Add_Appointment.this, "Error", Toast.LENGTH_SHORT).show();
             }
+//
         });
+        createNotificationChannel();
 
     }
+
+    private void setNotification() {
+        Intent intent = new Intent(Add_Appointment.this, ReminderBroadcast.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(Add_Appointment.this, 0, intent, 0);
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+
+        long timeAtButtonClick = System.currentTimeMillis();
+        long timeAfter = mmMinute*60000;
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + timeAfter, pendingIntent);
+    }
+
+    private void createNotificationChannel(){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "Quick Pet";
+            String description = "Channel for Quick pet Reminder";
+            int importance = NotificationManager.IMPORTANCE_DEFAULT;
+            NotificationChannel channel = new NotificationChannel("quick_pet", name, importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
 }

@@ -23,29 +23,30 @@ public class C__GlobalVariable extends Application {
     private C__Sounds_MySounds mySounds = new C__Sounds_MySounds();
     private C__CurrentPet_MyCurrentPet myCurrentPet= new C__CurrentPet_MyCurrentPet();
     private C__Pet_MyPets myPets = new C__Pet_MyPets();
+    private C__Appointment_MyApp myApps = new C__Appointment_MyApp();
 
     private static List<C__Pet> petList = new ArrayList<>();
     //private static List<C__CurrentPet> currentPets = new ArrayList<>();
 
-    private static List<C__Appointment> appointmentsList;
-    private static int nextId = 1;
+//    private static List<C__Appointment> appointmentsList;
+//    private static int nextId = 1;
 
     public C__GlobalVariable() {}
 
 
-    public static int getNextId() {
-        return nextId;
-    }
-    public static void setNextId(int nextId) {
-        C__GlobalVariable.nextId = nextId;
-    }
-
-    public static List<C__Appointment> getAppointmentsList() {
-        return appointmentsList;
-    }
-    public static void setAppointmentsList(List<C__Appointment> appointmentsList) {
-        C__GlobalVariable.appointmentsList = appointmentsList;
-    }
+//    public static int getNextId() {
+//        return nextId;
+//    }
+//    public static void setNextId(int nextId) {
+//        C__GlobalVariable.nextId = nextId;
+//    }
+//
+//    public static List<C__Appointment> getAppointmentsList() {
+//        return appointmentsList;
+//    }
+//    public static void setAppointmentsList(List<C__Appointment> appointmentsList) {
+//        C__GlobalVariable.appointmentsList = appointmentsList;
+//    }
 
     public C__Vet_MyVets getMyVets() {
         return myVets;
@@ -144,4 +145,7 @@ public class C__GlobalVariable extends Application {
     public static void setPetList(List<C__Pet> petList) {
         C__GlobalVariable.petList = petList;
     }
+
+    public C__Appointment_MyApp getMyApps() {return myApps;}
+    public void setMyApps(C__Appointment_MyApp myApps) {this.myApps = myApps;}
 }

@@ -62,7 +62,7 @@ public class List__Deworming extends AppCompatActivity {
             mYear = cal1.get(Calendar.YEAR);
             DatePickerDialog datePickerDialog = new DatePickerDialog(List__Deworming.this,
                     android.R.style.Theme_DeviceDefault_Dialog, (datePicker, year, month, date) -> {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + " " + "MMM" + "/" +"dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + " " + "MMM" + " " +"dd");
                 cal1.set(year, month, date);
                 String dateString = sdf.format(cal1.getTime());
                 dates.setText(dateString);
@@ -106,14 +106,9 @@ public class List__Deworming extends AppCompatActivity {
         btnadd.setOnClickListener(view -> {
             String f_date = dates.getText().toString();
 
-            String separator = "/";
-            String dbDates;
-            int sep = f_date.lastIndexOf(separator);
-            dbDates = f_date.substring(0, sep);
-            dbSalt = dbDates;
+            dbSalt = f_date;
             if (TextUtils.isEmpty(f_date)) {
                 dates.setError("This field is required");
-                dates.requestFocus();
                 Toast.makeText(List__Deworming.this, "Please insert date", Toast.LENGTH_SHORT).show();
             } else {
                 C__Deworming ca = new C__Deworming(pet_name, f_date);

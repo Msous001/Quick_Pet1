@@ -57,7 +57,7 @@
             android:paddingRight="8dp"
             android:text="@string/adding_a_surgery"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -100,6 +100,7 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
@@ -139,9 +140,10 @@
                     android:layout_marginEnd="4dp"
                     android:background="@android:color/transparent"
                     android:drawableEnd="@drawable/calen_dar"
-                    android:focusableInTouchMode="false"
+                    android:focusable="false"
                     android:ems="10"
                     android:importantForAutofill="no"
+                    android:textColor="@color/black"
                     android:inputType="date"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
@@ -187,6 +189,7 @@
                     android:background="@android:color/transparent"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
@@ -227,6 +230,7 @@
                     android:background="@android:color/transparent"
                     android:ems="10"
                     android:importantForAutofill="no"
+                    android:textColor="@color/black"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
@@ -269,6 +273,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor" />
         </TableRow>
 

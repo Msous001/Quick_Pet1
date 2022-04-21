@@ -51,7 +51,7 @@
             android:paddingBottom="0dp"
             android:text="@string/adding_vet_visit"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -94,6 +94,7 @@
                 android:ems="10"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor"
                 android:inputType="textPersonName" />
         </TableRow>
@@ -137,6 +138,7 @@
                 android:ems="10"
                 android:focusable="false"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"
                 android:drawableEnd="@drawable/calen_dar"
@@ -183,6 +185,7 @@
                 android:background="@android:color/transparent"
                 android:ems="10"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"/>
@@ -227,6 +230,7 @@
                 android:ems="10"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor"
                 android:inputType="numberDecimal" />
 

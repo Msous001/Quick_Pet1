@@ -50,7 +50,7 @@
             android:paddingBottom="0dp"
             android:text="@string/medication"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -98,6 +98,7 @@
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor" />
         </TableRow>
 
@@ -146,6 +147,7 @@
                 android:inputType="date"
                 android:paddingStart="0dp"
                 android:paddingEnd="8dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -194,6 +196,7 @@
                 android:ems="10"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor"
                 android:inputType="textPersonName"/>
         </TableRow>

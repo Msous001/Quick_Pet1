@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -41,15 +42,15 @@ import java.util.List;
 public class List__Vet extends AppCompatActivity {
 
     ImageView back_arrow;
-    Button btn_add;
+
     ListView lv_listVet;
     C__VetAdapter adapter;
     C__Vet_MyVets myVets;
     C__CurrentPet_MyCurrentPet myCurrentPet;
     FirebaseFirestore db;
+    Button btn_add;
     private static String  pet_name;
     private static String dbSalt;
-    private static String JSON_URL;
     private static final String TAG = "List_Vet";
 
 
@@ -57,20 +58,28 @@ public class List__Vet extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_vet);
+
         myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
         myVets = ((C__GlobalVariable) this.getApplication()).getMyVets();
         myVets.myVetsList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
 
-
+        btn_add = (Button) findViewById(R.id.btn_list_vet);
+        btn_add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "Click");
+                startActivity(new Intent(List__Vet.this, Add_Vet.class));
+            }
+        });
         back_arrow = (ImageView) findViewById(R.id.back_arrowTL);
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(List__Vet.this, Main_menu.class));
             finish();
         });
 
-        btn_add = (Button) findViewById(R.id.btn_list_vet);
+
         lv_listVet = (ListView) findViewById(R.id.listView_Vet);
         adapter = new C__VetAdapter(List__Vet.this, myVets);
         lv_listVet.setAdapter(adapter);
@@ -80,11 +89,12 @@ public class List__Vet extends AppCompatActivity {
         for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
-        EventChangeListener();
-        lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));
 
 
         Bundle incomingMessages = getIntent().getExtras();
+        EventChangeListener();
+        lv_listVet.setOnItemClickListener((adapterView, view, position, l) -> editVet(position));
+
         if (incomingMessages != null) {
             String name = incomingMessages.getString("name");
             String date = incomingMessages.getString("date");
@@ -92,29 +102,12 @@ public class List__Vet extends AppCompatActivity {
             String weight = incomingMessages.getString("weight");
             int positionEdited = incomingMessages.getInt("edit");
 
-////            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-////            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-////            ca = new C__Vet(name, date, direction, Double.parseDouble(weight));
-////            if (positionEdited > -1) {
-////                myVets.getMyVetsList().remove(positionEdited);
-////                //here i need to call the database to delete the item
-////            }
-//            if ( name.length() > 2){
-//                dbSalt = name.substring(0,2);
-//            }else{
-//                dbSalt = name;
-            //          }
             String separator = " ";
             String dbDates;
             int sep = date.lastIndexOf(separator);
             dbDates = date.substring(0, sep);
             dbSalt = dbSalt + dbDates;
 
-
-            btn_add.setOnClickListener(view -> {
-                startActivity(new Intent(List__Vet.this, Add_Vet.class));
-                finish();
-            });
 
         }
     }
@@ -123,6 +116,7 @@ public class List__Vet extends AppCompatActivity {
         //Connecting to the database
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
+
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Veterinary").whereEqualTo("id", pet_name)
                 .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -131,9 +125,9 @@ public class List__Vet extends AppCompatActivity {
                 for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
 
                     myVets.getMyVetsList().add(snapshot.toObject(C__Vet.class));
-                    adapter.notifyDataSetChanged();
-                }
 
+                }
+                adapter.notifyDataSetChanged();
             }
         });
     }
@@ -141,12 +135,12 @@ public class List__Vet extends AppCompatActivity {
 
     private void editVet(int position) {
         Intent i = new Intent(getApplicationContext(), Add_Vet.class);
-//        C__Vet v = myVetsList.get(position);
-//        i.putExtra("name", v.getName());
-//        i.putExtra("edit", position);
-//        i.putExtra("date", v.getDate());
-//        i.putExtra("direction", v.getDirection());
-//        i.putExtra("weight", v.getWeight());
+        C__Vet v = myVets.getMyVetsList().get(position);
+        i.putExtra("name", v.getName());
+        i.putExtra("edit", position);
+        i.putExtra("date", v.getDate());
+        i.putExtra("direction", v.getDirection());
+        i.putExtra("weight", v.getWeight());
         startActivity(i);
 
     }

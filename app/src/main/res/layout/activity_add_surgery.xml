@@ -51,7 +51,7 @@
             android:paddingBottom="0dp"
             android:text="@string/adding_a_surgery"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -94,6 +94,7 @@
                 android:textSize="16sp"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"
+                android:textColor="@color/black"
                 android:inputType="textPersonName" />
         </TableRow>
 
@@ -137,7 +138,9 @@
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"
                 android:drawableEnd="@drawable/calen_dar"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:focusable="false"/>
 
         </TableRow>
         <TableRow
@@ -178,6 +181,7 @@
                 android:inputType="textPersonName"
                 android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:textColor="@color/black"
                 tools:ignore="LabelFor" />
         </TableRow>
         <TableRow
@@ -218,6 +222,7 @@
                 android:inputType="textPersonName"
                 android:ems="10"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor"/>
         </TableRow>
@@ -259,6 +264,7 @@
                 android:background="@android:color/transparent"
                 android:inputType="textPersonName"
                 android:textSize="16sp"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 tools:ignore="LabelFor" />
         </TableRow>

@@ -56,8 +56,7 @@ public class List__Allergy extends AppCompatActivity {
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowTLA);
 
-        lv_allergy.setOnItemClickListener((adapterView, view, position, l) -> editAllergy(position));
-        EventChangeListener();
+
 
 
         Bundle incominMessages = getIntent().getExtras();
@@ -98,6 +97,8 @@ public class List__Allergy extends AppCompatActivity {
 
 
         }
+        lv_allergy.setOnItemClickListener((adapterView, view, position, l) -> editAllergy(position));
+        EventChangeListener();
 
         btn_ok.setOnClickListener(view -> {
             startActivity(new Intent(List__Allergy.this, Add_Allergy.class));
@@ -129,12 +130,12 @@ public class List__Allergy extends AppCompatActivity {
 
     private void editAllergy(int position) {
         Intent i = new Intent(getApplicationContext(), Add_Allergy.class);
-//        C__Allergy a = myAllergies.getMyAllergyList().get(position);
-//        i.putExtra("name", a.getName());
-//        i.putExtra("edit", position);
-//        i.putExtra("date", a.getDate());
-//        i.putExtra("symptom", a.getSymptomsName());
-//        i.putExtra("medication", a.getMedicationName());
+        C__Allergy a = myAllergies.getMyAllergyList().get(position);
+        i.putExtra("name", a.getName());
+        i.putExtra("edit", position);
+        i.putExtra("date", a.getDate());
+        i.putExtra("symptom", a.getSymptomsName());
+        i.putExtra("medication", a.getMedicationName());
         startActivity(i);
     }
 }

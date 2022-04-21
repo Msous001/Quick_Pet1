@@ -84,14 +84,13 @@
     <string name="dark_mode">Dark Mode</string>
     <string name="settings">Settings</string>
     <string name="theme">Theme</string>
+    <string name="reset_password">Reset Password</string>
 
     <string-array name="gender">
-        <item> </item>
         <item>Male</item>
         <item>Female</item>
     </string-array>
     <string-array name="petColour">
-        <item> </item>
         <item>Black</item>
         <item>Blue</item>
         <item>Brown</item>
@@ -105,12 +104,10 @@
         <item>Spots</item>
     </string-array>
     <string-array name="intact">
-        <item> </item>
-        <item>Intact</item>
         <item>Neutered/Spayed</item>
+        <item>Intact</item>
     </string-array>
     <string-array name="app_type">
-        <item> </item>
         <item>Veterinarian</item>
         <item>Grooming</item>
     </string-array>

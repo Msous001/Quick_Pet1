@@ -59,7 +59,7 @@
             android:paddingRight="8dp"
             android:paddingBottom="0dp"
             android:text="@string/new_pet"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -101,6 +101,7 @@
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
         </TableRow>
@@ -139,6 +140,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </TableRow>
 
@@ -175,6 +177,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/gender"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
@@ -217,6 +220,7 @@
                 android:dropDownVerticalOffset="10dp"
                 android:hint="@string/select_a_breed"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:popupBackground="@color/link_water"
                 android:textSize="16sp" />
         </TableRow>
@@ -258,8 +262,10 @@
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:drawableEnd="@drawable/calen_dar"
+                android:focusable="false"
                 android:inputType="date"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -300,6 +306,7 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/petColour"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
@@ -336,6 +343,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
+                android:textColor="@color/black"
                 android:entries="@array/intact" />
 
         </TableRow>

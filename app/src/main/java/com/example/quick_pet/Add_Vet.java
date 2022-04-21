@@ -92,7 +92,7 @@ public class Add_Vet extends AppCompatActivity {
             String E_name = incomingIntent.getString("name");
             String E_date = incomingIntent.getString("date");
             String E_direction = incomingIntent.getString("direction");
-            float E_weight = incomingIntent.getFloat("weight");
+            double E_weight = incomingIntent.getDouble("weight");
             positionToEdit = incomingIntent.getInt("edit");
 
             if (TextUtils.isEmpty(E_name)) {
@@ -130,7 +130,7 @@ public class Add_Vet extends AppCompatActivity {
                     newDirection = "Not Defined";
                 }
 
-                if (TextUtils.isEmpty(String.valueOf(newWeight))) {
+                if (TextUtils.isEmpty((newWeight))) {
                     newWeight = "0.0";
                 }
 
@@ -152,13 +152,7 @@ public class Add_Vet extends AppCompatActivity {
 
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                         .document(pet_name).collection("Veterinary").document("V-"+dbSalt)
-                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-                        Toast.makeText(getApplicationContext(), "Vet Added", Toast.LENGTH_SHORT).show();
-
-                    }
-                });
+                        .set(ca).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Vet Added", Toast.LENGTH_SHORT).show());
                 Intent i = new Intent(view.getContext(), List__Vet.class);
                 i.putExtra("edit", positionToEdit);
                 i.putExtra("name", newName);
@@ -167,6 +161,7 @@ public class Add_Vet extends AppCompatActivity {
                 i.putExtra("weight", newWeight);
 
                 startActivity(i);
+                finish();
             }
         });
     }

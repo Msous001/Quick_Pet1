@@ -38,7 +38,7 @@
             android:layout_gravity="end"
             android:layout_marginEnd="32dp"
             android:text="@string/deworming"
-            android:textColor="@color/white_lila"
+            android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="italic" />
 
@@ -105,6 +105,8 @@
             android:paddingEnd="10dp"
             android:textAlignment="center"
             android:textSize="16sp"
+            android:textColor="@color/black"
+            android:focusable="false"
             android:importantForAutofill="no"
             tools:ignore="LabelFor"
             android:inputType="date" />
@@ -118,7 +120,7 @@
             android:background="@drawable/green_button"
             android:text="@string/add"
             android:textAllCaps="false"
-            android:textColor="@color/white_lila"
+            android:textColor="@color/white"
             android:textSize="16sp"
             app:backgroundTint="@null" />
     </TableRow>

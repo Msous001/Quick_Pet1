@@ -59,7 +59,7 @@
             android:paddingRight="8dp"
             android:paddingBottom="0dp"
             android:text="@string/new_appointment"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textAlignment="center"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -141,7 +141,7 @@
                 android:inputType="textPersonName"
                 android:labelFor="@id/nameInput"
                 android:padding="4dp"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
         </TableRow>
@@ -183,6 +183,8 @@
                 android:drawableEnd="@drawable/calen_dar"
                 android:importantForAutofill="no"
                 android:inputType="date"
+                android:focusable="false"
+                android:textColor="@color/black"
                 android:padding="4dp"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
@@ -226,6 +228,7 @@
                 android:drawableEnd="@drawable/alarm_add_black"
                 android:ems="10"
                 android:focusable="false"
+                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:padding="4dp"
@@ -272,6 +275,7 @@
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
+                android:textColor="@color/black"
                 android:padding="4dp"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
@@ -316,10 +320,11 @@
                 android:drawableEnd="@drawable/alarm_add_black"
                 android:ems="10"
                 android:hint="@string/direction"
+                android:focusable="false"
                 android:inputType="textPersonName"
                 android:labelFor="@id/editReminder"
                 android:padding="4dp"
-                android:textColorHint="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
 

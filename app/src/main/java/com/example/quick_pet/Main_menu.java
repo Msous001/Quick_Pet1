@@ -76,9 +76,8 @@ public class Main_menu extends AppCompatActivity {
                     return true;
                 case R.id.exit:
                     Toast.makeText(Main_menu.this, "Exit", Toast.LENGTH_SHORT).show();
-                    finish();
+                    finishAffinity();
                     System.exit(0);
-
                     return true;
             }
             return false;

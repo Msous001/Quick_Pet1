@@ -57,7 +57,7 @@
             android:paddingRight="8dp"
             android:text="@string/adding_grooming"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
@@ -101,6 +101,7 @@
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
+                    android:textColor="@color/black"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -141,7 +142,9 @@
                     android:drawableEnd="@drawable/calen_dar"
                     android:ems="10"
                     android:focusableInTouchMode="false"
+                    android:focusable="false"
                     android:importantForAutofill="no"
+                    android:textColor="@color/black"
                     android:inputType="date"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
@@ -189,6 +192,8 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:focusableInTouchMode="false"
+                    android:focusable="false"
+                    android:textColor="@color/black"
                     android:inputType="textPersonName"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
@@ -231,6 +236,7 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>

@@ -73,7 +73,7 @@
         android:background="@drawable/green_button"
         android:text="Add photo"
         android:textAllCaps="false"
-        android:textColor="@color/white_lila"
+        android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"
         android:layout_gravity="center"/>

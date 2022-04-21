@@ -101,7 +101,7 @@ public class Add_pet extends AppCompatActivity {
             "Somali", "Sphynx", "Tiffanie", "Tonkinesse", "Turkish Van", "Not Defined"
     };
     //type name arrays
-    private static final String[] pet_Type = new String[]{"", "Dog", "Cat"};
+    private static final String[] pet_Type = new String[]{"Dog", "Cat"};
 
 
     @Override
@@ -155,13 +155,13 @@ public class Add_pet extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelected = pet_Type[position];
-                if (position == 1) {
+                if (position == 0) {
                     ArrayAdapter<String> adapter = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
                     editT.setAdapter(adapter);
                     editT.getText();
 
                 }
-                if (position == 2) {
+                if (position == 1) {
                     ArrayAdapter<String> adapter2 = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
                     editT.setAdapter(adapter2);
                     editT.getText();
@@ -185,7 +185,7 @@ public class Add_pet extends AppCompatActivity {
             }
             String Stype = type.getSelectedItem().toString();
             if (TextUtils.isEmpty(Stype)) {
-                Stype = "Dog";
+                ;
             }
             String Sgender = gender.getSelectedItem().toString();
             String Sbreed = editT.getText().toString();
