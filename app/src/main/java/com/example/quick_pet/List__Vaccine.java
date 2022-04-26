@@ -11,16 +11,11 @@ import android.widget.ListView;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-
 public class List__Vaccine extends AppCompatActivity {
 
     ImageView back_arrow;
@@ -48,8 +43,6 @@ public class List__Vaccine extends AppCompatActivity {
         back_arrow = (ImageView) findViewById(R.id.back_arrowVa);
         lv_vaccine = (ListView) findViewById(R.id.listView_Vaccine);
         btn_ok = (Button) findViewById(R.id.btn_list_vaccine);
-
-        //currentPetList = C__GlobalVariable.getCurrentPets();
 
         for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();

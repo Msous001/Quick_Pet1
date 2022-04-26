@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".List__Notifications"
+            android:exported="false" />
+        <activity
             android:name=".Forgot_Password"
             android:exported="false" />
         <activity
@@ -111,7 +114,8 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <receiver android:name=".ReminderBroadcast"/>
+
+        <receiver android:name=".ReminderBroadcast" />
     </application>
 
 </manifest>

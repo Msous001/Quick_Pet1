@@ -17,7 +17,6 @@ public class List__Sounds extends AppCompatActivity {
     C__SoundsAdapter adapter;
     MediaPlayer sound_player;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,7 @@ public class List__Sounds extends AppCompatActivity {
         back_arrow = (ImageView) findViewById(R.id.back_arrowSound);
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(List__Sounds.this, List__Pet.class));
-            finish();
+
         });
 
         lv_sound = (ListView)findViewById(R.id.listView_Sound);

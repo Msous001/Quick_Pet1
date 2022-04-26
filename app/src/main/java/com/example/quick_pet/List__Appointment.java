@@ -67,7 +67,6 @@ public class List__Appointment extends AppCompatActivity {
             String date = incomingMessages.getString("a_date");
             String time = incomingMessages.getString("a_time");
             String direction = incomingMessages.getString("a_direction");
-            String reminder = incomingMessages.getString("a_reminder");
             int positionEdited = incomingMessages.getInt("edit");
         }
 
@@ -96,7 +95,6 @@ public class List__Appointment extends AppCompatActivity {
         i.putExtra("a_date", ap.getDate());
         i.putExtra("a_time", ap.getTime());
         i.putExtra("a_direction", ap.getDirection());
-        i.putExtra("a_reminder", ap.getReminder());
         startActivity(i);
     }
 

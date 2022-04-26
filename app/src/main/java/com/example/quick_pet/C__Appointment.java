@@ -11,9 +11,8 @@ public class C__Appointment {
     private String date;
     private String time;
     private String direction;
-    private String reminder;
 
-    public C__Appointment(String ida, String type, String name, String date, String time, String direction, String reminder) {
+    public C__Appointment(String ida, String type, String name, String date, String time, String direction) {
 
         //this.id = id;
         this.ida = ida;
@@ -22,16 +21,10 @@ public class C__Appointment {
         this.date = date;
         this.time = time;
         this.direction = direction;
-        this.reminder = reminder;
         }
 
     public C__Appointment(){}
-//    public int getId() {
-//        return id;
-//    }
-//    public void setId(int id) {
-//        this.id = id;
-//    }
+
     public String getIda() {
         return ida;
     }
@@ -68,12 +61,7 @@ public class C__Appointment {
     public void setDirection(String direction) {
         this.direction = direction;
     }
-    public String getReminder() {
-        return reminder;
-    }
-    public void setReminder(String reminder) {
-        this.reminder = reminder;
-    }
+
 
     @Override
     public String toString() {
@@ -84,7 +72,6 @@ public class C__Appointment {
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", direction='" + direction + '\'' +
-                ", reminder='" + reminder + '\'' +
                 '}';
     }
 }

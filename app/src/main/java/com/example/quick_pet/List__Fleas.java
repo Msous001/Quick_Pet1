@@ -12,14 +12,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -30,7 +28,7 @@ import java.util.Collections;
 public class List__Fleas extends AppCompatActivity {
 
     Button btnadd;
-    ImageView back_arrow, calendar_app_newFleas;
+    ImageView back_arrow;
     EditText dates;
     private int mDate, mMonth, mYear;
     ListView lv_fleas;

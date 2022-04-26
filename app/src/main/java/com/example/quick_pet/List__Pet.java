@@ -121,7 +121,6 @@ public class List__Pet extends AppCompatActivity {
                         return;
                     }
                     Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
-
                     for (DocumentChange dc : value.getDocumentChanges()) {
                         if (dc.getType() == DocumentChange.Type.ADDED) {
                             myPets.getMyPetList().add(dc.getDocument().toObject(C__Pet.class));

@@ -18,9 +18,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -40,17 +42,22 @@ public class Add_Appointment extends AppCompatActivity {
 
     //variables
     Button btnNext;
-    private EditText et_Name, et_date, et_time, et_direction, et_reminder;
+    private EditText et_Name, et_date, et_time, et_direction;
     private Spinner type;
     ImageView back_arrow;
     CircleImageView circleImageView;
     int positionToEdit = -1;
     private static String pet_name;
     private int mDate, mMonth, mYear, mHour, mMinute;
+    public int currentDate, currentMonth, currentYear, currentHour, currentMinute;
+
     FirebaseFirestore db;
+    FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    FirebaseUser firebaseUser = fAuth.getCurrentUser();
     private static String dbSalt;
     private static final String TAG = "Add App";
-    private long mmMinute;
+    C__Notification_MyNot myNot;
+    Switch aSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,17 +65,20 @@ public class Add_Appointment extends AppCompatActivity {
         setContentView(R.layout.activity_add_appointment);
         db = FirebaseFirestore.getInstance();
 
+
         //connecting to the global variable
         C__CurrentPet_MyCurrentPet myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
+        myNot = ((C__GlobalVariable) this.getApplication()).getMyNot();
+
 
         //matching th variables with the elements in xml file
         et_Name = (EditText) findViewById(R.id.editName);
         et_date = (EditText) findViewById(R.id.edit_date);
         et_time = (EditText) findViewById(R.id.edittime);
         et_direction = (EditText) findViewById(R.id.editDirection);
-        et_reminder = (EditText) findViewById(R.id.editReminder);
         type = (Spinner) findViewById(R.id.spinnerType);
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
+        aSwitch = (Switch)findViewById(R.id.switch2);
 
         //setting the calendar picker
         et_date.setOnClickListener(v -> {
@@ -81,6 +91,9 @@ public class Add_Appointment extends AppCompatActivity {
                     android.R.style.Theme_DeviceDefault_Dialog, (view, year, month, date) -> {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd MMM" + "\n yyyy");
                 cal1.set(year, month, date);
+                currentYear = year;
+                currentMonth = month;
+                currentDate = date;
                 String dateString = sdf.format(cal1.getTime());
                 et_date.setText(dateString);
 
@@ -98,6 +111,8 @@ public class Add_Appointment extends AppCompatActivity {
                   @Override
                   public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
                       et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
+                      currentHour = hourD;
+                      currentMinute = minuteD;
                   }
               }, 12, 0, true);
 
@@ -106,41 +121,36 @@ public class Add_Appointment extends AppCompatActivity {
               timePickerDialog.show();
 
           });
+          aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+              @Override
+              public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                  if(b){
+                      aSwitch.setText("Yes");
+                      String n_Name = et_Name.getText().toString();
+                      String n_Dates = et_date.getText().toString();
+                      String n_Time = et_time.getText().toString();
+                      C__Notifications n = new C__Notifications(n_Dates, n_Name,n_Time);
+                      if (n_Name.length() > 2) {
+                          dbSalt = n_Name.substring(0, 2);
+                      } else {
+                          dbSalt = n_Name;
+                      }
+                      db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
+                              .document(dbSalt + n_Dates).set(n).addOnSuccessListener(unused -> {
+                          Toast.makeText(getApplicationContext(), "Notification Added", Toast.LENGTH_SHORT).show();
+                          setNotification();
+                      });
 
-        et_reminder.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Calendar calendar = Calendar.getInstance();
-                mHour = calendar.get(Calendar.HOUR_OF_DAY);
-                mMinute = calendar.get(Calendar.MINUTE);
-                calendar.set(0,0,0, mHour, mMinute);
+                      createNotificationChannel();
+                  }
+                  else{
+                      Toast.makeText(getApplicationContext(), "Error ", Toast.LENGTH_SHORT).show();
 
-                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker timePicker, int hourAD, int minuteAD) {
-                        et_reminder.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourAD, minuteAD, true));
-                        mmMinute = minuteAD - mMinute;
-                    }
-                }, 12, 0, true);
+                  }
+              }
+          });
 
-                timePickerDialog.updateTime(mHour, mMinute);
-                timePickerDialog.setTitle("Select time");
-                timePickerDialog.show();
-            }
-        });
-//        et_time.setOnClickListener(view -> {
-//            Calendar calendar = Calendar.getInstance();
-//            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-//                mHour = selectedHour;
-//                mMinute = selectedMinute;
-//                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-//            };
-//            int style = AlertDialog.THEME_HOLO_DARK;
-//            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this,
-//                    style, onTimeSetListener, mHour, mMinute, true);
-//            timePickerDialog.setTitle("Select Time");
-//            timePickerDialog.show();
-//        });
+
         // back button
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addAppointment);
         // click listener for the button
@@ -162,7 +172,6 @@ public class Add_Appointment extends AppCompatActivity {
             String A_date = incomingIntent.getString("a_date");
             String A_time = incomingIntent.getString("a_time");
             String A_direction = incomingIntent.getString("a_direction");
-            String A_reminder = incomingIntent.getString("a_reminder");
             positionToEdit = incomingIntent.getInt("edit");
 
             if (TextUtils.isEmpty(A_name)) {
@@ -177,14 +186,11 @@ public class Add_Appointment extends AppCompatActivity {
             if (TextUtils.isEmpty(A_direction)) {
                 A_direction = "";
             }
-            if (TextUtils.isEmpty(A_reminder)) {
-                A_reminder = "";
-            }
+
             et_Name.setText(A_name);
             et_date.setText(A_date);
             et_time.setText(A_time);
             et_direction.setText(A_direction);
-            et_reminder.setText(A_reminder);
         }
 
 
@@ -196,7 +202,6 @@ public class Add_Appointment extends AppCompatActivity {
             String newDates = et_date.getText().toString();
             String newTime = et_time.getText().toString();
             String newDirection = et_direction.getText().toString();
-            String newReminder = et_reminder.getText().toString();
 
             if (TextUtils.isEmpty(newName)) {
                 et_Name.setError("Required");
@@ -211,10 +216,7 @@ public class Add_Appointment extends AppCompatActivity {
                 if (TextUtils.isEmpty(newDirection)) {
                     newDirection = "Not Defined";
                 }
-                if (TextUtils.isEmpty(newReminder)) {
-                    newReminder = "Not Defined";
-                }
-                C__Appointment ap = new C__Appointment(pet_name, newType, newName, newDates, newTime, newDirection, newReminder);
+                C__Appointment ap = new C__Appointment(pet_name, newType, newName, newDates, newTime, newDirection);
                 if (newName.length() > 2) {
                     dbSalt = newName.substring(0, 2);
                 } else {
@@ -245,14 +247,13 @@ public class Add_Appointment extends AppCompatActivity {
                 i.putExtra("a_date", newDates);
                 i.putExtra("a_time", newTime);
                 i.putExtra("a_direction", newDirection);
-                i.putExtra("a_reminder", newReminder);
-                setNotification();
+//                setNotification();
                 startActivity(i);
                 finish();
             }
 //
         });
-        createNotificationChannel();
+//        createNotificationChannel();
 
     }
 
@@ -261,11 +262,12 @@ public class Add_Appointment extends AppCompatActivity {
         PendingIntent pendingIntent = PendingIntent.getBroadcast(Add_Appointment.this, 0, intent, 0);
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Calendar final_calendar = Calendar.getInstance();
+        final_calendar.set(currentYear,currentMonth, currentDate, currentHour, currentMinute, 0);
+        long startTime = final_calendar.getTimeInMillis();
 
-        long timeAtButtonClick = System.currentTimeMillis();
-        long timeAfter = mmMinute*60000;
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, timeAtButtonClick + timeAfter, pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, pendingIntent);
     }
 
     private void createNotificationChannel(){
@@ -275,10 +277,45 @@ public class Add_Appointment extends AppCompatActivity {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel("quick_pet", name, importance);
             channel.setDescription(description);
-
+            channel.enableVibration(true);
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
         }
     }
 
 }
+
+//        et_reminder.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Calendar calendar = Calendar.getInstance();
+//                mHour = calendar.get(Calendar.HOUR_OF_DAY);
+//                mMinute = calendar.get(Calendar.MINUTE);
+//                calendar.set(0,0,0, mHour, mMinute);
+//
+//                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
+//                    @Override
+//                    public void onTimeSet(TimePicker timePicker, int hourAD, int minuteAD) {
+//                        et_reminder.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourAD, minuteAD, true));
+//                        mmMinute = minuteAD - mMinute;
+//                    }
+//                }, 12, 0, true);
+//
+//                timePickerDialog.updateTime(mHour, mMinute);
+//                timePickerDialog.setTitle("Select time");
+//                timePickerDialog.show();
+//            }
+//        });
+//        et_time.setOnClickListener(view -> {
+//            Calendar calendar = Calendar.getInstance();
+//            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
+//                mHour = selectedHour;
+//                mMinute = selectedMinute;
+//                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
+//            };
+//            int style = AlertDialog.THEME_HOLO_DARK;
+//            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this,
+//                    style, onTimeSetListener, mHour, mMinute, true);
+//            timePickerDialog.setTitle("Select Time");
+//            timePickerDialog.show();
+//        });

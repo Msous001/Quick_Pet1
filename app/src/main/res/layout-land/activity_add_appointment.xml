@@ -283,23 +283,21 @@
                     android:layout_marginRight="3dp"
                     android:background="@color/zambezi" />
 
-                <EditText
-                    android:id="@+id/editReminder"
-                    android:layout_width="200dp"
-                    android:layout_height="40dp"
-                    android:background="@color/white"
-                    android:ems="10"
-                    android:hint="@string/direction"
-                    android:inputType="textPersonName"
-                    android:labelFor="@id/editReminder"
-                    android:padding="4dp"
-                    android:layout_marginEnd="4dp"
-                    android:focusableInTouchMode="false"
-                    android:focusable="false"
-                    android:textColor="@color/black"
+                <Switch
+                    android:id="@+id/switch2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_marginEnd="25dp"
+                    android:padding="6dp"
+                    android:switchPadding="20dp"
+                    android:text="@string/no"
                     android:textSize="16sp"
-                    android:drawableEnd="@drawable/alarm_add_black"
-                    tools:ignore="Autofill,LabelFor" />
+                    android:scaleX="1.2"
+                    android:scaleY="1"
+                    app:thumbTint="@color/blue"
+                    app:trackTint="@color/link"
+                    tools:ignore="UseSwitchCompatOrMaterialXml" />
 
 
 

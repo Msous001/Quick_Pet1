@@ -6,29 +6,23 @@ import androidx.appcompat.widget.Toolbar;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Main_menu extends AppCompatActivity {
 
+    // variables
     Toolbar toolbar;
     Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication,
             allergy, health ;
     private CircleImageView circleImagepet1;
     private C__CurrentPet_MyCurrentPet myCurrentPet;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +48,7 @@ public class Main_menu extends AppCompatActivity {
                     Intent se = new Intent(Main_menu.this, Settings.class);
                     startActivity(se);
                     Toast.makeText(Main_menu.this, "test", Toast.LENGTH_SHORT).show();
-                    break;
+                    return true;
                 case R.id.photos:
                     Intent a = new Intent(Main_menu.this, List__Photos.class);
                     startActivity(a);
@@ -87,7 +81,7 @@ public class Main_menu extends AppCompatActivity {
             circleImagepet1.setImageURI(Uri.parse(c.getImageUrl()));
         }
 
-
+// Buttons
         appointment = (Button) findViewById(R.id.appointment);
         appointment.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -49,8 +49,6 @@ public class List__Medication extends AppCompatActivity {
         lv_medication = (ListView) findViewById(R.id.listView_Medication);
         btn_ok = (Button) findViewById(R.id.btn_list_medication);
 
-        // currentPetList = C__GlobalVariable.getCurrentPets();
-
         for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
@@ -65,23 +63,6 @@ public class List__Medication extends AppCompatActivity {
             String date = incomingMessages.getString("date");
             String reason = incomingMessages.getString("reason");
             int positionEdited = incomingMessages.getInt("edit");
-
-//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-//
-//            C__Medication m = new C__Medication(pet_name, name, date, reason);
-//            if (positionEdited > -1){
-//                myMedication.getMyMedicationList().remove(positionEdited);
-//                //here i need to call the database to delete this item
-//
-//            }
-//            myMedication.getMyMedicationList().add(m);
-//
-//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-//            appReference.child("Medication").push().setValue(m);
-//
-//            Collections.sort(myMedication.getMyMedicationList());
-//            adapter.notifyDataSetChanged();
         }
         lv_medication.setOnItemClickListener((adapterView, view, position, l) -> editMedication(position));
         EventChangeListener();
@@ -95,7 +76,6 @@ public class List__Medication extends AppCompatActivity {
             finish();
         });
     }
-
     private void EventChangeListener() {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
@@ -106,14 +86,11 @@ public class List__Medication extends AppCompatActivity {
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
                 for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
                     myMedication.getMyMedicationList().add(snapshot.toObject(C__Medication.class));
-
                 }
                 adapter.notifyDataSetChanged();
             }
         });
     }
-
-
 
     private void editMedication(int position) {
 

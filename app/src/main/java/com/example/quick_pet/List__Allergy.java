@@ -8,18 +8,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 
 public class List__Allergy extends AppCompatActivity {
 
@@ -56,9 +51,6 @@ public class List__Allergy extends AppCompatActivity {
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowTLA);
 
-
-
-
         Bundle incominMessages = getIntent().getExtras();
         if(incominMessages != null){
             String A_name = incominMessages.getString("name");
@@ -67,23 +59,6 @@ public class List__Allergy extends AppCompatActivity {
             String A_medication = incominMessages.getString("medication");
             int positionEdited = incominMessages.getInt("edit");
 
-//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-//            C__Allergy a = new C__Allergy(pet_name, A_name, A_date, A_symptom, A_medication);
-//            if(positionEdited >-1){
-//                myAllergies.getMyAllergyList().remove(positionEdited);
-//                //here i need to call the database to delete the item
-//            }
-//            myAllergies.getMyAllergyList().add(a);
-
-
-//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-////            appReference.child("Allergy").push().setValue(a);
-//            appReference.child("Allergy").child("Allergy "+ A_name).setValue(a);
-//
-//            Collections.sort(myAllergies.getMyAllergyList());
-//            adapter.notifyDataSetChanged();
-//        }
             if ( A_name.length() > 2){
                 dbSalt = A_name.substring(0,2);
             }else{
@@ -116,16 +91,13 @@ public class List__Allergy extends AppCompatActivity {
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Allergy").whereEqualTo("id", pet_name)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                    myAllergies.getMyAllergyList().add(snapshot.toObject(C__Allergy.class));
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                        myAllergies.getMyAllergyList().add(snapshot.toObject(C__Allergy.class));
 
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    }
+                    adapter.notifyDataSetChanged();
+                });
     }
 
     private void editAllergy(int position) {

@@ -28,7 +28,6 @@
         android:icon="@drawable/photo"
         android:title="@string/photos" />
 
-
     <item
         android:id="@+id/logout"
         android:iconTint="@null"

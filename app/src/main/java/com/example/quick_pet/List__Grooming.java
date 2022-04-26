@@ -8,18 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class List__Grooming extends AppCompatActivity {
 
@@ -61,7 +57,7 @@ public class List__Grooming extends AppCompatActivity {
         for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
             pet_name = c.getName();
         }
-        //lv_listGrooming.setOnItemClickListener((adapterView, view, position, l) -> editGrooming(position));
+        lv_listGrooming.setOnItemClickListener((adapterView, view, position, l) -> editGrooming(position));
         EventChangeListener();
 
         Bundle incomingMessages = getIntent().getExtras();
@@ -72,15 +68,6 @@ public class List__Grooming extends AppCompatActivity {
             String G_direction = incomingMessages.getString("direction");
             int positionEdited = incomingMessages.getInt("edit");
 
-//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-
-//            C__Grooming g = new C__Grooming(pet_name, G_place, G_dates, G_time, G_direction);
-//            if(positionEdited >-1){
-//                myGrooming.getMyGroomingList().remove(positionEdited);
-//                //here i need to call the database to delete the item
-//
-//            }
             if (G_place.length() > 2) {
                 dbSalt = G_place.substring(0, 2);
             } else {
@@ -91,16 +78,6 @@ public class List__Grooming extends AppCompatActivity {
             int sep = G_dates.lastIndexOf(separator);
             dbDates = G_dates.substring(0, sep);
             dbSalt = dbSalt + dbDates;
-
-
-//            myGrooming.getMyGroomingList().add(g);
-//
-//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-//            appReference.child("Grooming").push().setValue(g);
-//
-//            Collections.sort(myGrooming.myGroomingList);
-//            adapter.notifyDataSetChanged();
-            
         }
          btn_add.setOnClickListener(view -> {
             startActivity(new Intent(List__Grooming.this, Add_Grooming.class));
@@ -114,16 +91,13 @@ public class List__Grooming extends AppCompatActivity {
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Grooming").whereEqualTo("id", pet_name)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                    myGrooming.getMyGroomingList().add(snapshot.toObject(C__Grooming.class));
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                        myGrooming.getMyGroomingList().add(snapshot.toObject(C__Grooming.class));
 
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    }
+                    adapter.notifyDataSetChanged();
+                });
     }
 
     private void editGrooming(int position) {

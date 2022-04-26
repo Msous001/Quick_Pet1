@@ -80,7 +80,6 @@ public class Register extends AppCompatActivity {
 
             } else {
                 registerUser(email, password);
-
             }
         });
     }
@@ -88,20 +87,19 @@ public class Register extends AppCompatActivity {
     private void registerUser(String email, String password) {
 //register the user
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 
                 FirebaseUser firebaseUser = fAuth.getCurrentUser();
                 //to register the user in realtime database
-                //C__User writeUserDetails = new C__User(email);
+                C__User writeUserDetails = new C__User(email);
 
                 //Extracting user reference from database
-                //DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
+                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
 
                 assert firebaseUser != null;
-//                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
-//                    if (task1.isSuccessful()) {
+                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
+                    if (task1.isSuccessful()) {
 //                        firebaseUser.sendEmailVerification();
 
                         Toast.makeText(Register.this, "User Created. Please verify your email", Toast.LENGTH_LONG).show();
@@ -113,14 +111,13 @@ public class Register extends AppCompatActivity {
                         startActivity(intent);
                         finish(); // to close activity
 
-//                    } else {
-//                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                    } else {
+                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
+                    }
+                });
             } else {
                 try {
                     throw task.getException();
-
                 } catch (FirebaseAuthWeakPasswordException e) {
                     mPassword.setError("Your password is too weak. Please use a mix of alphabets, numbers and symbols");
                     mPassword.requestFocus();
@@ -133,7 +130,6 @@ public class Register extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                     Toast.makeText(Register.this, "Error ! " + e.getMessage(), Toast.LENGTH_LONG).show();
-
                 }
             }
         });
