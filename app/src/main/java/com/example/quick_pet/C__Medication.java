@@ -1,13 +1,14 @@
 package com.example.quick_pet;
 
-public class C__Medication implements Comparable<C__Medication>{
+public class C__Medication implements Comparable<C__Medication> {
     String id;
     String name;
     String date;
     String reason;
 
 
-    public C__Medication(){}
+    public C__Medication() {
+    }
 
     public C__Medication(String id, String name, String date, String reason) {
         this.id = id;
@@ -59,5 +60,7 @@ public class C__Medication implements Comparable<C__Medication>{
     }
 
     @Override
-    public int compareTo(C__Medication c) {return this.date.compareTo(c.date);}
+    public int compareTo(C__Medication c) {
+        return this.date.compareTo(c.date);
+    }
 }

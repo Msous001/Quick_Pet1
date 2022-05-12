@@ -3,7 +3,6 @@ package com.example.quick_pet;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -14,11 +13,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -78,7 +73,7 @@ public class Add_Appointment extends AppCompatActivity {
         et_direction = (EditText) findViewById(R.id.editDirection);
         type = (Spinner) findViewById(R.id.spinnerType);
         circleImageView = (CircleImageView) findViewById(R.id.circleImagepet);
-        aSwitch = (Switch)findViewById(R.id.switch2);
+        aSwitch = (Switch) findViewById(R.id.switch2);
 
         //setting the calendar picker
         et_date.setOnClickListener(v -> {
@@ -101,54 +96,50 @@ public class Add_Appointment extends AppCompatActivity {
             datePickerDialog.show();
         });
         // setting the time picker
-          et_time.setOnClickListener(view -> {
-              Calendar calendar = Calendar.getInstance();
-              mHour = calendar.get(Calendar.HOUR_OF_DAY);
-              mMinute = calendar.get(Calendar.MINUTE);
-              calendar.set(0,0,0, mHour, mMinute);
+        et_time.setOnClickListener(view -> {
+            Calendar calendar = Calendar.getInstance();
+            mHour = calendar.get(Calendar.HOUR_OF_DAY);
+            mMinute = calendar.get(Calendar.MINUTE);
+            calendar.set(0, 0, 0, mHour, mMinute);
 
-              TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
-                  @Override
-                  public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
-                      et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
-                      currentHour = hourD;
-                      currentMinute = minuteD;
-                  }
-              }, 12, 0, true);
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Appointment.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
+                    et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
+                    currentHour = hourD;
+                    currentMinute = minuteD;
+                }
+            }, 12, 0, true);
 
-              timePickerDialog.updateTime(mHour, mMinute);
-              timePickerDialog.setTitle("Select time");
-              timePickerDialog.show();
+            timePickerDialog.updateTime(mHour, mMinute);
+            timePickerDialog.setTitle("Select time");
+            timePickerDialog.show();
 
-          });
-          aSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-              @Override
-              public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                  if(b){
-                      aSwitch.setText("Yes");
-                      String n_Name = et_Name.getText().toString();
-                      String n_Dates = et_date.getText().toString();
-                      String n_Time = et_time.getText().toString();
-                      C__Notifications n = new C__Notifications(n_Dates, n_Name,n_Time);
-                      if (n_Name.length() > 2) {
-                          dbSalt = n_Name.substring(0, 2);
-                      } else {
-                          dbSalt = n_Name;
-                      }
-                      db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
-                              .document(dbSalt + n_Dates).set(n).addOnSuccessListener(unused -> {
-                          Toast.makeText(getApplicationContext(), "Notification Added", Toast.LENGTH_SHORT).show();
-                          setNotification();
-                      });
+        });
+        aSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            if (b) {
+                aSwitch.setText(R.string.yes);
+                String n_Name = et_Name.getText().toString();
+                String n_Dates = et_date.getText().toString();
+                String n_Time = et_time.getText().toString();
+                C__Notifications n = new C__Notifications(n_Dates, n_Name, n_Time);
+                if (n_Name.length() > 2) {
+                    dbSalt = n_Name.substring(0, 2);
+                } else {
+                    dbSalt = n_Name;
+                }
+                db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
+                        .document(dbSalt + n_Dates).set(n).addOnSuccessListener(unused -> {
+                    Toast.makeText(getApplicationContext(), "Notification Added", Toast.LENGTH_SHORT).show();
+                    setNotification();
+                });
 
-                      createNotificationChannel();
-                  }
-                  else{
-                      Toast.makeText(getApplicationContext(), "Error ", Toast.LENGTH_SHORT).show();
+                createNotificationChannel();
+            } else {
+                Toast.makeText(getApplicationContext(), "Error ", Toast.LENGTH_SHORT).show();
 
-                  }
-              }
-          });
+            }
+        });
 
 
         // back button
@@ -238,7 +229,6 @@ public class Add_Appointment extends AppCompatActivity {
                         "APP Added", Toast.LENGTH_SHORT).show());
 
 
-
                 //startActivity(new Intent(Add_Appointment.this, List__Appointment.class));
                 Intent i = new Intent(view.getContext(), List__Appointment.class);
                 i.putExtra("edit", positionToEdit);
@@ -247,13 +237,11 @@ public class Add_Appointment extends AppCompatActivity {
                 i.putExtra("a_date", newDates);
                 i.putExtra("a_time", newTime);
                 i.putExtra("a_direction", newDirection);
-//                setNotification();
                 startActivity(i);
                 finish();
             }
 //
         });
-//        createNotificationChannel();
 
     }
 
@@ -263,15 +251,17 @@ public class Add_Appointment extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Calendar final_calendar = Calendar.getInstance();
-        final_calendar.set(currentYear,currentMonth, currentDate, currentHour, currentMinute, 0);
+        final_calendar.set(currentYear, currentMonth, currentDate, currentHour, currentMinute, 0);
         long startTime = final_calendar.getTimeInMillis();
 
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, pendingIntent);
     }
 
-    private void createNotificationChannel(){
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+    private void createNotificationChannel() {
+        // Build.Version.SDK_INT = returns the api level of the device
+        // Build.Version_codes.0 = api level to compile against the app/build gradle
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Quick Pet";
             String description = "Channel for Quick pet Reminder";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;

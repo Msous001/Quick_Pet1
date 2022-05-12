@@ -69,10 +69,10 @@
                 android:fontFamily="@font/roboto"
                 android:paddingStart="0dp"
                 android:paddingEnd="4dp"
+                android:text="@string/allergy_name"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/allergy_name"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="2dp"
@@ -90,11 +90,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
-                tools:ignore="LabelFor"
+                android:inputType="textPersonName"
                 android:textColor="@color/black"
-                android:inputType="textPersonName"/>
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
@@ -114,10 +114,10 @@
                 android:fontFamily="@font/roboto"
                 android:paddingStart="0dp"
                 android:paddingEnd="4dp"
+                android:text="@string/start_date"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/start_date"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="2dp"
@@ -133,14 +133,14 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
-                android:ems="10"
-                android:textSize="16sp"
-                android:importantForAutofill="no"
-                tools:ignore="LabelFor"
-                android:focusable="false"
-                android:textColor="@color/black"
                 android:drawableEnd="@drawable/calen_dar"
-                android:inputType="date"/>
+                android:ems="10"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:inputType="date"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
         </TableRow>
 
@@ -161,10 +161,10 @@
                 android:fontFamily="@font/roboto"
                 android:paddingStart="0dp"
                 android:paddingEnd="4dp"
+                android:text="@string/symptoms"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/symptoms"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="2dp"
@@ -181,11 +181,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
-                tools:ignore="LabelFor"
+                android:inputType="textPersonName"
                 android:textColor="@color/black"
-                android:inputType="textPersonName"/>
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
@@ -194,9 +194,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/white_border"
-            android:padding="4dp"
-            android:layout_marginBottom="40dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_Allergy_medication"
@@ -206,10 +206,10 @@
                 android:fontFamily="@font/roboto"
                 android:paddingStart="0dp"
                 android:paddingEnd="4dp"
+                android:text="@string/medication"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/medication"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="2dp"
@@ -226,11 +226,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
-                tools:ignore="LabelFor"
+                android:inputType="textPersonName"
                 android:textColor="@color/black"
-                android:inputType="textPersonName"/>
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
     </LinearLayout>

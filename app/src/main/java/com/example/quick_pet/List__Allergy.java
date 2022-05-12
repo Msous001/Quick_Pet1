@@ -25,16 +25,17 @@ public class List__Allergy extends AppCompatActivity {
     C__Allergy_MyAllergies myAllergies;
     C__CurrentPet_MyCurrentPet myCurrentPet;
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
     private static final String TAG = "List_Allergy";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_allergy);
 
         myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
-        myAllergies= ((C__GlobalVariable) this.getApplication()).getMyAllergies();
+        myAllergies = ((C__GlobalVariable) this.getApplication()).getMyAllergies();
         myAllergies.myAllergyList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
@@ -45,29 +46,29 @@ public class List__Allergy extends AppCompatActivity {
         lv_allergy.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
 
         back_arrow = (ImageView) findViewById(R.id.back_arrowTLA);
 
         Bundle incominMessages = getIntent().getExtras();
-        if(incominMessages != null){
+        if (incominMessages != null) {
             String A_name = incominMessages.getString("name");
             String A_date = incominMessages.getString("date");
             String A_symptom = incominMessages.getString("symptom");
             String A_medication = incominMessages.getString("medication");
             int positionEdited = incominMessages.getInt("edit");
 
-            if ( A_name.length() > 2){
-                dbSalt = A_name.substring(0,2);
-            }else{
+            if (A_name.length() > 2) {
+                dbSalt = A_name.substring(0, 2);
+            } else {
                 dbSalt = A_name;
             }
             String separator = " ";
             String dbDates;
             int sep = A_date.lastIndexOf(separator);
-            dbDates= A_date.substring(0,sep);
+            dbDates = A_date.substring(0, sep);
             dbSalt = dbSalt + dbDates;
 
 
@@ -92,12 +93,12 @@ public class List__Allergy extends AppCompatActivity {
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Allergy").whereEqualTo("id", pet_name)
                 .get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                        myAllergies.getMyAllergyList().add(snapshot.toObject(C__Allergy.class));
+            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                myAllergies.getMyAllergyList().add(snapshot.toObject(C__Allergy.class));
 
-                    }
-                    adapter.notifyDataSetChanged();
-                });
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void editAllergy(int position) {

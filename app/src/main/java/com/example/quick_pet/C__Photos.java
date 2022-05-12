@@ -8,11 +8,14 @@ public class C__Photos {
     public C__Photos(String picPicture) {
         this.picPicture = picPicture;
     }
-    public C__Photos(){}
+
+    public C__Photos() {
+    }
 
     public String getPicPicture() {
         return picPicture;
     }
+
     public void setPicPicture(String picPicture) {
         this.picPicture = picPicture;
     }

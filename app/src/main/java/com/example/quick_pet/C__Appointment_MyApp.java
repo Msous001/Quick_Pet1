@@ -9,7 +9,9 @@ public class C__Appointment_MyApp {
     public C__Appointment_MyApp(List<C__Appointment> myAppList) {
         this.myAppList = myAppList;
     }
-    public C__Appointment_MyApp(){}
+
+    public C__Appointment_MyApp() {
+    }
 
     public List<C__Appointment> getMyAppList() {
         return myAppList;

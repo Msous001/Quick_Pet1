@@ -35,7 +35,7 @@ public class Add_Grooming extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Groomiming";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
     @Override
@@ -78,19 +78,10 @@ public class Add_Grooming extends AppCompatActivity {
         });
         // setting the time picker
         et_time.setOnClickListener(view -> {
-//            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-//                mHour = selectedHour;
-//                mMinute = selectedMinute;
-//                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-//            };
-//            int style = AlertDialog.THEME_HOLO_DARK;
-//            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
-//            timePickerDialog.setTitle("Select Time");
-//            timePickerDialog.show();
             Calendar calendar = Calendar.getInstance();
             mHour = calendar.get(Calendar.HOUR_OF_DAY);
             mMinute = calendar.get(Calendar.MINUTE);
-            calendar.set(0,0,0, mHour, mMinute);
+            calendar.set(0, 0, 0, mHour, mMinute);
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -104,12 +95,12 @@ public class Add_Grooming extends AppCompatActivity {
             timePickerDialog.show();
         });
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
-        if(incomingIntent != null){
+        if (incomingIntent != null) {
             String G_place = incomingIntent.getString("place");
             String G_date = incomingIntent.getString("date");
             String G_time = incomingIntent.getString("time");
@@ -146,11 +137,10 @@ public class Add_Grooming extends AppCompatActivity {
             if (TextUtils.isEmpty(newPlace)) {
                 et_place.setError("Required");
                 et_place.requestFocus();
-            }
-            else if (TextUtils.isEmpty(newDates)) {
+            } else if (TextUtils.isEmpty(newDates)) {
                 et_date.setError("Required");
                 et_date.requestFocus();
-            }else {
+            } else {
                 if (TextUtils.isEmpty(newTime)) {
                     newTime = "Not Defined";
                 }
@@ -158,22 +148,22 @@ public class Add_Grooming extends AppCompatActivity {
                     newDirection = "Not Defined";
                 }
 
-                C__Grooming ca = new C__Grooming(pet_name, newPlace, newDates, newTime,newDirection);
-                if(newPlace.length() > 2){
-                    dbSalt = newPlace.substring(0,2);
-                }else{
+                C__Grooming ca = new C__Grooming(pet_name, newPlace, newDates, newTime, newDirection);
+                if (newPlace.length() > 2) {
+                    dbSalt = newPlace.substring(0, 2);
+                } else {
                     dbSalt = newPlace;
                 }
                 String separator = " ";
                 String dbDates;
                 int sep = newDates.lastIndexOf(separator);
-                dbDates= newDates.substring(0,sep);
+                dbDates = newDates.substring(0, sep);
                 dbSalt = dbSalt + dbDates;
                 //Connecting to the database
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = fAuth.getCurrentUser();
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                        .document(pet_name).collection("Grooming").document("G-"+dbSalt)
+                        .document(pet_name).collection("Grooming").document("G-" + dbSalt)
                         .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

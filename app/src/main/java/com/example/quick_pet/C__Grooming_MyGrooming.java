@@ -9,7 +9,8 @@ public class C__Grooming_MyGrooming {
     public C__Grooming_MyGrooming(List<C__Grooming> myGroomingList) {
         this.myGroomingList = myGroomingList;
     }
-    public C__Grooming_MyGrooming(){
+
+    public C__Grooming_MyGrooming() {
         this.myGroomingList = new ArrayList<>();
 
     }

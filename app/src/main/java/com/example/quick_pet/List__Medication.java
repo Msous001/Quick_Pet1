@@ -76,6 +76,7 @@ public class List__Medication extends AppCompatActivity {
             finish();
         });
     }
+
     private void EventChangeListener() {
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
         FirebaseUser firebaseUser = fAuth.getCurrentUser();

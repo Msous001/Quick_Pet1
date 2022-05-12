@@ -90,7 +90,7 @@ public class Add_HealthCondition extends AppCompatActivity {
             String newSymptom = symptom.getText().toString();
             String newMedication = medication.getText().toString();
             //validation to avoid system crash
-            //validation to avoid system crash
+
             if (TextUtils.isEmpty(newName)) {
                 name.setError("Required");
                 name.requestFocus();

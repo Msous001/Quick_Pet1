@@ -9,7 +9,8 @@ public class C__Sounds_MySounds {
     public C__Sounds_MySounds(List<C__Sounds> mySoundsList) {
         this.mySoundsList = mySoundsList;
     }
-    public C__Sounds_MySounds(){
+
+    public C__Sounds_MySounds() {
         this.mySoundsList = new ArrayList<>();
         C__Sounds f1 = new C__Sounds(R.raw.toy1, "Toy 1", false);
         mySoundsList.add(f1);

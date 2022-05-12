@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
     <resources>
-        <color name="white_lila">#04B4B4B4</color>
+        <color name="white_lila">#AFABAB</color>
         <color name="green_button">#6F6F6F</color>
-        <color name="link_water">#04B4B4B4</color>
+        <color name="link_water">#B4B4B4</color>
         <color name="zambezi">#0B0A0A</color>
         <color name="blue">#2C0BF7</color>
-        <color name="black">#F6F5F5</color>
+        <color name="black">#F6F4F4</color>
         <color name="white">#0E0E0E</color>
         <color name ="link">#E92CEF</color>
         <color name ="red">#D50000</color>

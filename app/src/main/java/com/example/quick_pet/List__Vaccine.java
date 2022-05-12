@@ -16,6 +16,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+
 public class List__Vaccine extends AppCompatActivity {
 
     ImageView back_arrow;
@@ -53,25 +54,11 @@ public class List__Vaccine extends AppCompatActivity {
         adapter.notifyDataSetChanged();
 
         Bundle incominMessages = getIntent().getExtras();
-        if(incominMessages != null){
+        if (incominMessages != null) {
             String V_name = incominMessages.getString("name");
             String V_date = incominMessages.getString("date");
             String V_vetName = incominMessages.getString("vetName");
             int positionEdited = incominMessages.getInt("edit");
-
-//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-//            C__Vaccine Va = new C__Vaccine(pet_name, V_name, V_date, V_vetName);
-//            if(positionEdited >-1){
-//                myVaccine.getMyVaccineList().remove(positionEdited);
-//                //here i need to call the database to delete the item
-//
-//            }
-//            myVaccine.getMyVaccineList().add(Va);
-//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-//            appReference.child("Vaccines").push().setValue(Va);
-//            Collections.sort(myVaccine.getMyVaccineList());
-//            adapter.notifyDataSetChanged();
         }
         lv_vaccine.setOnItemClickListener((adapterView, view, position, l) -> editVaccine(position));
         EventChangeListener();

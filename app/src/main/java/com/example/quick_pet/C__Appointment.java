@@ -21,43 +21,55 @@ public class C__Appointment {
         this.date = date;
         this.time = time;
         this.direction = direction;
-        }
+    }
 
-    public C__Appointment(){}
+    public C__Appointment() {
+    }
 
     public String getIda() {
         return ida;
     }
+
     public void setIda(String ida) {
         this.ida = ida;
     }
+
     public String getType() {
         return type;
     }
+
     public void setType(String type) {
         this.type = type;
     }
+
     public String getName() {
         return Name;
     }
+
     public void setName(String name) {
         Name = name;
     }
+
     public String getDate() {
         return date;
     }
+
     public void setDate(String date) {
         this.date = date;
     }
+
     public String getTime() {
         return time;
     }
+
     public void setTime(String time) {
         this.time = time;
     }
+
     public String getDirection() {
         return direction;
     }
+
     public void setDirection(String direction) {
         this.direction = direction;
     }

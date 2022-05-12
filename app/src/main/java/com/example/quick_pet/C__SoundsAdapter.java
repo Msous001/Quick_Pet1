@@ -19,6 +19,7 @@ public class C__SoundsAdapter extends BaseAdapter {
         this.myActivity = myActivity;
         this.mySounds = mySounds;
     }
+
     @Override
     public int getCount() {
         return mySounds.getMySoundsList().size();
@@ -38,26 +39,26 @@ public class C__SoundsAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         C__Sounds c = this.getItem(position);
         ViewHolder holder;
-        if(view == null){
-            view = LayoutInflater.from(myActivity).inflate(R.layout.one_line_sounds, viewGroup,false);
+        if (view == null) {
+            view = LayoutInflater.from(myActivity).inflate(R.layout.one_line_sounds, viewGroup, false);
             holder = new ViewHolder();
             holder.trackImage = view.findViewById(R.id.image_sound);
             holder.title = view.findViewById(R.id.tv_sound_name);
             view.setTag(holder);
-        }else{
+        } else {
             holder = (ViewHolder) view.getTag();
         }
         holder.title.setText(c.getName());
-        if(c.isPlaying()){
+        if (c.isPlaying()) {
             holder.trackImage.setImageResource(R.drawable.volume_up);
-        }else{
+        } else {
             holder.trackImage.setImageResource(R.drawable.volume);
         }
 
         return view;
     }
 
-    private class ViewHolder{
+    private class ViewHolder {
         ImageView trackImage;
         TextView title;
     }

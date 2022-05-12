@@ -71,7 +71,6 @@ public class List__Pet extends AppCompatActivity {
                 case R.id.settings:
                     Intent s = new Intent(List__Pet.this, Settings.class);
                     startActivity(s);
-                    Toast.makeText(getApplicationContext(), "test", Toast.LENGTH_SHORT).show();
                     return true;
                 case R.id.photos:
                     Intent a = new Intent(List__Pet.this, List__Photos.class);
@@ -120,11 +119,10 @@ public class List__Pet extends AppCompatActivity {
                         Log.e("Firestore error", error.getMessage());
                         return;
                     }
-                    Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
+                    myPets.myPetList = new ArrayList<>();
                     for (DocumentChange dc : value.getDocumentChanges()) {
                         if (dc.getType() == DocumentChange.Type.ADDED) {
                             myPets.getMyPetList().add(dc.getDocument().toObject(C__Pet.class));
-                            Toast.makeText(getApplicationContext(), "Here ", Toast.LENGTH_SHORT).show();
                         }
                         adapter.notifyDataSetChanged();
                     }

@@ -6,10 +6,11 @@ import java.util.List;
 public class C__CurrentPet_MyCurrentPet {
     List<C__CurrentPet> myCurrentPet;
 
-    public C__CurrentPet_MyCurrentPet(List<C__CurrentPet> myCurrentPet){
+    public C__CurrentPet_MyCurrentPet(List<C__CurrentPet> myCurrentPet) {
         this.myCurrentPet = myCurrentPet;
     }
-    public C__CurrentPet_MyCurrentPet(){
+
+    public C__CurrentPet_MyCurrentPet() {
         this.myCurrentPet = new ArrayList<>();
     }
 

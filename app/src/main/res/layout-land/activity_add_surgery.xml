@@ -140,11 +140,11 @@
                     android:layout_marginEnd="4dp"
                     android:background="@android:color/transparent"
                     android:drawableEnd="@drawable/calen_dar"
-                    android:focusable="false"
                     android:ems="10"
+                    android:focusable="false"
                     android:importantForAutofill="no"
-                    android:textColor="@color/black"
                     android:inputType="date"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
 
@@ -230,8 +230,8 @@
                     android:background="@android:color/transparent"
                     android:ems="10"
                     android:importantForAutofill="no"
-                    android:textColor="@color/black"
                     android:inputType="textPersonName"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
@@ -272,8 +272,8 @@
                 android:background="@android:color/transparent"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:textSize="16sp"
                 android:textColor="@color/black"
+                android:textSize="16sp"
                 tools:ignore="LabelFor" />
         </TableRow>
 

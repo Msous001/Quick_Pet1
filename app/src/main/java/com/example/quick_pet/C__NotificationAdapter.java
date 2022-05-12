@@ -8,8 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-public class C__NotificationAdapter extends BaseAdapter
-{
+public class C__NotificationAdapter extends BaseAdapter {
     Activity mActivity;
     C__Notification_MyNot myNot;
 
@@ -19,13 +18,19 @@ public class C__NotificationAdapter extends BaseAdapter
     }
 
     @Override
-    public int getCount() { return myNot.getMyNotList().size();}
+    public int getCount() {
+        return myNot.getMyNotList().size();
+    }
 
     @Override
-    public C__Notifications getItem(int i) { return myNot.getMyNotList().get(i);}
+    public C__Notifications getItem(int i) {
+        return myNot.getMyNotList().get(i);
+    }
 
     @Override
-    public long getItemId(int i) {return 0;}
+    public long getItemId(int i) {
+        return 0;
+    }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {

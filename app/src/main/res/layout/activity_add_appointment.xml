@@ -43,7 +43,7 @@
                 android:layout_marginTop="80dp"
                 android:contextClickable="true"
                 app:civ_border_color="@color/green_button"
-                app:civ_border_width="20dp"
+                app:civ_border_width="10dp"
                 app:civ_circle_background_color="@color/green_button" />
 
         </RelativeLayout>
@@ -59,8 +59,8 @@
             android:paddingRight="8dp"
             android:paddingBottom="0dp"
             android:text="@string/new_appointment"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -181,11 +181,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:drawableEnd="@drawable/calen_dar"
+                android:focusable="false"
                 android:importantForAutofill="no"
                 android:inputType="date"
-                android:focusable="false"
-                android:textColor="@color/black"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -228,10 +228,10 @@
                 android:drawableEnd="@drawable/alarm_add_black"
                 android:ems="10"
                 android:focusable="false"
-                android:textColor="@color/black"
                 android:importantForAutofill="no"
                 android:inputType="date"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -275,8 +275,8 @@
                 android:ems="10"
                 android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:textColor="@color/black"
                 android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 tools:ignore="LabelFor" />
 
@@ -316,11 +316,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="120dp"
                 android:padding="6dp"
+                android:scaleX="1.2"
+                android:scaleY="1"
                 android:switchPadding="20dp"
                 android:text="@string/no"
                 android:textSize="16sp"
-                android:scaleX="1.2"
-                android:scaleY="1"
                 app:thumbTint="@color/blue"
                 app:trackTint="@color/link"
                 tools:ignore="UseSwitchCompatOrMaterialXml" />
@@ -349,20 +349,20 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--<EditText
-                android:id="@+id/editReminder"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="0dp"
-                android:layout_marginEnd="8dp"
-                android:background="@color/white"
-                android:drawableEnd="@drawable/alarm_add_black"
-                android:ems="10"
-                android:hint="@string/direction"
-                android:focusable="false"
-                android:inputType="textPersonName"
-                android:labelFor="@id/editReminder"
-                android:padding="4dp"
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />
+    <!--<EditText
+                    android:id="@+id/editReminder"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@color/white"
+                    android:drawableEnd="@drawable/alarm_add_black"
+                    android:ems="10"
+                    android:hint="@string/direction"
+                    android:focusable="false"
+                    android:inputType="textPersonName"
+                    android:labelFor="@id/editReminder"
+                    android:padding="4dp"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    tools:ignore="Autofill,DuplicateSpeakableTextCheck,TextContrastCheck,TouchTargetSizeCheck" />

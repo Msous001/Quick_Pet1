@@ -11,7 +11,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,7 +30,7 @@ public class Add_Allergy extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Allergy";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
 
@@ -65,14 +64,14 @@ public class Add_Allergy extends AppCompatActivity {
             mYear = cal1.get(Calendar.YEAR);
             DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Allergy.this,
                     android.R.style.Theme_DeviceDefault_Dialog, (datePicker, year, month, date) -> {
-                        SimpleDateFormat sdf = new SimpleDateFormat("MMM YYYY");
-                        cal1.set(year, month, date);
-                        String dateString = sdf.format(cal1.getTime());
-                        dates.setText(dateString);
-                    }, mYear, mMonth, mDate);
+                SimpleDateFormat sdf = new SimpleDateFormat("MMM YYYY");
+                cal1.set(year, month, date);
+                String dateString = sdf.format(cal1.getTime());
+                dates.setText(dateString);
+            }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
 
@@ -85,10 +84,18 @@ public class Add_Allergy extends AppCompatActivity {
             String A_medication = incomingIntent.getString("medication");
             positionToEdit = incomingIntent.getInt("edit");
             //validation to avoid system crash
-            if (TextUtils.isEmpty(A_name)) {A_name = "Not Defined";}
-            if (TextUtils.isEmpty(A_date)) {A_date = "Not Defined";}
-            if (TextUtils.isEmpty(A_symptom)) {A_symptom = "Not Defined";}
-            if (TextUtils.isEmpty(A_medication)) {A_medication = "Not Defined";}
+            if (TextUtils.isEmpty(A_name)) {
+                A_name = "Not Defined";
+            }
+            if (TextUtils.isEmpty(A_date)) {
+                A_date = "Not Defined";
+            }
+            if (TextUtils.isEmpty(A_symptom)) {
+                A_symptom = "Not Defined";
+            }
+            if (TextUtils.isEmpty(A_medication)) {
+                A_medication = "Not Defined";
+            }
             name.setText(A_name);
             dates.setText(A_date);
             symptom.setText(A_symptom);
@@ -121,15 +128,15 @@ public class Add_Allergy extends AppCompatActivity {
                 C__Allergy ca = new C__Allergy(pet_name, newName, newDates, newSymptom, newMedication);
 
 
-                if ( newName.length() > 2){
-                    dbSalt = newName.substring(0,2);
-                }else{
+                if (newName.length() > 2) {
+                    dbSalt = newName.substring(0, 2);
+                } else {
                     dbSalt = newName;
                 }
                 String separator = " ";
                 String dbDates;
                 int sep = newDates.lastIndexOf(separator);
-                dbDates= newDates.substring(0,sep);
+                dbDates = newDates.substring(0, sep);
                 dbSalt = dbSalt + dbDates;
                 //Connecting to the database
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
@@ -137,7 +144,7 @@ public class Add_Allergy extends AppCompatActivity {
 
 
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                        .document(pet_name).collection("Allergy").document("A-"+dbSalt)
+                        .document(pet_name).collection("Allergy").document("A-" + dbSalt)
                         .set(ca).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Allergy Added", Toast.LENGTH_SHORT).show());
                 // I use Intents to transfer data from one Activity to another
                 Intent i = new Intent(view.getContext(), List__Allergy.class);

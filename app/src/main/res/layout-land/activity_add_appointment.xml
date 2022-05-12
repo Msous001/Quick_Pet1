@@ -44,7 +44,7 @@
                 android:layout_centerInParent="true"
                 android:contextClickable="true"
                 app:civ_border_color="@color/green_button"
-                app:civ_border_width="20dp"
+                app:civ_border_width="10dp"
                 app:civ_circle_background_color="@color/green_button" />
 
 
@@ -61,8 +61,8 @@
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
             android:text="@string/new_appointment"
-            android:textColor="@color/white"
             android:textAlignment="center"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold" />
 
@@ -100,8 +100,8 @@
                     android:id="@+id/spinnerType"
                     android:layout_width="200dp"
                     android:layout_height="match_parent"
-                    android:entries="@array/app_type"
                     android:layout_marginEnd="4dp"
+                    android:entries="@array/app_type"
                     android:focusableInTouchMode="false"
                     tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
             </TableRow>
@@ -140,12 +140,12 @@
                     android:layout_marginEnd="4dp"
                     android:background="@android:color/transparent"
                     android:ems="10"
+                    android:importantForAutofill="no"
                     android:inputType="textPersonName"
                     android:padding="8dp"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
-                    android:importantForAutofill="no"
-                    tools:ignore="LabelFor"/>
+                    android:textSize="16sp"
+                    tools:ignore="LabelFor" />
             </TableRow>
 
         </TableRow>
@@ -185,16 +185,16 @@
                     android:id="@+id/edittime"
                     android:layout_width="200dp"
                     android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@color/white"
                     android:drawableEnd="@drawable/alarm_add_black"
                     android:ems="10"
                     android:focusable="false"
-                    android:inputType="date"
                     android:focusableInTouchMode="false"
-                    android:layout_marginEnd="4dp"
+                    android:inputType="date"
                     android:padding="8dp"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     tools:ignore="Autofill,LabelFor" />
 
 
@@ -232,17 +232,17 @@
                     android:id="@+id/edit_date"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@color/white"
                     android:drawableEnd="@drawable/calen_dar"
                     android:ems="10"
-                    android:focusableInTouchMode="false"
                     android:focusable="false"
-                    android:layout_marginEnd="4dp"
+                    android:focusableInTouchMode="false"
                     android:inputType="date"
                     android:labelFor="@id/nameInput"
                     android:padding="8dp"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     tools:ignore="Autofill,LabelFor" />
 
 
@@ -255,6 +255,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp">
+
             <TableRow
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -290,15 +291,14 @@
                     android:layout_marginStart="80dp"
                     android:layout_marginEnd="25dp"
                     android:padding="6dp"
+                    android:scaleX="1.2"
+                    android:scaleY="1"
                     android:switchPadding="20dp"
                     android:text="@string/no"
                     android:textSize="16sp"
-                    android:scaleX="1.2"
-                    android:scaleY="1"
                     app:thumbTint="@color/blue"
                     app:trackTint="@color/link"
                     tools:ignore="UseSwitchCompatOrMaterialXml" />
-
 
 
             </TableRow>
@@ -336,12 +336,12 @@
                     android:id="@+id/editDirection"
                     android:layout_width="match_parent"
                     android:layout_height="38dp"
+                    android:layout_marginEnd="4dp"
                     android:background="@color/white"
                     android:ems="10"
                     android:hint="@string/direction"
                     android:inputType="textPersonName"
                     android:labelFor="@id/editDirection"
-                    android:layout_marginEnd="4dp"
                     android:padding="4dp"
                     android:textColor="@color/black"
                     android:textSize="16sp"

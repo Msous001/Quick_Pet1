@@ -7,7 +7,8 @@ public class C__Vaccine implements Comparable<C__Vaccine> {
     private String Vac_vetName;
 
 
-    public C__Vaccine(){}
+    public C__Vaccine() {
+    }
 
     public C__Vaccine(String id, String vac_name, String vac_date, String vac_vetName) {
         this.id = id;

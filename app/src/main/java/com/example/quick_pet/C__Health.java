@@ -9,12 +9,13 @@ public class C__Health {
 
     public C__Health(String id, String name, String effects, String symptomsName, String medicationName) {
         this.id = id;
-        this. Name = name;
+        this.Name = name;
         this.effects = effects;
         this.symptomsName = symptomsName;
         this.medicationName = medicationName;
     }
-    public C__Health(){
+
+    public C__Health() {
 
     }
 

@@ -104,7 +104,7 @@ public class Add_Vaccine extends AppCompatActivity {
                 dates.setError("This field is required");
                 dates.requestFocus();
             } else {
-                if (TextUtils.isEmpty(newVetName)){
+                if (TextUtils.isEmpty(newVetName)) {
                     newVetName = "Not Defined";
                 }
                 C__Vaccine ca = new C__Vaccine(pet_name, newName, newDates, newVetName);
@@ -130,15 +130,15 @@ public class Add_Vaccine extends AppCompatActivity {
                 });
 
                 Intent i = new Intent(view.getContext(), List__Vaccine.class);
-                    i.putExtra("edit", positionToEdit);
-                    i.putExtra("name", newName);
-                    i.putExtra("date", newDates);
-                    i.putExtra("vetName", newVetName);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("date", newDates);
+                i.putExtra("vetName", newVetName);
                 startActivity(i);
                 finish();
             }
         });
 
 
-}
     }
+}

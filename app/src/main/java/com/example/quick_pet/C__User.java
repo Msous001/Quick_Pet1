@@ -9,9 +9,14 @@ public class C__User {
 
         String separator = "@";
         int sep = name.lastIndexOf(separator);
-        this.name = name.substring(0,sep);
+        this.name = name.substring(0, sep);
     }
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

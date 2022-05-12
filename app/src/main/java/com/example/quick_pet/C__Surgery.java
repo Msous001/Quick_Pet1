@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Surgery implements Comparable<C__Surgery>{
+public class C__Surgery implements Comparable<C__Surgery> {
     private String id;
     private String name;
     private String date;
@@ -9,7 +9,8 @@ public class C__Surgery implements Comparable<C__Surgery>{
     private String addnote;
 
 
-    public C__Surgery(){}
+    public C__Surgery() {
+    }
 
     public C__Surgery(String id, String name, String date, String addmed1, String addmed2, String addnote) {
         this.id = id;

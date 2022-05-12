@@ -27,7 +27,7 @@ public class List__Health extends AppCompatActivity {
     C__Health_MyHealth myHealth;
     C__CurrentPet_MyCurrentPet myCurrentPet;
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
     private static final String TAG = "List_Health";
 
@@ -49,7 +49,7 @@ public class List__Health extends AppCompatActivity {
         });
 
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
 

@@ -25,7 +25,7 @@ public class List__Grooming extends AppCompatActivity {
     C__Grooming_MyGrooming myGrooming;
     C__GroomingAdapter adapter;
     C__CurrentPet_MyCurrentPet myCurrentPet;
-    private static String  pet_name;
+    private static String pet_name;
     FirebaseFirestore db;
     private static String dbSalt;
     private static final String TAG = "List_Grooming";
@@ -35,7 +35,7 @@ public class List__Grooming extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_grooming);
         myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
-        myGrooming= ((C__GlobalVariable) this.getApplication()).getMyGrooming();
+        myGrooming = ((C__GlobalVariable) this.getApplication()).getMyGrooming();
         myGrooming.myGroomingList = new ArrayList<>();
 
         db = FirebaseFirestore.getInstance();
@@ -54,14 +54,14 @@ public class List__Grooming extends AppCompatActivity {
         adapter.notifyDataSetChanged();
         //currentPetList = C__GlobalVariable.getCurrentPets();
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         lv_listGrooming.setOnItemClickListener((adapterView, view, position, l) -> editGrooming(position));
         EventChangeListener();
 
         Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null) {
+        if (incomingMessages != null) {
             String G_place = incomingMessages.getString("place");
             String G_dates = incomingMessages.getString("date");
             String G_time = incomingMessages.getString("time");
@@ -79,7 +79,7 @@ public class List__Grooming extends AppCompatActivity {
             dbDates = G_dates.substring(0, sep);
             dbSalt = dbSalt + dbDates;
         }
-         btn_add.setOnClickListener(view -> {
+        btn_add.setOnClickListener(view -> {
             startActivity(new Intent(List__Grooming.this, Add_Grooming.class));
             finish();
         });
@@ -92,16 +92,16 @@ public class List__Grooming extends AppCompatActivity {
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Grooming").whereEqualTo("id", pet_name)
                 .get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                        myGrooming.getMyGroomingList().add(snapshot.toObject(C__Grooming.class));
+            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                myGrooming.getMyGroomingList().add(snapshot.toObject(C__Grooming.class));
 
-                    }
-                    adapter.notifyDataSetChanged();
-                });
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void editGrooming(int position) {
-        Intent i = new Intent(getApplicationContext(),Add_Grooming.class);
+        Intent i = new Intent(getApplicationContext(), Add_Grooming.class);
         C__Grooming g = myGrooming.getMyGroomingList().get(position);
         i.putExtra("place", g.getPlace());
         i.putExtra("date", g.getDate());

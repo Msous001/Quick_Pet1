@@ -1,13 +1,15 @@
 package com.example.quick_pet;
 
-public class C__Deworming implements Comparable<C__Deworming>{
+public class C__Deworming implements Comparable<C__Deworming> {
     private String dates;
     private String id;
 
     public C__Deworming(String id, String dates) {
         this.id = id;
-        this.dates = dates;}
-    public C__Deworming(){
+        this.dates = dates;
+    }
+
+    public C__Deworming() {
 
     }
 

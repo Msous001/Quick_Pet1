@@ -100,8 +100,8 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -188,8 +188,8 @@
                     android:background="@android:color/transparent"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
 
@@ -231,8 +231,8 @@
                     android:ems="10"
                     android:importantForAutofill="no"
                     android:inputType="textPersonName"
-                    android:textSize="16sp"
                     android:textColor="@color/black"
+                    android:textSize="16sp"
                     tools:ignore="LabelFor" />
             </TableRow>
         </TableRow>

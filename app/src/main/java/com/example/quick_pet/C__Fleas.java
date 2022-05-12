@@ -1,13 +1,15 @@
 package com.example.quick_pet;
 
-public class C__Fleas implements Comparable<C__Fleas>{
+public class C__Fleas implements Comparable<C__Fleas> {
     private String id;
     private String dates;
 
     public C__Fleas(String id, String dates) {
         this.id = id;
-        this.dates = dates;}
-    public C__Fleas(){
+        this.dates = dates;
+    }
+
+    public C__Fleas() {
 
     }
 

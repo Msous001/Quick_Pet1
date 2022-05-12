@@ -28,6 +28,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
 import java.util.ArrayList;
 
 import java.util.UUID;
@@ -143,18 +144,15 @@ List__Photos extends AppCompatActivity {
     }
 
     private void EventChangeListener() {
-        mProgressBar.setVisibility(View.VISIBLE);
         db.collection("Users").document(firebaseUser.getUid()).collection("Photos")
                 .addSnapshotListener((value, error) -> {
                     if (error != null) {
                         Log.e("Firestore error", error.getMessage());
                         return;
                     }
-                    Toast.makeText(List__Photos.this, "Yessssssss", Toast.LENGTH_SHORT).show();
                     for (DocumentChange dc : value.getDocumentChanges()) {
                         if (dc.getType() == DocumentChange.Type.ADDED) {
                             myPhotos.getMyPhotoList().add(dc.getDocument().toObject(C__Photos.class));
-                            Toast.makeText(List__Photos.this, "We did", Toast.LENGTH_SHORT).show();
                         }
                         adapter.notifyDataSetChanged();
                         mProgressBar.setVisibility(View.INVISIBLE);

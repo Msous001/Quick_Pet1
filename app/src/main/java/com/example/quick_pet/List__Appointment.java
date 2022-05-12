@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class List__Appointment extends AppCompatActivity {
     ImageView back_arrow;
     C__CurrentPet_MyCurrentPet myCurrentPet;
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
     @Override
@@ -54,14 +55,14 @@ public class List__Appointment extends AppCompatActivity {
             startActivity(a);
         });
 
-        lv_listApp = (ListView)findViewById(R.id.recyclerView);
+        lv_listApp = (ListView) findViewById(R.id.recyclerView);
         adapter = new C__ApointmentAdapter(List__Appointment.this, myApps);
         lv_listApp.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
 
         Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null){
+        if (incomingMessages != null) {
             String type = incomingMessages.getString("a_type");
             String name = incomingMessages.getString("a_name");
             String date = incomingMessages.getString("a_date");
@@ -106,10 +107,10 @@ public class List__Appointment extends AppCompatActivity {
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Appointment").whereEqualTo("ida", pet_name)
                 .get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                        myApps.getMyAppList().add(snapshot.toObject(C__Appointment.class));
-                    }
-                    adapter.notifyDataSetChanged();
-                });
+            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                myApps.getMyAppList().add(snapshot.toObject(C__Appointment.class));
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 }

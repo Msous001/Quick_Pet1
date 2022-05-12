@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -100,16 +99,16 @@
             android:clickable="true"
             android:drawableEnd="@drawable/calen_dar"
             android:ems="10"
+            android:focusable="false"
+            android:importantForAutofill="no"
+            android:inputType="date"
             android:paddingStart="8dp"
             android:paddingTop="3dp"
             android:paddingEnd="10dp"
             android:textAlignment="center"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:focusable="false"
-            android:importantForAutofill="no"
-            tools:ignore="LabelFor"
-            android:inputType="date" />
+            android:textSize="16sp"
+            tools:ignore="LabelFor" />
 
         <Button
             android:id="@+id/btn_add_Deworming"

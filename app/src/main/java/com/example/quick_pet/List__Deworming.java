@@ -60,7 +60,7 @@ public class List__Deworming extends AppCompatActivity {
             mYear = cal1.get(Calendar.YEAR);
             DatePickerDialog datePickerDialog = new DatePickerDialog(List__Deworming.this,
                     android.R.style.Theme_DeviceDefault_Dialog, (datePicker, year, month, date) -> {
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + " " + "MMM" + " " +"dd");
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy" + " " + "MMM" + " " + "dd");
                 cal1.set(year, month, date);
                 String dateString = sdf.format(cal1.getTime());
                 dates.setText(dateString);

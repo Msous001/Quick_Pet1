@@ -47,7 +47,7 @@ public class C__PhotosAdapter extends BaseAdapter {
 
         C__Photos p = this.getItem(position);
         Picasso.get().load(p.getPicPicture()).into(iv);
-       // iv.setImageURI(Uri.parse(p.getPicPicture()));
+        // iv.setImageURI(Uri.parse(p.getPicPicture()));
         return onePhotoLine;
     }
 }

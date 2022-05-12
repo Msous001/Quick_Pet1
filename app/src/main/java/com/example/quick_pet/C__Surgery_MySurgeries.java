@@ -9,11 +9,16 @@ public class C__Surgery_MySurgeries {
     public C__Surgery_MySurgeries(List<C__Surgery> mySurgeryList) {
         this.mySurgeryList = mySurgeryList;
     }
-    public C__Surgery_MySurgeries(){
+
+    public C__Surgery_MySurgeries() {
         this.mySurgeryList = new ArrayList<>();
 
     }
-    public List<C__Surgery> getMySurgeryList() {return mySurgeryList;}
+
+    public List<C__Surgery> getMySurgeryList() {
+        return mySurgeryList;
+    }
+
     public void setMySurgeryList(List<C__Surgery> mySurgeryList) {
         this.mySurgeryList = mySurgeryList;
     }

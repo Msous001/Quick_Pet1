@@ -14,9 +14,10 @@ public class ReminderBroadcast extends BroadcastReceiver {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "quick_pet")
                 .setSmallIcon(R.drawable.logo)
                 .setContentTitle("Quick Pet Reminder")
-                .setContentText("Pet Notification Reminder")
+                .setContentText("Appointment reminder")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
+        // 200 miliseconds
         notificationManagerCompat.notify(200, builder.build());
     }
 }

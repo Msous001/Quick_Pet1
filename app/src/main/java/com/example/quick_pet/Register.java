@@ -90,19 +90,18 @@ public class Register extends AppCompatActivity {
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 
-                FirebaseUser firebaseUser = fAuth.getCurrentUser();
-                //to register the user in realtime database
-                C__User writeUserDetails = new C__User(email);
+//                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+//                //to register the user in realtime database
+//                C__User writeUserDetails = new C__User(email);
+//
+//                //Extracting user reference from database
+//                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
+//
+//                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
+//                    if (task1.isSuccessful()) {
+////                        firebaseUser.sendEmailVerification();
 
-                //Extracting user reference from database
-                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
-
-                assert firebaseUser != null;
-                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
-                    if (task1.isSuccessful()) {
-//                        firebaseUser.sendEmailVerification();
-
-                        Toast.makeText(Register.this, "User Created. Please verify your email", Toast.LENGTH_LONG).show();
+                        Toast.makeText(Register.this, "User Created.", Toast.LENGTH_LONG).show();
 
                         Intent intent = new Intent(Register.this, MainActivity.class);
                         //To prevent the user to returning back to register activity with back button after registration
@@ -111,10 +110,10 @@ public class Register extends AppCompatActivity {
                         startActivity(intent);
                         finish(); // to close activity
 
-                    } else {
-                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
-                    }
-                });
+//                    } else {
+//                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
+//                    }
+//                });
             } else {
                 try {
                     throw task.getException();

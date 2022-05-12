@@ -29,7 +29,6 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_pet extends AppCompatActivity {
@@ -213,12 +212,10 @@ public class Add_pet extends AppCompatActivity {
                     } else if (Stype.equals("Cat")) {
                         imageUriSelected = imageUriCat;
                     }
-                }
-                else {
-                    if(imageUri != null){
+                } else {
+                    if (imageUri != null) {
                         imageUriSelected = imageUri;
-                    }
-                    else{
+                    } else {
                         if (Stype.equals("Dog")) {
                             imageUriSelected = imageUriDog;
                         } else if (Stype.equals("Cat")) {

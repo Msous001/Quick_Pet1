@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Grooming implements Comparable<C__Grooming>{
+public class C__Grooming implements Comparable<C__Grooming> {
     private String id;
     private String place;
     private String date;
@@ -15,9 +15,10 @@ public class C__Grooming implements Comparable<C__Grooming>{
         this.direction = direction;
     }
 
-    public C__Grooming(){
+    public C__Grooming() {
 
     }
+
     public String getId() {
         return id;
     }

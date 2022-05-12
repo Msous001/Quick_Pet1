@@ -37,12 +37,12 @@ public class Forgot_Password extends AppCompatActivity {
     private void resetPassword() {
         String email = editText.getText().toString().trim();
 
-        if(email.isEmpty()){
+        if (email.isEmpty()) {
             editText.setError("Email is required");
             editText.requestFocus();
             return;
         }
-        if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+        if (!Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             editText.setError("Please insert a valid email");
             editText.requestFocus();
             return;
@@ -50,9 +50,9 @@ public class Forgot_Password extends AppCompatActivity {
         auth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
+                if (task.isSuccessful()) {
                     Toast.makeText(Forgot_Password.this, "Check your email inbox and follow the instructions", Toast.LENGTH_LONG).show();
-                }else{
+                } else {
                     Toast.makeText(Forgot_Password.this, "Try again!", Toast.LENGTH_LONG).show();
 
                 }

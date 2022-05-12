@@ -31,7 +31,7 @@ public class Add_Vet extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Pet";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
     @Override
@@ -83,7 +83,7 @@ public class Add_Vet extends AppCompatActivity {
             finish();
         });
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         Bundle incomingIntent = getIntent().getExtras();
@@ -111,7 +111,7 @@ public class Add_Vet extends AppCompatActivity {
             dates.setText(E_date);
             direction.setText(E_direction);
             weight.setText(Double.toString(E_weight));
-      }
+        }
         btnNext.setOnClickListener(view -> {
             String newName = name.getText().toString();
             String newDates = dates.getText().toString();
@@ -134,24 +134,24 @@ public class Add_Vet extends AppCompatActivity {
                     newWeight = "0.0";
                 }
 
-                C__Vet ca = new C__Vet(pet_name,newName, newDates, newDirection, Double.parseDouble(newWeight));
+                C__Vet ca = new C__Vet(pet_name, newName, newDates, newDirection, Double.parseDouble(newWeight));
 
-                if ( newName.length() > 2){
-                    dbSalt = newName.substring(0,2);
-                }else{
+                if (newName.length() > 2) {
+                    dbSalt = newName.substring(0, 2);
+                } else {
                     dbSalt = newName;
                 }
                 String separator = " ";
                 String dbDates;
                 int sep = newDates.lastIndexOf(separator);
-                dbDates= newDates.substring(0,sep);
+                dbDates = newDates.substring(0, sep);
                 dbSalt = dbSalt + dbDates;
                 //Connecting to the database
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                        .document(pet_name).collection("Veterinary").document("V-"+dbSalt)
+                        .document(pet_name).collection("Veterinary").document("V-" + dbSalt)
                         .set(ca).addOnSuccessListener(unused -> Toast.makeText(getApplicationContext(), "Vet Added", Toast.LENGTH_SHORT).show());
                 Intent i = new Intent(view.getContext(), List__Vet.class);
                 i.putExtra("edit", positionToEdit);
@@ -165,6 +165,7 @@ public class Add_Vet extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public void onBackPressed() {
         super.onBackPressed();

@@ -29,7 +29,7 @@ public class Add_Surgery extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Surgery";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
 
@@ -68,11 +68,11 @@ public class Add_Surgery extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         Bundle incomingIntent = getIntent().getExtras();
-        if(incomingIntent != null){
+        if (incomingIntent != null) {
             String S_name = incomingIntent.getString("name");
             String S_date = incomingIntent.getString("date");
             String S_med1 = incomingIntent.getString("med1");
@@ -80,11 +80,21 @@ public class Add_Surgery extends AppCompatActivity {
             String S_note = incomingIntent.getString("note");
             positionToEdit = incomingIntent.getInt("edit");
 
-            if(TextUtils.isEmpty(S_name)){S_name = "Not Defined";}
-            if(TextUtils.isEmpty(S_date)){S_date = "Not Defined";}
-            if(TextUtils.isEmpty(S_med1)){S_med1 = "Not Defined";}
-            if(TextUtils.isEmpty(S_med2)){S_med2 = " ";}
-            if(TextUtils.isEmpty(S_note)){S_note = " ";}
+            if (TextUtils.isEmpty(S_name)) {
+                S_name = "Not Defined";
+            }
+            if (TextUtils.isEmpty(S_date)) {
+                S_date = "Not Defined";
+            }
+            if (TextUtils.isEmpty(S_med1)) {
+                S_med1 = "Not Defined";
+            }
+            if (TextUtils.isEmpty(S_med2)) {
+                S_med2 = " ";
+            }
+            if (TextUtils.isEmpty(S_note)) {
+                S_note = " ";
+            }
 
             name.setText(S_name);
             dates.setText(S_date);
@@ -100,15 +110,13 @@ public class Add_Surgery extends AppCompatActivity {
             String newMed2 = med2.getText().toString();
             String newNote = notes.getText().toString();
 
-            if(TextUtils.isEmpty(newName)) {
+            if (TextUtils.isEmpty(newName)) {
                 name.setError("This field is required");
                 name.requestFocus();
-            }
-                else if (TextUtils.isEmpty(newDates)) {
-                    dates.setError("This field is required");
-                    dates.requestFocus();
-                }
-                else{
+            } else if (TextUtils.isEmpty(newDates)) {
+                dates.setError("This field is required");
+                dates.requestFocus();
+            } else {
                 if (TextUtils.isEmpty(newMed1)) {
                     newMed1 = "Not Defined";
                 }
@@ -119,22 +127,22 @@ public class Add_Surgery extends AppCompatActivity {
                     newNote = "";
                 }
 
-                C__Surgery ca = new C__Surgery(pet_name, newName,newDates,newMed1,newMed2,newNote);
-                if(newName.length() > 2){
-                    dbSalt = newName.substring(0,2);
-                }else{
+                C__Surgery ca = new C__Surgery(pet_name, newName, newDates, newMed1, newMed2, newNote);
+                if (newName.length() > 2) {
+                    dbSalt = newName.substring(0, 2);
+                } else {
                     dbSalt = newName;
                 }
                 String separator = " ";
                 String dbDates;
                 int sep = newDates.lastIndexOf(separator);
-                dbDates= newDates.substring(0,sep);
+                dbDates = newDates.substring(0, sep);
                 dbSalt = dbSalt + dbDates;
                 //Connecting to the database
                 FirebaseAuth fAuth = FirebaseAuth.getInstance();
                 FirebaseUser firebaseUser = fAuth.getCurrentUser();
                 db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
-                        .document(pet_name).collection("Surgery").document("S-"+dbSalt)
+                        .document(pet_name).collection("Surgery").document("S-" + dbSalt)
                         .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {

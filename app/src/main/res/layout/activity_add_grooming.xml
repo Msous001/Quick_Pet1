@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -68,8 +67,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingTop="7dp"
                 android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/place"
                 android:textAlignment="textEnd"
@@ -92,11 +91,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:inputType="textPersonName"
                 android:textColor="@color/black"
-                tools:ignore="LabelFor"
-                android:inputType="textPersonName" />
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
@@ -114,8 +113,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingTop="7dp"
                 android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/date"
                 android:textAlignment="textEnd"
@@ -133,17 +132,17 @@
                 android:id="@+id/et_grooming_date"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/transparent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
                 android:focusable="false"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:inputType="date"
                 android:textColor="@color/black"
-                tools:ignore="LabelFor"
-                android:drawableEnd="@drawable/calen_dar"
-                android:inputType="date"/>
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
         </TableRow>
 
@@ -162,13 +161,13 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingTop="7dp"
                 android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
+                android:text="@string/time"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                android:text="@string/time"/>
+                android:textStyle="bold" />
 
             <View
                 android:layout_width="2dp"
@@ -184,14 +183,14 @@
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
-                android:ems="10"
-                android:inputType="textPersonName"
-                android:textSize="16sp"
-                android:importantForAutofill="no"
-                android:focusable="false"
-                android:textColor="@color/black"
                 android:drawableEnd="@drawable/alarm_add_black"
-                tools:ignore="LabelFor"/>
+                android:ems="10"
+                android:focusable="false"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
@@ -200,9 +199,9 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/white_border"
-            android:padding="4dp"
-            android:layout_marginBottom="40dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_Grooming_direction"
@@ -210,8 +209,8 @@
                 android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingTop="7dp"
                 android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/direction"
                 android:textAlignment="textEnd"
@@ -233,11 +232,11 @@
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:textSize="16sp"
                 android:importantForAutofill="no"
+                android:inputType="textPersonName"
                 android:textColor="@color/black"
-                tools:ignore="LabelFor"
-                android:inputType="textPersonName"/>
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
     </LinearLayout>

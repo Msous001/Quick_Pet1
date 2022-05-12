@@ -17,6 +17,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -30,7 +31,7 @@ public class List__Vet extends AppCompatActivity {
     C__CurrentPet_MyCurrentPet myCurrentPet;
     FirebaseFirestore db;
     Button btn_add;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
     private static final String TAG = "List_Vet";
 

@@ -28,7 +28,7 @@ public class List__Sounds extends AppCompatActivity {
 
         });
 
-        lv_sound = (ListView)findViewById(R.id.listView_Sound);
+        lv_sound = (ListView) findViewById(R.id.listView_Sound);
 
         mySounds = ((C__GlobalVariable) this.getApplication()).getMySounds();
         adapter = new C__SoundsAdapter(List__Sounds.this, mySounds);
@@ -38,32 +38,32 @@ public class List__Sounds extends AppCompatActivity {
         lv_sound.setOnItemClickListener((adapterView, view, position, l) -> {
 
             C__Sounds s = mySounds.getMySoundsList().get(position);
-            if(sound_player != null){
-                if(sound_player.isPlaying()){
+            if (sound_player != null) {
+                if (sound_player.isPlaying()) {
                     sound_player.stop();
                     sound_player.reset();
                     s.setPlaying(false);
                 }
             }
-            try{
+            try {
                 sound_player = MediaPlayer.create(List__Sounds.this, s.getId());
-                if(sound_player.isPlaying()){
+                if (sound_player.isPlaying()) {
                     sound_player.stop();
                     sound_player.reset();
                     s.setPlaying(false);
-                }
-                else{
+                } else {
                     sound_player.start();
                     s.setPlaying(true);
                 }
 
-            }catch(Exception e){
+            } catch (Exception e) {
                 Log.e("Exception", e.getMessage());
             }
 
         });
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

@@ -40,7 +40,7 @@
         android:layout_centerInParent="true"
         android:layout_margin="30dp"
         app:civ_border_color="@color/green_button"
-        app:civ_border_width="20dp"
+        app:civ_border_width="10dp"
         app:civ_circle_background_color="@color/green_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"

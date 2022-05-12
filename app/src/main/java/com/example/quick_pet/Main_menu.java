@@ -19,8 +19,8 @@ public class Main_menu extends AppCompatActivity {
 
     // variables
     Toolbar toolbar;
-    Button appointment, medical,  grooming, vaccination, fleas, deworming, surgery, medication,
-            allergy, health ;
+    Button appointment, medical, grooming, vaccination, fleas, deworming, surgery, medication,
+            allergy, health;
     private CircleImageView circleImagepet1;
     private C__CurrentPet_MyCurrentPet myCurrentPet;
 
@@ -77,7 +77,7 @@ public class Main_menu extends AppCompatActivity {
             return false;
         });
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             circleImagepet1.setImageURI(Uri.parse(c.getImageUrl()));
         }
 

@@ -41,6 +41,6 @@ public class C__HealthAdapter extends BaseAdapter {
         C__Health h = this.getItem(position);
         tv_name.setText(h.getName());
 
-        return oneHealthLine ;
+        return oneHealthLine;
     }
 }

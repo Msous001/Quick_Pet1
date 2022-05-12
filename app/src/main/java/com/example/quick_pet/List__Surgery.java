@@ -25,7 +25,7 @@ public class List__Surgery extends AppCompatActivity {
     C__Surgery_MySurgeries mySurgeries;
     C__SurgeryAdapter adapter;
     C__CurrentPet_MyCurrentPet myCurrentPet;
-    private static String  pet_name;
+    private static String pet_name;
     FirebaseFirestore db;
     private static String dbSalt;
     private static final String TAG = "List_Surgery";
@@ -52,16 +52,14 @@ public class List__Surgery extends AppCompatActivity {
         adapter = new C__SurgeryAdapter(List__Surgery.this, mySurgeries);
         lv_surgery.setAdapter(adapter);
 
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
         EventChangeListener();
 
 
-
-
         Bundle incomingMessages = getIntent().getExtras();
-        if(incomingMessages != null){
+        if (incomingMessages != null) {
             String name = incomingMessages.getString("name");
             String date = incomingMessages.getString("date");
             String med1 = incomingMessages.getString("med1");
@@ -106,16 +104,13 @@ public class List__Surgery extends AppCompatActivity {
         FirebaseUser firebaseUser = fAuth.getCurrentUser();
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Surgery").whereEqualTo("id", pet_name)
-                .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                    mySurgeries.getMySurgeryList().add(snapshot.toObject(C__Surgery.class));
+                .get().addOnSuccessListener(queryDocumentSnapshots -> {
+                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                        mySurgeries.getMySurgeryList().add(snapshot.toObject(C__Surgery.class));
 
-                }
-                adapter.notifyDataSetChanged();
-            }
-        });
+                    }
+                    adapter.notifyDataSetChanged();
+                });
     }
 
     private void editSurgery(int position) {
@@ -123,7 +118,7 @@ public class List__Surgery extends AppCompatActivity {
         C__Surgery s = mySurgeries.getMySurgeryList().get(position);
         i.putExtra("edit", position);
         i.putExtra("name", s.getName());
-        i.putExtra("date",s.getDate());
+        i.putExtra("date", s.getDate());
         i.putExtra("med1", s.getAddmed1());
         i.putExtra("med2", s.getAddmed2());
         i.putExtra("note", s.getAddnote());

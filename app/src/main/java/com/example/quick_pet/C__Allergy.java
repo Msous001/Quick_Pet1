@@ -1,6 +1,6 @@
 package com.example.quick_pet;
 
-public class C__Allergy implements Comparable<C__Allergy>{
+public class C__Allergy implements Comparable<C__Allergy> {
     private String id;
     private String Name;
     private String date;
@@ -14,8 +14,8 @@ public class C__Allergy implements Comparable<C__Allergy>{
         this.symptomsName = symptomsName;
         this.medicationName = medicationName;
     }
-    public C__Allergy(){
 
+    public C__Allergy() {
     }
 
     public String getId() {

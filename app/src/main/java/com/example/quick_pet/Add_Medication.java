@@ -6,7 +6,6 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -31,7 +30,7 @@ public class Add_Medication extends AppCompatActivity {
     private C__CurrentPet_MyCurrentPet myCurrentPet;
     private static final String TAG = "Add Health Condition";
     FirebaseFirestore db;
-    private static String  pet_name;
+    private static String pet_name;
     private static String dbSalt;
 
     @Override
@@ -49,7 +48,6 @@ public class Add_Medication extends AppCompatActivity {
 
         //matching the variables with the elements in xml file
         back_arrow = (ImageView) findViewById(R.id.back_arrow_addMed);
-
 
 
         btn_add = (Button) findViewById(R.id.next_btn_addMedication);
@@ -74,13 +72,13 @@ public class Add_Medication extends AppCompatActivity {
             startActivity(new Intent(Add_Medication.this, List__Medication.class));
             finish();
         });
-        for(C__CurrentPet c : myCurrentPet.getMyCurrentPet()){
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
             pet_name = c.getName();
         }
 
         //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
-        if(incomingIntent != null){
+        if (incomingIntent != null) {
             String M_name = incomingIntent.getString("name");
             String M_date = incomingIntent.getString("date");
             String M_reason = incomingIntent.getString("reason");
@@ -93,7 +91,7 @@ public class Add_Medication extends AppCompatActivity {
             if (TextUtils.isEmpty(M_date)) {
                 M_date = "Not Defined";
             }
-            if (TextUtils.isEmpty(M_reason)){
+            if (TextUtils.isEmpty(M_reason)) {
                 M_reason = "";
             }
             name.setText(M_name);
@@ -106,22 +104,21 @@ public class Add_Medication extends AppCompatActivity {
             String newDates = dates.getText().toString();
             String newReason = reason.getText().toString();
             //validation to avoid system crash
-            if(TextUtils.isEmpty(newName)) {
+            if (TextUtils.isEmpty(newName)) {
                 name.setError("This field is required");
                 name.requestFocus();
 
             } else if (TextUtils.isEmpty(newDates)) {
-                    dates.setError("This field is required");
-                    dates.requestFocus();
-                }
-            else{
+                dates.setError("This field is required");
+                dates.requestFocus();
+            } else {
 
                 if (TextUtils.isEmpty(newReason)) {
                     newReason = "";
                 }
-                C__Medication ca =  new C__Medication(pet_name, newName, newDates, newReason);
+                C__Medication ca = new C__Medication(pet_name, newName, newDates, newReason);
 
-                if(newName.length() > 2){
+                if (newName.length() > 2) {
                     dbSalt = newName.substring(0, 2);
 
                 } else {
@@ -139,14 +136,14 @@ public class Add_Medication extends AppCompatActivity {
 
                     }
                 });
-                    // I use Intents to transfer data from one Activity to another
-                    Intent i = new Intent(view.getContext(), List__Medication.class);
-                    i.putExtra("edit", positionToEdit);
-                    i.putExtra("name", newName);
-                    i.putExtra("date", newDates);
-                    i.putExtra("reason", newReason);
-                    startActivity(i);
-                    finish();
+                // I use Intents to transfer data from one Activity to another
+                Intent i = new Intent(view.getContext(), List__Medication.class);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("name", newName);
+                i.putExtra("date", newDates);
+                i.putExtra("reason", newReason);
+                startActivity(i);
+                finish();
 
 
             }

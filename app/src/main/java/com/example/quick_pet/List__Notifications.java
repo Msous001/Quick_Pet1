@@ -15,7 +15,6 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -67,8 +66,8 @@ public class List__Notifications extends AppCompatActivity {
         time = (EditText) findViewById(R.id.et_notification_time);
         back_arrow = (ImageView) findViewById(R.id.back_arrow_notification);
         btnadd = (Button) findViewById(R.id.next_btn_notification);
-        lv_Norification = (ListView)findViewById(R.id.listView_Notifications);
-        layout_Notification = (LinearLayout)findViewById(R.id.linear_Notification);
+        lv_Norification = (ListView) findViewById(R.id.listView_Notifications);
+        layout_Notification = (LinearLayout) findViewById(R.id.linear_Notification);
         myNot.myNotList = new ArrayList<>();
         dates.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
@@ -95,7 +94,7 @@ public class List__Notifications extends AppCompatActivity {
             Calendar calendar = Calendar.getInstance();
             mHour = calendar.get(Calendar.HOUR_OF_DAY);
             mMinute = calendar.get(Calendar.MINUTE);
-            calendar.set(0,0,0,mHour, mMinute);
+            calendar.set(0, 0, 0, mHour, mMinute);
 
             TimePickerDialog timePickerDialog = new TimePickerDialog(List__Notifications.this, new TimePickerDialog.OnTimeSetListener() {
                 @Override
@@ -113,18 +112,13 @@ public class List__Notifications extends AppCompatActivity {
         });
 
 
-
-
         adapter = new C__NotificationAdapter(List__Notifications.this, myNot);
         lv_Norification.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
-        back_arrow.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(List__Notifications.this, List__Pet.class));
-                finish();
-            }
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(List__Notifications.this, List__Pet.class));
+            finish();
         });
 
         EventChangeListener();
@@ -148,19 +142,12 @@ public class List__Notifications extends AppCompatActivity {
                 dates.setError("This field is required");
                 Toast.makeText(List__Notifications.this, "Please insert date", Toast.LENGTH_SHORT).show();
             } else {
-                if(n_name.length() > 2){
+                if (n_name.length() > 2) {
                     dbSalt = n_name.substring(0, 2);
-                }
-                else{
+                } else {
                     dbSalt = n_name;
                 }
-                C__Notifications n = new C__Notifications(n_date, n_name,n_time);
 
-                db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
-                        .document(dbSalt + n_date ).set(n).addOnSuccessListener(unused -> {
-                    EventChangeListener();
-                    Toast.makeText(getApplicationContext(), "Notification Added", Toast.LENGTH_SHORT).show();
-                });
                 dates.setText("");
                 name.setText("");
                 time.setText("");
@@ -168,24 +155,28 @@ public class List__Notifications extends AppCompatActivity {
                 layout_Notification.setVisibility(View.INVISIBLE);
                 fab.setVisibility(View.VISIBLE);
             }
+            C__Notifications n = new C__Notifications(n_date, n_name, n_time);
+
+            db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
+                    .document(dbSalt + n_date).set(n).addOnSuccessListener(unused -> {
+                EventChangeListener();
+                Toast.makeText(getApplicationContext(), "Notification Added", Toast.LENGTH_SHORT).show();
+            });
         });
         createNotivicationChannel();
 
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                layout_Notification.setVisibility(View.VISIBLE);
-                name.requestFocus();
-                Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                fab.setVisibility(View.GONE);
-            }
+        fab.setOnClickListener(view -> {
+            layout_Notification.setVisibility(View.VISIBLE);
+            name.requestFocus();
+            Snackbar.make(view, "Here's a Snackbar", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            fab.setVisibility(View.GONE);
         });
     }
 
     private void createNotivicationChannel() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             CharSequence name = "Quick Pet";
             String description = "Channel for Quick pet Reminder";
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
@@ -204,7 +195,7 @@ public class List__Notifications extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Calendar final_calendar = Calendar.getInstance();
-        final_calendar.set(currentYear,currentMonth, currentDate, currentHour, currentMinute, 0);
+        final_calendar.set(currentYear, currentMonth, currentDate, currentHour, currentMinute, 0);
         long startTime = final_calendar.getTimeInMillis();
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, startTime, pendingIntent);
@@ -220,12 +211,12 @@ public class List__Notifications extends AppCompatActivity {
                         Log.e("Firestore error", error.getMessage());
                         return;
                     }
-                    Toast.makeText(getApplicationContext(), "here", Toast.LENGTH_SHORT).show();
+
                     myNot.myNotList = new ArrayList<>();
                     for (DocumentChange dc : value.getDocumentChanges()) {
                         if (dc.getType() == DocumentChange.Type.ADDED) {
                             myNot.getMyNotList().add(dc.getDocument().toObject(C__Notifications.class));
-                            Toast.makeText(getApplicationContext(), "Here ", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getApplicationContext(), "Here ", Toast.LENGTH_SHORT).show();
                         }
                         adapter.notifyDataSetChanged();
                     }
