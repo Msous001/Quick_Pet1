@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Quick_Pet">
         <activity
+            android:name=".Settings_Account"
+            android:exported="false" />
+        <activity
             android:name=".List__Notifications"
             android:exported="false" />
         <activity

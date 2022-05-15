@@ -98,6 +98,7 @@ List__Photos extends AppCompatActivity {
             }
             mProgressBar.setVisibility(View.VISIBLE);
             if (uriPhotoList != null) {
+                // store the image address
                 StorageReference ref = storageReference.child("Photo-" + UUID.randomUUID()
                         .toString() + "." + getFileExtension(uriPhotoList));
                 ref.putFile(uriPhotoList).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl()

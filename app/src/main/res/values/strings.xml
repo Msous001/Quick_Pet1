@@ -88,8 +88,14 @@
     <string name="notifications">Notifications</string>
     <string name="no">No</string>
     <string name="account">Account</string>
+    <string name="title">Title</string>
+    <string name="pets">Pets</string>
+    <string name="bin">Bin</string>
 
-    <string-array name="gender"><item>Male</item><item>Female</item></string-array>
+    <string-array name="gender">
+        <item>Male</item>
+        <item>Female</item>
+    </string-array>
     <string-array name="petColour">
         <item>Black</item>
         <item>Blue</item>

@@ -226,8 +226,14 @@ public class List__Notifications extends AppCompatActivity {
     private void editNotification(int position) {
         C__Notifications n = myNot.getMyNotList().get(position);
         String g_date = n.getDate();
+        String n_name = n.getName();
+        if (n_name.length() > 2) {
+            dbSalt = n_name.substring(0, 2);
+        } else {
+            dbSalt = n_name;
+        }
         db.collection("Users").document(firebaseUser.getUid()).collection("Notifications")
-                .document(g_date).delete()
+                .document(dbSalt + g_date).delete()
                 .addOnCompleteListener(task -> {
                     Toast.makeText(getApplicationContext(), "Data Deleted", Toast.LENGTH_SHORT).show();
                     EventChangeListener();

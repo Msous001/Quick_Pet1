@@ -12,7 +12,7 @@ import android.widget.Switch;
 public class Settings extends AppCompatActivity {
     Switch aSwitch;
     ImageView back_arrow;
-    Button btnNotification;
+    Button btnNotification, account;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +21,15 @@ public class Settings extends AppCompatActivity {
         aSwitch = findViewById(R.id.switch1);
         back_arrow = (ImageView) findViewById(R.id.back_arrowSettings);
         btnNotification = (Button) findViewById(R.id.btn_see_notification);
+        account = (Button) findViewById(R.id.btn_account);
 
         // back button
         back_arrow.setOnClickListener(view -> {
             startActivity(new Intent(Settings.this, Main_menu.class));
+            finish();
+        });
+        account.setOnClickListener(view -> {
+            startActivity(new Intent(Settings.this, Settings_Account.class ));
             finish();
         });
         // switch to make dark mode

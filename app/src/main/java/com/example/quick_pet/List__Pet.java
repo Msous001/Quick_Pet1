@@ -93,7 +93,7 @@ public class List__Pet extends AppCompatActivity {
                     return true;
                 case R.id.exit:
                     Toast.makeText(getApplicationContext(), "Exit", Toast.LENGTH_SHORT).show();
-                    finish();
+                    finishAffinity();
                     System.exit(0);
                     return true;
             }
