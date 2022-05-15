@@ -1,4 +1,4 @@
-# Quick_Pet1
+# Quick_Pet1 - No Comercial - Student Purposes only-
 I have designed an application called Quick Pet, a user-friendly app for pet 
 owners to keep track of their pet’s information. For the design of my application, I have 
 used AdobeXD and for the development of Android Studio, which I found to be very 
