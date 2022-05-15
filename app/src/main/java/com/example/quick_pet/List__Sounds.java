@@ -47,13 +47,15 @@ public class List__Sounds extends AppCompatActivity {
             }
             try {
                 sound_player = MediaPlayer.create(List__Sounds.this, s.getId());
-                if (sound_player.isPlaying()) {
-                    sound_player.stop();
-                    sound_player.reset();
-                    s.setPlaying(false);
-                } else {
-                    sound_player.start();
-                    s.setPlaying(true);
+                if (sound_player != null) {
+                    if (sound_player.isPlaying()) {
+                        sound_player.stop();
+                        sound_player.reset();
+                        s.setPlaying(false);
+                    } else {
+                        sound_player.start();
+                        s.setPlaying(true);
+                    }
                 }
 
             } catch (Exception e) {
@@ -67,9 +69,11 @@ public class List__Sounds extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (sound_player.isPlaying()) {
-            sound_player.stop();
-            sound_player.reset();
+        if (sound_player != null) {
+            if (sound_player.isPlaying()) {
+                sound_player.stop();
+                sound_player.reset();
+            }
         }
     }
 }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <resources>
-        <color name="white_lila">#AFABAB</color>
-        <color name="green_button">#6F6F6F</color>
-        <color name="link_water">#B4B4B4</color>
-        <color name="zambezi">#0B0A0A</color>
-        <color name="blue">#2C0BF7</color>
-        <color name="black">#F6F4F4</color>
-        <color name="white">#0E0E0E</color>
-        <color name ="link">#E92CEF</color>
-        <color name ="red">#D50000</color>
-        <color name="lightgrey">#393737</color>
-        <color name="grey">#EAE4E4</color>
-        <color name="zambezi_1">#6F6F6F</color>
+<resources>
+    <color name="white_lila">#AFABAB</color>
+    <color name="green_button">#6F6F6F</color>
+    <color name="link_water">#B4B4B4</color>
+    <color name="zambezi">#514B4B</color>
+    <color name="blue">#2C0BF7</color>
+    <color name="black">#D0D5CE</color>
+    <color name="white">#4A4A4A</color>
+    <color name="white_1">#FFFFFF</color>
+    <color name="link">#E92CEF</color>
+    <color name="red">#D50000</color>
+    <color name="lightgrey">#393737</color>
+    <color name="grey">#EAE4E4</color>
+    <color name="zambezi_1">#6F6F6F</color>
 
     <color name="colorPrimary">#5770f3</color>
     <color name="colorPrimaryDark">#5770f3</color>
@@ -21,4 +22,4 @@
     <color name="profile_desc">#D1D1FF</color>
     <color name="bg_meta_container">#000000</color>
     <color name="profile_default_tint">#e0e0e0</color>
-    </resources>
+</resources>

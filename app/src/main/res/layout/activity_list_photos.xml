@@ -72,9 +72,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:background="@drawable/green_button"
-        android:text="Add photo"
+        android:text="@string/add_photo"
         android:textAllCaps="false"
-        android:textColor="@color/white"
+        android:textColor="@color/white_1"
         android:textSize="16sp"
         app:backgroundTint="@null" />
 

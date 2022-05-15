@@ -25,7 +25,7 @@ public class Settings extends AppCompatActivity {
 
         // back button
         back_arrow.setOnClickListener(view -> {
-            startActivity(new Intent(Settings.this, Main_menu.class));
+            startActivity(new Intent(Settings.this, List__Pet.class));
             finish();
         });
         account.setOnClickListener(view -> {
