@@ -18,10 +18,14 @@ public class C__VaccineAdapter extends BaseAdapter {
     }
 
     @Override
-    public int getCount() {return myVaccine.getMyVaccineList().size();}
+    public int getCount() {
+        return myVaccine.getMyVaccineList().size();
+    }
 
     @Override
-    public C__Vaccine getItem(int i) {return myVaccine.getMyVaccineList().get(i);}
+    public C__Vaccine getItem(int i) {
+        return myVaccine.getMyVaccineList().get(i);
+    }
 
     @Override
     public long getItemId(int i) {

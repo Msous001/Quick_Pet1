@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -28,7 +29,6 @@ public class Register extends AppCompatActivity {
     //-----variables
     private EditText mEmail, mPassword, mConfirm;
     private TextView mLogin;
-
     private static final String TAG = "RegisterActivity";
 
     @Override
@@ -42,6 +42,7 @@ public class Register extends AppCompatActivity {
         mConfirm = findViewById(R.id.confirm_passw);
 
         mLogin = findViewById(R.id.singIn_link);
+        mLogin.setOnClickListener(view -> startActivity(new Intent(Register.this, MainActivity.class)));
 
         // click listener for the next button
         Button reg_btn = findViewById(R.id.next_btn);
@@ -79,7 +80,6 @@ public class Register extends AppCompatActivity {
 
             } else {
                 registerUser(email, password);
-
             }
         });
     }
@@ -87,41 +87,36 @@ public class Register extends AppCompatActivity {
     private void registerUser(String email, String password) {
 //register the user
         FirebaseAuth fAuth = FirebaseAuth.getInstance();
-
         fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
 
-                FirebaseUser firebaseUser = fAuth.getCurrentUser();
-                //to register the user in realtime database
-                C__User writeUserDetails = new C__User(email);
+//                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+//                //to register the user in realtime database
+//                C__User writeUserDetails = new C__User(email);
+//
+//                //Extracting user reference from database
+//                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
+//
+//                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(task1 -> {
+//                    if (task1.isSuccessful()) {
+////                        firebaseUser.sendEmailVerification();
 
-                //Extracting user reference from database
-                DatabaseReference referenceProfile = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference("User");
+                        Toast.makeText(Register.this, "User Created.", Toast.LENGTH_LONG).show();
 
-                referenceProfile.child(firebaseUser.getUid()).setValue(writeUserDetails).addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            firebaseUser.sendEmailVerification();
+                        Intent intent = new Intent(Register.this, MainActivity.class);
+                        //To prevent the user to returning back to register activity with back button after registration
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish(); // to close activity
 
-                            Toast.makeText(Register.this, "User Created. Please verify your email", Toast.LENGTH_LONG).show();
-
-                            Intent intent = new Intent(Register.this, MainActivity.class);
-                            //To prevent the user to returning back to register activity with back button after registration
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_CLEAR_TASK
-                                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish(); // to close activity
-
-                        } else {
-                            Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
-                        }
-                    }
-                });
+//                    } else {
+//                        Toast.makeText(Register.this, "User register failed. Please try again", Toast.LENGTH_LONG).show();
+//                    }
+//                });
             } else {
                 try {
                     throw task.getException();
-
                 } catch (FirebaseAuthWeakPasswordException e) {
                     mPassword.setError("Your password is too weak. Please use a mix of alphabets, numbers and symbols");
                     mPassword.requestFocus();
@@ -134,7 +129,6 @@ public class Register extends AppCompatActivity {
                 } catch (Exception e) {
                     Log.e(TAG, e.getMessage());
                     Toast.makeText(Register.this, "Error ! " + e.getMessage(), Toast.LENGTH_LONG).show();
-
                 }
             }
         });

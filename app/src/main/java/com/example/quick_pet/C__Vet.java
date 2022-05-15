@@ -1,42 +1,71 @@
 package com.example.quick_pet;
 
-public class C__Vet implements Comparable<C__Vet>{
+public class C__Vet implements Comparable<C__Vet> {
+    private String id;
     private String Name;
     private String date;
     private String direction;
-    private int weight;
+    private double weight;
 
-    public C__Vet(String name, String date, String direction, int weight) {
-        Name = name;
+    public C__Vet(String id, String name, String date, String direction, double weight) {
+        this.id = id;
+        this.Name = name;
         this.date = date;
         this.direction = direction;
         this.weight = weight;
     }
 
+    public C__Vet() {
+    }
 
-    public String getName() {return Name;}
-    public void setName(String name) {Name = name;}
+    public String getId() {
+        return id;
+    }
 
-    public String getDate() {return date;}
-    public void setDate(String date) {this.date = date;}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getDirection() {return direction;}
-    public void setDirection(String direction) {this.direction = direction;}
+    public String getName() {
+        return Name;
+    }
 
-    public int getWeight() {
+    public void setName(String name) {
+        Name = name;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) {
+        this.direction = direction;
+    }
+
+    public double getWeight() {
         return weight;
     }
-    public void setWeight(int weight) {
+
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 
     @Override
     public String toString() {
-        return "VetVisit_Class{" +
+        return "C__Vet{" +
+                "id='" + id + '\'' +
                 ", Name='" + Name + '\'' +
                 ", date='" + date + '\'' +
                 ", direction='" + direction + '\'' +
-                ", weight='" + weight + '\'' +
+                ", weight=" + weight +
                 '}';
     }
 

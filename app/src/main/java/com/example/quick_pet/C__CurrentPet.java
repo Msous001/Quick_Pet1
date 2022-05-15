@@ -11,7 +11,7 @@ public class C__CurrentPet {
 
         this.name = name;
         this.imageUrl = image;
-        List<C__CurrentPet> currentPet = new ArrayList<C__CurrentPet>();
+//        List<C__CurrentPet> currentPet = new ArrayList<C__CurrentPet>();
 
     }
 

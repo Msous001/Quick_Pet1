@@ -9,12 +9,16 @@ public class C__Health_MyHealth {
     public C__Health_MyHealth(List<C__Health> myHealthList) {
         this.myHealthList = myHealthList;
     }
-    public  C__Health_MyHealth(){
+
+    public C__Health_MyHealth() {
         this.myHealthList = new ArrayList<>();
 
     }
 
-    public List<C__Health> getMyHealthList() {return myHealthList;}
+    public List<C__Health> getMyHealthList() {
+        return myHealthList;
+    }
+
     public void setMyHealthList(List<C__Health> myHealthList) {
         this.myHealthList = myHealthList;
     }

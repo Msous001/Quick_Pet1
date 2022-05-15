@@ -10,7 +10,7 @@ public class C__Fleas_MyFleas {
         this.myFleasList = myFleasList;
     }
 
-    public C__Fleas_MyFleas(){
+    public C__Fleas_MyFleas() {
         this.myFleasList = new ArrayList<>();
 
     }
@@ -18,6 +18,7 @@ public class C__Fleas_MyFleas {
     public List<C__Fleas> getMyFleasList() {
         return myFleasList;
     }
+
     public void setMyFleasList(List<C__Fleas> myFleasList) {
         this.myFleasList = myFleasList;
     }

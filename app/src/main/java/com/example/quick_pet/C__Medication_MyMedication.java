@@ -9,16 +9,18 @@ public class C__Medication_MyMedication {
     public C__Medication_MyMedication(List<C__Medication> myMedicationList) {
         this.myMedicationList = myMedicationList;
     }
-    public C__Medication_MyMedication(){
+
+    public C__Medication_MyMedication() {
         this.myMedicationList = new ArrayList<>();
     }
-    public List<C__Medication> getMyMedicationList() {return myMedicationList;}
+
+    public List<C__Medication> getMyMedicationList() {
+        return myMedicationList;
+    }
+
     public void setMyMedicationList(List<C__Medication> myMedicationList) {
         this.myMedicationList = myMedicationList;
     }
-
-
-
 
 
 }

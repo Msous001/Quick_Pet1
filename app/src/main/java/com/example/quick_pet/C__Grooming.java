@@ -1,21 +1,36 @@
 package com.example.quick_pet;
 
-public class C__Grooming implements Comparable<C__Grooming>{
+public class C__Grooming implements Comparable<C__Grooming> {
+    private String id;
     private String place;
     private String date;
     private String time;
     private String direction;
 
-    public C__Grooming(String place, String date, String time, String direction) {
+    public C__Grooming(String id, String place, String date, String time, String direction) {
+        this.id = id;
         this.place = place;
         this.date = date;
         this.time = time;
         this.direction = direction;
     }
 
+    public C__Grooming() {
+
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getPlace() {
         return place;
     }
+
     public void setPlace(String place) {
         this.place = place;
     }
@@ -23,6 +38,7 @@ public class C__Grooming implements Comparable<C__Grooming>{
     public String getDate() {
         return date;
     }
+
     public void setDate(String date) {
         this.date = date;
     }
@@ -30,6 +46,7 @@ public class C__Grooming implements Comparable<C__Grooming>{
     public String getTime() {
         return time;
     }
+
     public void setTime(String time) {
         this.time = time;
     }
@@ -45,7 +62,8 @@ public class C__Grooming implements Comparable<C__Grooming>{
     @Override
     public String toString() {
         return "C__Grooming{" +
-                "place='" + place + '\'' +
+                "id='" + id + '\'' +
+                ", place='" + place + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
                 ", direction='" + direction + '\'' +

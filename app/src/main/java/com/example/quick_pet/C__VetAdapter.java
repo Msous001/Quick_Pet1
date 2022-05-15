@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class C__VetAdapter extends BaseAdapter {
     Activity mActivity;
     C__Vet_MyVets myVets;
@@ -36,11 +38,10 @@ public class C__VetAdapter extends BaseAdapter {
     public View getView(int position, View view, ViewGroup viewGroup) {
         View oneVetLine;
         LayoutInflater inflater = (LayoutInflater) mActivity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        oneVetLine = inflater.inflate(R.layout.one_line_vet, viewGroup,false);
+        oneVetLine = inflater.inflate(R.layout.one_line_vet, viewGroup, false);
 
         TextView tv_date = oneVetLine.findViewById(R.id.tv_vetVisit_date);
         TextView tv_name = oneVetLine.findViewById(R.id.tv_vetVisit_name);
-
         C__Vet c = this.getItem(position);
         tv_date.setText(c.getDate());
         tv_name.setText(c.getName());

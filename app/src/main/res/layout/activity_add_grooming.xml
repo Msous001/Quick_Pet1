@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -28,12 +27,12 @@
             app:srcCompat="@drawable/arrow_back_grey" />
 
         <ImageView
-            android:id="@+id/image_vet_tool"
+            android:id="@+id/image_grooming_tool"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
             android:contentDescription="@string/grooming"
-            app:srcCompat="@drawable/vet" />
+            app:srcCompat="@drawable/gromming" />
 
         <TextView
             android:id="@+id/tv_title_grooming"
@@ -48,32 +47,30 @@
             android:paddingTop="0dp"
             android:paddingRight="8dp"
             android:paddingBottom="0dp"
-            android:text="Adding Grooming"
+            android:text="@string/adding_grooming"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_grooming_place"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:text="Place"
+                android:text="@string/place"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
@@ -89,33 +86,35 @@
             <EditText
                 android:id="@+id/et_grooming_place"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_grooming_date"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/date"
                 android:textAlignment="textEnd"
@@ -131,54 +130,40 @@
 
             <EditText
                 android:id="@+id/et_grooming_date"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/mm_yyyy"
+                android:importantForAutofill="no"
                 android:inputType="date"
-                android:labelFor="@id/nameInput"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
-            <ImageView
-                android:id="@+id/calendar_date_grooming"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/calendar"
-                app:srcCompat="@drawable/cal" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_grooming_time"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/time"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -193,51 +178,40 @@
 
             <EditText
                 android:id="@+id/et_grooming_time"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/alarm_add_black"
+                android:ems="10"
+                android:focusable="false"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
-            <ImageView
-                android:id="@+id/calendar_time_grooming"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="Watch"
-                app:srcCompat="@drawable/alarm_add_black" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp"
-            android:layout_marginBottom="40dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_Grooming_direction"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/direction"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -253,16 +227,16 @@
             <EditText
                 android:id="@+id/et_grooming_direction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
+                android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
     </LinearLayout>

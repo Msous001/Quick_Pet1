@@ -18,14 +18,21 @@ public class C__MedicationAdapter extends BaseAdapter {
         this.myActivity = myActivity;
         this.myMedication = myMedication;
     }
-    @Override
-    public int getCount() {return myMedication.getMyMedicationList().size();}
 
     @Override
-    public C__Medication getItem(int i) {return myMedication.getMyMedicationList().get(i);}
+    public int getCount() {
+        return myMedication.getMyMedicationList().size();
+    }
 
     @Override
-    public long getItemId(int i) {return 0;}
+    public C__Medication getItem(int i) {
+        return myMedication.getMyMedicationList().get(i);
+    }
+
+    @Override
+    public long getItemId(int i) {
+        return 0;
+    }
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {

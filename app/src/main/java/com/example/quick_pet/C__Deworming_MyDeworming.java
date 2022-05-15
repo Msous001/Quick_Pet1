@@ -9,7 +9,8 @@ public class C__Deworming_MyDeworming {
     public C__Deworming_MyDeworming(List<C__Deworming> myDewormingList) {
         this.myDewormingList = myDewormingList;
     }
-    public C__Deworming_MyDeworming(){
+
+    public C__Deworming_MyDeworming() {
         this.myDewormingList = new ArrayList<>();
 
     }

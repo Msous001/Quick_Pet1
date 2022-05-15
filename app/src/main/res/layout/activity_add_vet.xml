@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,13 +10,12 @@
     <LinearLayout
         android:id="@+id/LinearLayoutVet"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:background="@android:color/transparent"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" >
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
@@ -26,16 +24,16 @@
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
-            app:srcCompat="@drawable/arrow_back_grey"
-            android:contentDescription="@string/arrow" />
+            android:contentDescription="@string/arrow"
+            app:srcCompat="@drawable/arrow_back_grey" />
 
         <ImageView
             android:id="@+id/image_vet_tool"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_gravity="center"
-            app:srcCompat="@drawable/vet"
-            android:contentDescription="@string/veterinarian_tool" />
+            android:contentDescription="@string/veterinarian_tool"
+            app:srcCompat="@drawable/vet" />
 
         <TextView
             android:id="@+id/tv_title_newVet"
@@ -52,33 +50,32 @@
             android:paddingBottom="0dp"
             android:text="@string/adding_vet_visit"
             android:textAlignment="center"
-            android:textColor="@color/link_water"
+            android:textColor="@color/white"
             android:textSize="18sp" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_name"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/vet_name"
                 android:textAlignment="textEnd"
-                android:textStyle="bold"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
@@ -90,145 +87,131 @@
             <EditText
                 android:id="@+id/et_newVet_name"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:inputType="textPersonName" />
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_date"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
                 android:text="@string/date"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <EditText
                 android:id="@+id/et_newVet_date"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
+                android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/dd_mm_yyyy"
+                android:importantForAutofill="no"
                 android:inputType="date"
-                android:labelFor="@id/nameInput"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
-            <ImageView
-                android:id="@+id/calendar_date_newVet"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center"
-                android:layout_marginStart="8dp"
-                android:layout_marginEnd="8dp"
-                android:contentDescription="@string/calendar"
-                app:srcCompat="@drawable/cal" />
         </TableRow>
 
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_direction"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/direction"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <EditText
                 android:id="@+id/et_newVet_direction"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
+                android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:labelFor="@id/editDirection"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
+            android:layout_marginBottom="40dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/tv_newVet_weight"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
+                android:paddingStart="0dp"
+                android:paddingTop="7dp"
                 android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/weight"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -239,33 +222,28 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <EditText
                 android:id="@+id/et_newVet_weight"
-                android:layout_width="180dp"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
+                android:layout_width="205dp"
+                android:layout_height="match_parent"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:importantForAutofill="no"
                 android:inputType="numberDecimal"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
-                android:textSize="16sp" />
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
 
             <TextView
                 android:id="@+id/tv_newVet_Kg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="2dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
                 android:text="@string/kg"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -275,26 +253,24 @@
 
     </LinearLayout>
 
-        <Button
-            android:id="@+id/next_btn_newVet"
-            android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/green_button"
-            android:gravity="center"
-            android:text="@string/next"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.705"
-            tools:ignore="TextContrastCheck" />
-
+    <Button
+        android:id="@+id/next_btn_newVet"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@drawable/green_button"
+        android:gravity="center"
+        android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="@color/white"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.705"
+        tools:ignore="TextContrastCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

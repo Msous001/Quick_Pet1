@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white_lila"
+    tools:context=".Main_menu">
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/materialToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/green_button"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:popupTheme="@style/myMenu">
+
+    </com.google.android.material.appbar.MaterialToolbar>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:background="@drawable/circle_white"
+        android:contentDescription="@string/logo"
+        android:foregroundGravity="center"
+        android:padding="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/materialToolbar"
+        app:layout_constraintVertical_bias="0.042"
+        app:srcCompat="@drawable/logo" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="120dp"
+        android:layout_marginBottom="50dp">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imagePet"
+            android:layout_width="95sp"
+            android:layout_height="95sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="15dp"
+            android:contextClickable="false"
+            app:civ_border_color="@color/green_button"
+            app:civ_border_width="10dp"
+            app:civ_circle_background_color="@color/green_button" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="222dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="32dp"
+            android:layout_toEndOf="@+id/imagePet"
+            android:background="@android:color/transparent"
+            android:orientation="vertical"
+            app:layout_constraintVertical_bias="0.0">
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp">
+
+                <Button
+                    android:id="@+id/appointment"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:paddingStart="9dp"
+                    android:paddingEnd="10dp"
+                    android:text="@string/appointment"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/medical"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/veterinary"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/grooming"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/grooming"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="15dp">
+
+
+                <Button
+                    android:id="@+id/vaccination"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/vaccination"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+
+                <Button
+                    android:id="@+id/fleas"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/fleas_ticks"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/deworming"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/deworming"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/surgeryMenu"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/surgery"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/medication_Menu"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/medication"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp">
+
+                <Button
+                    android:id="@+id/allergyMenu"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/allergy"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+
+                <Button
+                    android:id="@+id/Health_Menu"
+                    style="?android:attr/buttonBarButtonStyle"
+                    android:layout_width="154dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="@drawable/green_button"
+                    android:padding="0dp"
+                    android:text="@string/health_condition"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:textStyle="italic"
+                    app:backgroundTint="@null"
+                    tools:ignore="RtlHardcoded" />
+            </TableRow>
+        </LinearLayout>
+    </RelativeLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 
 public class C__PhotosAdapter extends BaseAdapter {
     Activity mActivity;
@@ -44,7 +46,8 @@ public class C__PhotosAdapter extends BaseAdapter {
         ImageView iv = onePhotoLine.findViewById(R.id.iv_photos);
 
         C__Photos p = this.getItem(position);
-        iv.setImageURI(Uri.parse(p.getPicPicture()));
+        Picasso.get().load(p.getPicPicture()).into(iv);
+        // iv.setImageURI(Uri.parse(p.getPicPicture()));
         return onePhotoLine;
     }
 }

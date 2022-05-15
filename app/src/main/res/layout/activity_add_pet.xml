@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/link_water"
     tools:context=".Add_pet">
-
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -17,46 +15,60 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="24dp"
-        android:orientation="vertical"
         android:background="@android:color/transparent"
-        app:backgroundTint="@null"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/back_arrow_addPet"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
+                android:clickable="true"
+                android:contentDescription="@string/arrow"
                 android:src="@drawable/arrow_back_grey" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/circleImageCamera"
+                android:layout_width="100sp"
+                android:layout_height="100sp"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="80dp"
+                android:contextClickable="true"
+                android:src="@drawable/camera_add"
+                app:civ_border_color="@color/green_button"
+                app:civ_border_width="10dp"
+                app:civ_circle_background_color="@color/green_button" />
+        </RelativeLayout>
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/circleImageCamera"
-            android:layout_width="100sp"
-            android:layout_height="100sp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="false"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:contextClickable="true"
-            android:src="@drawable/camera_add"
-            app:civ_border_color="@color/green_button"
-            app:civ_border_width="20dp"
-            app:civ_circle_background_color="@color/green_button" />
-
+        <TextView
+            android:id="@+id/title_pet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/brown_border"
+            android:fontFamily="@font/roboto_mono_italic"
+            android:paddingLeft="8dp"
+            android:paddingTop="0dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="0dp"
+            android:text="@string/new_pet"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/nameInput"
@@ -64,10 +76,8 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/name"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -83,68 +93,62 @@
             <EditText
                 android:id="@+id/editName"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
                 android:ems="10"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:importantForAutofill="no"
                 android:inputType="textPersonName"
-                android:textSize="16sp"/>
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                tools:ignore="LabelFor" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/typeInput"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/type"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <Spinner
                 android:id="@+id/spinnerType"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/genderInput"
@@ -152,41 +156,38 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/gender"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <Spinner
                 android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/gender"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/breedInput"
@@ -194,61 +195,51 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/breed"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <AutoCompleteTextView
                 android:id="@+id/breed_input"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
-                android:background="@color/white"
-                android:completionHint="@string/select_a_breed"
+                android:background="@android:color/transparent"
                 android:completionThreshold="1"
                 android:dropDownVerticalOffset="10dp"
                 android:hint="@string/select_a_breed"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:padding="4dp"
                 android:popupBackground="@color/link_water"
+                android:textColor="@color/black"
                 android:textSize="16sp" />
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/dobInput"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/birthday"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
@@ -263,87 +254,70 @@
 
             <EditText
                 android:id="@+id/birthinput"
-                android:layout_width="180dp"
-                android:layout_height="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="0dp"
+                android:layout_marginEnd="8dp"
                 android:background="@android:color/transparent"
+                android:drawableEnd="@drawable/calen_dar"
                 android:ems="10"
                 android:focusable="false"
-                android:hint="@string/dd_mm_yyyy"
                 android:importantForAutofill="no"
                 android:inputType="date"
-                android:labelFor="@id/nameInput"
-                android:paddingStart="4dp"
-                android:paddingTop="4dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
-                android:textColorHint="@color/white"
+                android:padding="4dp"
+                android:textColor="@color/black"
                 android:textSize="16sp"
-                tools:ignore="TextContrastCheck,DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
+                tools:ignore="LabelFor" />
 
-            <ImageView
-                android:id="@+id/calendar"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="4dp"
-                android:contentDescription="@string/calendar"
-                app:srcCompat="@drawable/cal" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/colourInput"
-                style="@style/label"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
                 android:includeFontPadding="false"
-                android:paddingStart="4dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/colour"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <Spinner
                 android:id="@+id/spinnerColour"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
                 android:entries="@array/petColour"
+                android:textColor="@color/black"
                 tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
 
         </TableRow>
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_marginTop="5dp"
             android:background="@drawable/white_border"
-            android:paddingStart="4dp"
-            android:paddingTop="4dp"
-            android:paddingEnd="4dp"
-            android:paddingBottom="4dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/IntactInput"
@@ -351,28 +325,28 @@
                 android:layout_height="wrap_content"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/roboto"
-                android:paddingStart="4dp"
-                android:paddingTop="8dp"
-                android:paddingEnd="4dp"
-                android:paddingBottom="4dp"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
                 android:text="@string/intact"
                 android:textAlignment="textEnd"
                 android:textColor="@color/black"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="2dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="3dp"
                 android:layout_marginRight="3dp"
-                android:background="@color/zambezi"/>
+                android:background="@color/zambezi" />
 
             <Spinner
                 android:id="@+id/spinnerIntact"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
+                android:layout_height="match_parent"
                 android:layout_marginStart="0dp"
                 android:layout_marginEnd="8dp"
-                android:entries="@array/intact" />
+                android:entries="@array/intact"
+                android:textColor="@color/black" />
 
         </TableRow>
 
@@ -400,12 +374,6 @@
             android:elevation="10dp"
             android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/adapter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text=""
-            android:textColor="@color/link_water"/>
 
     </LinearLayout>
 

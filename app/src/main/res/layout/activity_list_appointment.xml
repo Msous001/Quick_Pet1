@@ -40,10 +40,10 @@
         android:layout_centerInParent="true"
         android:layout_marginTop="24dp"
         app:civ_border_color="@color/green_button"
-        app:civ_border_width="20dp"
+        app:civ_border_width="10dp"
         app:civ_circle_background_color="@color/green_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/materialToolbar" />
 
@@ -54,7 +54,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center_vertical"
         android:text="@string/appointments"
-        android:textColor="@color/white_lila"
+        android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/materialToolbar"
@@ -64,11 +64,13 @@
         app:layout_constraintTop_toTopOf="@+id/materialToolbar"
         app:layout_constraintVertical_bias="0.457" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    <ListView
         android:id="@+id/recyclerView"
-        android:layout_width="325dp"
-        android:layout_height="345dp"
+        android:layout_width="match_parent"
+        android:layout_height="325dp"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -81,6 +83,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="32dp"
         android:background="@drawable/green_button"
         android:drawableEnd="@drawable/ic_add24"
@@ -89,16 +92,14 @@
         android:text="@string/appointment"
         android:textAllCaps="false"
         android:textColor="@color/white"
-        android:textSize="14sp"
+        android:textSize="16sp"
         app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recyclerView" />
-
-
-    <!--<include layout="@layout/toolbar" /-->
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

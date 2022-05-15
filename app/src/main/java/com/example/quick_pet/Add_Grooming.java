@@ -8,36 +8,59 @@ import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class Add_Grooming extends AppCompatActivity {
 
+    //variables
     Button btnNext;
-    EditText et_place, et_date, et_time, et_direction;
-    ImageView calendar_date_app, image_time_picker, back_arrow;
+    private EditText et_place, et_date, et_time, et_direction;
+    ImageView back_arrow;
     private int mDate, mMonth, mYear, mHour, mMinute;
     int positionToEdit = -1;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
+    private static final String TAG = "Add Groomiming";
+    FirebaseFirestore db;
+    private static String pet_name;
+    private static String dbSalt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_grooming);
 
+        db = FirebaseFirestore.getInstance();
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
+
+        //matching the variables with the elements in xml file
         et_place = ((EditText) findViewById(R.id.et_grooming_place));
         et_date = ((EditText) findViewById(R.id.et_grooming_date));
         et_time = ((EditText) findViewById(R.id.et_grooming_time));
         et_direction = ((EditText) findViewById(R.id.et_grooming_direction));
 
+        //back button
         back_arrow = ((ImageView) findViewById(R.id.back_arrow_grooming));
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_Grooming.this, List__Grooming.class)));
-
-        calendar_date_app = ((ImageView)findViewById(R.id.calendar_date_grooming));
-        calendar_date_app.setOnClickListener(v -> {
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_Grooming.this, List__Grooming.class));
+            finish();
+        });
+        //setting the calendar picker
+        et_date.setOnClickListener(v -> {
             final Calendar cal1 = Calendar.getInstance();
             mDate = cal1.get(Calendar.DATE);
             mMonth = cal1.get(Calendar.MONTH);
@@ -53,22 +76,31 @@ public class Add_Grooming extends AppCompatActivity {
             }, mYear, mMonth, mDate);
             datePickerDialog.show();
         });
+        // setting the time picker
+        et_time.setOnClickListener(view -> {
+            Calendar calendar = Calendar.getInstance();
+            mHour = calendar.get(Calendar.HOUR_OF_DAY);
+            mMinute = calendar.get(Calendar.MINUTE);
+            calendar.set(0, 0, 0, mHour, mMinute);
 
-        image_time_picker = ((ImageView) findViewById(R.id.calendar_time_grooming));
-        image_time_picker.setOnClickListener(view -> {
-            TimePickerDialog.OnTimeSetListener onTimeSetListener = (timePicker, selectedHour, selectedMinute) -> {
-                mHour = selectedHour;
-                mMinute = selectedMinute;
-                et_time.setText(String.format(Locale.getDefault(), "%02d:%02d", mHour, mMinute));
-            };
-            int style = AlertDialog.THEME_HOLO_DARK;
-            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, style, onTimeSetListener, mHour, mMinute, true);
-            timePickerDialog.setTitle("Select Time");
+            TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Grooming.this, new TimePickerDialog.OnTimeSetListener() {
+                @Override
+                public void onTimeSet(TimePicker timePicker, int hourD, int minuteD) {
+                    et_time.setText(String.format(Locale.getDefault(), "%02d:%02d ", hourD, minuteD, true));
+                }
+            }, 12, 0, true);
+
+            timePickerDialog.updateTime(mHour, mMinute);
+            timePickerDialog.setTitle("Select time");
             timePickerDialog.show();
         });
 
+        for (C__CurrentPet c : myCurrentPet.getMyCurrentPet()) {
+            pet_name = c.getName();
+        }
+        //receive information for editing process
         Bundle incomingIntent = getIntent().getExtras();
-        if(incomingIntent != null){
+        if (incomingIntent != null) {
             String G_place = incomingIntent.getString("place");
             String G_date = incomingIntent.getString("date");
             String G_time = incomingIntent.getString("time");
@@ -94,31 +126,61 @@ public class Add_Grooming extends AppCompatActivity {
 
         }
         btnNext = ((Button) findViewById(R.id.next_btn_grooming));
+        // click listener for the button
         btnNext.setOnClickListener(view -> {
+            //collecting information from user input
             String newPlace = et_place.getText().toString();
             String newDates = et_date.getText().toString();
             String newTime = et_time.getText().toString();
             String newDirection = et_direction.getText().toString();
-
+            //validataion to avoid system crash
             if (TextUtils.isEmpty(newPlace)) {
-                newPlace = "Not Defined";
+                et_place.setError("Required");
+                et_place.requestFocus();
+            } else if (TextUtils.isEmpty(newDates)) {
+                et_date.setError("Required");
+                et_date.requestFocus();
+            } else {
+                if (TextUtils.isEmpty(newTime)) {
+                    newTime = "Not Defined";
+                }
+                if (TextUtils.isEmpty(newDirection)) {
+                    newDirection = "Not Defined";
+                }
+
+                C__Grooming ca = new C__Grooming(pet_name, newPlace, newDates, newTime, newDirection);
+                if (newPlace.length() > 2) {
+                    dbSalt = newPlace.substring(0, 2);
+                } else {
+                    dbSalt = newPlace;
+                }
+                String separator = " ";
+                String dbDates;
+                int sep = newDates.lastIndexOf(separator);
+                dbDates = newDates.substring(0, sep);
+                dbSalt = dbSalt + dbDates;
+                //Connecting to the database
+                FirebaseAuth fAuth = FirebaseAuth.getInstance();
+                FirebaseUser firebaseUser = fAuth.getCurrentUser();
+                db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
+                        .document(pet_name).collection("Grooming").document("G-" + dbSalt)
+                        .set(ca).addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Toast.makeText(getApplicationContext(), "Gromming Added", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                // I use Intents to transfer data from one Activity to another
+                Intent i = new Intent(view.getContext(), List__Grooming.class);
+                i.putExtra("edit", positionToEdit);
+                i.putExtra("place", newPlace);
+                i.putExtra("date", newDates);
+                i.putExtra("time", newTime);
+                i.putExtra("direction", newDirection);
+                startActivity(i);
             }
-            if (TextUtils.isEmpty(newDates)) {
-                newDates = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newTime)) {
-                newTime = "Not Defined";
-            }
-            if (TextUtils.isEmpty(newDirection)) {
-                newDirection = "Not Defined";
-            }
-            Intent i = new Intent(view.getContext(), List__Grooming.class);
-            i.putExtra("edit", positionToEdit);
-            i.putExtra("place", newPlace);
-            i.putExtra("date", newDates);
-            i.putExtra("time", newTime);
-            i.putExtra("direction", newDirection);
-            startActivity(i);
         });
+
     }
 }

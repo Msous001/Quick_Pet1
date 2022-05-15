@@ -58,7 +58,7 @@
     <!--material.appbar.MaterialToolbar-->
     <style name="myMenu" parent="Theme.Quick_Pet">
         <item name="android:background">@drawable/pop_menu</item>
-        <item name="android:textColor">@color/link_water</item>
+        <item name="android:textColor">@color/white</item>
         <item name="android:textSize">16sp</item>
         <item name="android:minWidth">140dp</item>
         <item name="android:minHeight">24dp</item>

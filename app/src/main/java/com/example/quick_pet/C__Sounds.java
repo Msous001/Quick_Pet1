@@ -11,14 +11,29 @@ public class C__Sounds {
         this.isPlaying = isPlaying;
     }
 
-    public int getId() {return id;}
-    public void setId(int id) {this.id = id;}
+    public int getId() {
+        return id;
+    }
 
-    public String getName() {return name;}
-    public void setName(String name) {this.name = name;}
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    public boolean isPlaying() {return isPlaying;}
-    public void setPlaying(boolean playing) {isPlaying = playing;}
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public boolean isPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(boolean playing) {
+        isPlaying = playing;
+    }
 
     @Override
     public String toString() {

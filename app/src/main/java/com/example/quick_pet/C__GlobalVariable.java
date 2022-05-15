@@ -1,15 +1,12 @@
 package com.example.quick_pet;
 
 import android.app.Application;
-import android.net.Uri;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class C__GlobalVariable extends Application {
 
-    // List<Uri> uriList = new ArrayList<Uri>();
     private C__Vet_MyVets myVets = new C__Vet_MyVets();
     private C__Allergy_MyAllergies myAllergies = new C__Allergy_MyAllergies();
     private C__Health_MyHealth myHealth = new C__Health_MyHealth();
@@ -21,38 +18,14 @@ public class C__GlobalVariable extends Application {
     private C__Medication_MyMedication myMedication = new C__Medication_MyMedication();
     private C__Photos_MyPhotos myPhotos = new C__Photos_MyPhotos();
     private C__Sounds_MySounds mySounds = new C__Sounds_MySounds();
+    private C__CurrentPet_MyCurrentPet myCurrentPet = new C__CurrentPet_MyCurrentPet();
     private C__Pet_MyPets myPets = new C__Pet_MyPets();
+    private C__Appointment_MyApp myApps = new C__Appointment_MyApp();
+    private C__Notification_MyNot myNot = new C__Notification_MyNot();
 
-    private static List<C__CurrentPet> currentPets = new ArrayList<>();
-
-    private static List<C__Appointment> appointmentsList = new ArrayList<C__Appointment>();
-    private static int nextId = 1;
+    private static List<C__Pet> petList = new ArrayList<>();
 
     public C__GlobalVariable() {
-
-        //fillAppointement();
-    }
-
-//    private void fillAppointement() {
-//        C__Appointment Ap0 = new C__Appointment(0, "Veterinarian", "Pet's Place",
-//                "30 May \n 2020", "12:03", "Croydon", "29/05");
-//        appointmentsList.add(Ap0);
-//    }
-
-    public static int getNextId() {
-        return nextId;
-    }
-
-    public static void setNextId(int nextId) {
-        C__GlobalVariable.nextId = nextId;
-    }
-
-    public static List<C__Appointment> getAppointmentsList() {
-        return appointmentsList;
-    }
-
-    public static void setAppointmentsList(List<C__Appointment> appointmentsList) {
-        C__GlobalVariable.appointmentsList = appointmentsList;
     }
 
     public C__Vet_MyVets getMyVets() {
@@ -151,11 +124,35 @@ public class C__GlobalVariable extends Application {
         this.myPets = myPets;
     }
 
-    public static List<C__CurrentPet> getCurrentPets() {
-        return currentPets;
+    public C__CurrentPet_MyCurrentPet getMyCurrentPet() {
+        return myCurrentPet;
     }
 
-    public static void setCurrentPets(List<C__CurrentPet> currentPets) {
-        C__GlobalVariable.currentPets = currentPets;
+    public void setMyCurrentPet(C__CurrentPet_MyCurrentPet myCurrentPet) {
+        this.myCurrentPet = myCurrentPet;
+    }
+
+    public static List<C__Pet> getPetList() {
+        return petList;
+    }
+
+    public static void setPetList(List<C__Pet> petList) {
+        C__GlobalVariable.petList = petList;
+    }
+
+    public C__Appointment_MyApp getMyApps() {
+        return myApps;
+    }
+
+    public void setMyApps(C__Appointment_MyApp myApps) {
+        this.myApps = myApps;
+    }
+
+    public C__Notification_MyNot getMyNot() {
+        return myNot;
+    }
+
+    public void setMyNot(C__Notification_MyNot myNot) {
+        this.myNot = myNot;
     }
 }

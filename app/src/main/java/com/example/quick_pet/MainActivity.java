@@ -47,7 +47,8 @@ public class MainActivity extends AppCompatActivity {
 
         forgotLink = findViewById(R.id.forgot_link);
         forgotLink.setOnClickListener(v -> {
-
+            startActivity(new Intent(MainActivity.this, Forgot_Password.class));
+            finish();
         });
 
         registerLink = findViewById(R.id.register_link);

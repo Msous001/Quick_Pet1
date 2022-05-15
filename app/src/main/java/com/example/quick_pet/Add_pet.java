@@ -19,41 +19,37 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_pet extends AppCompatActivity {
 
-
-    EditText name, dateTxt;
+    //variables
+    private EditText name, dateTxt;
     ImageView calendar, back_arrow;
-    Spinner type, gender, colour, intact;
+    private Spinner type, gender, colour, intact;
     Button nextbtn;
     CircleImageView circleImageView;
     public static final int IMAGE_CODE = 1;
     Uri imageUri, imageUriDog, imageUriCat, imageUriSelected;
-    AutoCompleteTextView editT;
+    private AutoCompleteTextView editT;
     private static Boolean press = true;
     private int mDate, mMonth, mYear;
-    C__Pet_MyPets myPets;
-    TextView selection;
-    List<C__CurrentPet> currentPet;
+    private C__CurrentPet_MyCurrentPet myCurrentPet;
+    private static final String TAG = "Add Pet";
+    FirebaseFirestore db;
 
 
-
+    //dog breed name arrays for autocomplete textview
     private static final String[] Dog_breed = new String[]{"Affenpinscher", "Afghan Hound",
             "Airedale Terrier", "Akita", "Alaskan Malamute", "Anatolian Shepherd", "Australian Cattle",
             "Australian Shepherd", "Australian Silky", "Australian Terrier", "Azawakh", "Barbet",
@@ -95,6 +91,7 @@ public class Add_pet extends AppCompatActivity {
             "White Swiss Shepherd", "Xoloitzcuintle", "Yorkshire Terrier", "Not Defined"
 
     };
+    //cat breed name arrays for autocomplete textview
     private static final String[] Cat_breed = new String[]{"Abyssinian", "Balinese", "Bengal",
             "Birman", "British Shorthair", "Burmese", "Burmilla", "Chinchilla", "Cornish Rex",
             "Devon Rex", "Moggie", "Exotic Shorthair", "Japanese Bobtail", "Korat", "Maine Coon",
@@ -102,7 +99,8 @@ public class Add_pet extends AppCompatActivity {
             "Russian Blue", "Scottish Fold", "Siamese", "Siberian Forest Cat", "Singapura", "Snowshoe",
             "Somali", "Sphynx", "Tiffanie", "Tonkinesse", "Turkish Van", "Not Defined"
     };
-    private static final String[] pet_Type = new String[]{"", "Dog", "Cat"};
+    //type name arrays
+    private static final String[] pet_Type = new String[]{"Dog", "Cat"};
 
 
     @Override
@@ -111,20 +109,26 @@ public class Add_pet extends AppCompatActivity {
         setContentView(R.layout.activity_add_pet);
 
 
-        currentPet = C__GlobalVariable.getCurrentPets();
-
+        //matching the variables with the elements in xml file
         name = (EditText) findViewById(R.id.editName);
         dateTxt = (EditText) findViewById(R.id.birthinput);
-
-        back_arrow = (ImageView) findViewById(R.id.back_arrow_addPet);
-        back_arrow.setOnClickListener(view -> startActivity(new Intent(Add_pet.this, List__Pet.class)));
+        myCurrentPet = ((C__GlobalVariable) this.getApplication()).getMyCurrentPet();
 
         type = (Spinner) findViewById(R.id.spinnerType);
         gender = (Spinner) findViewById(R.id.spinnerGender);
         colour = (Spinner) findViewById(R.id.spinnerColour);
         intact = (Spinner) findViewById(R.id.spinnerIntact);
-        selection = (TextView)findViewById(R.id.adapter);
+        db = FirebaseFirestore.getInstance();
 
+        //back button
+        back_arrow = (ImageView) findViewById(R.id.back_arrow_addPet);
+        // click listener for the button
+        back_arrow.setOnClickListener(view -> {
+            startActivity(new Intent(Add_pet.this, List__Pet.class));
+            finish();
+        });
+
+        // selecting two images from file for adding a new pet without profile picture
         imageUriDog = new Uri.Builder().scheme(ContentResolver.SCHEME_ANDROID_RESOURCE)
                 .authority(getResources().getResourcePackageName(R.drawable.dog_1))
                 .appendPath(getResources().getResourceTypeName(R.drawable.dog_1))
@@ -137,26 +141,27 @@ public class Add_pet extends AppCompatActivity {
                 .build();
 
         circleImageView = (CircleImageView) findViewById(R.id.circleImageCamera);
+        // adding a click listener
         circleImageView.setOnClickListener(view -> {
             press = false;
             openimageform();
         });
         editT = findViewById(R.id.breed_input);
         // -- to open the correct array of names from two sources depending of the select item
-        ArrayAdapter<String> typeAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, pet_Type);
+        ArrayAdapter<String> typeAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, pet_Type);
         type.setAdapter(typeAdapter);
         type.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String itemSelected = pet_Type[position];
-                if (position == 1) {
-                    ArrayAdapter<String> adapter = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
+                if (position == 0) {
+                    ArrayAdapter<String> adapter = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Dog_breed);
                     editT.setAdapter(adapter);
                     editT.getText();
-                    //selection = (String) editT.getAdapter().getItem(position);
+
                 }
-                if (position == 2) {
-                    ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
+                if (position == 1) {
+                    ArrayAdapter<String> adapter2 = new ArrayAdapter<>(Add_pet.this, android.R.layout.simple_spinner_dropdown_item, Cat_breed);
                     editT.setAdapter(adapter2);
                     editT.getText();
 
@@ -168,10 +173,9 @@ public class Add_pet extends AppCompatActivity {
 
             }
         });
-        // -- next button code to navigate
-        myPets = ((C__GlobalVariable) this.getApplication()).getMyPets();
 
         nextbtn = (Button) findViewById(R.id.next_btn);
+        // click listener for the button
         nextbtn.setOnClickListener(v -> {
 
             String Sname = name.getText().toString();
@@ -180,7 +184,7 @@ public class Add_pet extends AppCompatActivity {
             }
             String Stype = type.getSelectedItem().toString();
             if (TextUtils.isEmpty(Stype)) {
-                Stype = "Dog";
+                ;
             }
             String Sgender = gender.getSelectedItem().toString();
             String Sbreed = editT.getText().toString();
@@ -188,6 +192,7 @@ public class Add_pet extends AppCompatActivity {
             String Scolour = colour.getSelectedItem().toString();
             String Sintact = intact.getSelectedItem().toString();
 
+            //validation to avoid system crash
             if (TextUtils.isEmpty(Sgender)) {
                 Sgender = "Not Defined";
             }
@@ -208,31 +213,37 @@ public class Add_pet extends AppCompatActivity {
                         imageUriSelected = imageUriCat;
                     }
                 } else {
-                    imageUriSelected = imageUri;
+                    if (imageUri != null) {
+                        imageUriSelected = imageUri;
+                    } else {
+                        if (Stype.equals("Dog")) {
+                            imageUriSelected = imageUriDog;
+                        } else if (Stype.equals("Cat")) {
+                            imageUriSelected = imageUriCat;
+                        }
+                    }
                 }
             }
 
             C__Pet newpet = new C__Pet(Sname, Stype, Sgender, Sbreed, Sbod, Scolour, Sintact, imageUriSelected.toString());
-            myPets.getMyPetList().add(newpet);
             C__CurrentPet c = new C__CurrentPet(Sname, imageUriSelected.toString());
-            currentPet.add(c);
+            myCurrentPet.getMyCurrentPet().add(c);
 
-
+            //Connecting to the database
             FirebaseAuth fAuth = FirebaseAuth.getInstance();
             FirebaseUser firebaseUser = fAuth.getCurrentUser();
 
-            DatabaseReference pet_Reference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet " +Sname);
-            pet_Reference.push().setValue(newpet);
+
+            db.collection("Users").document(firebaseUser.getUid()).collection("Pets").document(Sname)
+                    .set(newpet).addOnSuccessListener(unused -> Toast.makeText(Add_pet.this, "Pet Added", Toast.LENGTH_SHORT).show());
 
             Intent i = new Intent(v.getContext(), List__Pet.class);
-            i.putExtra("p_image", imageUriSelected);
             startActivity(i);
 
         });
 
 
         //-- date picker from a calendar and set to with the format dd-mmm-yyyy
-        calendar = (ImageView) findViewById(R.id.calendar);
         dateTxt.setOnClickListener(v -> {
             final Calendar cal = Calendar.getInstance();
             mDate = cal.get(Calendar.DATE);
@@ -269,6 +280,7 @@ public class Add_pet extends AppCompatActivity {
                 circleImageView.setImageURI(imageUri);
             }
         } catch (Exception e) {
+            Log.e(TAG, e.getMessage());
             Toast.makeText(Add_pet.this, "ERROR" + e, Toast.LENGTH_SHORT).show();
         }
     }

@@ -1,7 +1,5 @@
 package com.example.quick_pet;
 
-import android.net.Uri;
-
 public class C__Pet {
     private String name;
     private String type;
@@ -23,6 +21,8 @@ public class C__Pet {
         this.imageUrl = imageUrl;
     }
 
+    public C__Pet() {
+    }
 
     public String getName() {
         return name;

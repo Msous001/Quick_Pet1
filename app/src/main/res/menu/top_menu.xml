@@ -11,6 +11,9 @@
         app:showAsAction="always" />
 
     <item
+        android:id="@+id/a1"
+        android:title="" />
+    <item
         android:id="@+id/settings"
         android:icon="@drawable/settings"
         android:title="@string/settings" />
@@ -24,14 +27,12 @@
         android:icon="@drawable/photo"
         android:title="@string/photos" />
 
-
     <item
         android:id="@+id/logout"
         android:iconTint="@null"
         android:title="@string/logout" />
     <item
         android:id="@+id/exit"
-        android:icon="@drawable/exit_to_app"
         android:iconTint="@null"
         android:title="@string/exit" />
 </menu>
