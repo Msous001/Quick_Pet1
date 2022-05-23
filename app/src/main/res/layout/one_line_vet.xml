@@ -15,7 +15,7 @@
 
     <TextView
         android:id="@+id/tv_vetVisit_date"
-        android:layout_width="120dp"
+        android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"

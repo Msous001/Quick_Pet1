@@ -96,7 +96,7 @@ List__Photos extends AppCompatActivity {
             if (requestCode == IMAGE_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
                 uriPhotoList = data.getData();
             }
-            mProgressBar.setVisibility(View.VISIBLE);
+            //mProgressBar.setVisibility(View.VISIBLE);
             if (uriPhotoList != null) {
                 // store the image address
                 StorageReference ref = storageReference.child("Photo-" + UUID.randomUUID()
@@ -104,13 +104,13 @@ List__Photos extends AppCompatActivity {
                 ref.putFile(uriPhotoList).addOnSuccessListener(taskSnapshot -> ref.getDownloadUrl()
                         .addOnSuccessListener(uri -> {
 
-                            Handler handler = new Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    mProgressBar.setProgress(0);
-                                }
-                            }, 500);
+//                            Handler handler = new Handler();
+//                            handler.postDelayed(new Runnable() {
+//                                @Override
+//                                public void run() {
+//                                    mProgressBar.setProgress(0);
+//                                }
+//                            }, 500);
                             C__Photos c = new C__Photos(uri.toString());
                             db.collection("Users").document(firebaseUser.getUid())
                                     .collection("Photos")

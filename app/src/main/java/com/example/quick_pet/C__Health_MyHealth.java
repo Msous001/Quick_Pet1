@@ -18,7 +18,6 @@ public class C__Health_MyHealth {
     public List<C__Health> getMyHealthList() {
         return myHealthList;
     }
-
     public void setMyHealthList(List<C__Health> myHealthList) {
         this.myHealthList = myHealthList;
     }
