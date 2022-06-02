@@ -66,20 +66,6 @@ public class List__Surgery extends AppCompatActivity {
             String med2 = incomingMessages.getString("med2");
             String note = incomingMessages.getString("note");
             int positionEdited = incomingMessages.getInt("edit");
-
-//            FirebaseAuth fAuth = FirebaseAuth.getInstance();
-//            FirebaseUser firebaseUser = fAuth.getCurrentUser();
-//            C__Surgery s = new C__Surgery(pet_name, name, date, med1, med2, note);
-//            if(positionEdited >-1){
-//                mySurgeries.getMySurgeryList().remove(positionEdited);
-//                //here i need to call the database to delete the item
-//
-//            }
-//            mySurgeries.getMySurgeryList().add(s);
-//            DatabaseReference appReference = FirebaseDatabase.getInstance("https://quick-pet-default-rtdb.europe-west1.firebasedatabase.app").getReference().child("User").child(firebaseUser.getUid()).child("Pet "+ pet_name);
-//            appReference.child("Surgery").push().setValue(s);
-//            Collections.sort(mySurgeries.getMySurgeryList());
-//            adapter.notifyDataSetChanged();
             if (name.length() > 2) {
                 dbSalt = name.substring(0, 2);
             } else {
@@ -105,12 +91,12 @@ public class List__Surgery extends AppCompatActivity {
         db.collection("Users").document(firebaseUser.getUid()).collection("Pets")
                 .document(pet_name).collection("Surgery").whereEqualTo("id", pet_name)
                 .get().addOnSuccessListener(queryDocumentSnapshots -> {
-                    for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
-                        mySurgeries.getMySurgeryList().add(snapshot.toObject(C__Surgery.class));
+            for (DocumentSnapshot snapshot : queryDocumentSnapshots.getDocuments()) {
+                mySurgeries.getMySurgeryList().add(snapshot.toObject(C__Surgery.class));
 
-                    }
-                    adapter.notifyDataSetChanged();
-                });
+            }
+            adapter.notifyDataSetChanged();
+        });
     }
 
     private void editSurgery(int position) {
